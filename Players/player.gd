@@ -61,8 +61,12 @@ func save() -> Dictionary: #TODO coordinates aren't saved as expected but to 0,0
 	}
 	return save_dict
 	
-func load(saved_state: Variant) -> void:
+func load(saved_state: Dictionary) -> void:
 	if saved_state:
-		position = Vector2(saved_state.pos_x, saved_state.pos_y)
+		if typeof(saved_state.pos_x) != TYPE_FLOAT or typeof(saved_state.pos_y) != TYPE_FLOAT:
+			push_error("Saved coordinates should be floats: ",  saved_state.pos_x, saved_state.pos_y)
+		var coord_x: float = saved_state.pos_x
+		var coord_y: float = saved_state.pos_y
+		position = Vector2(coord_x, coord_y)
 		player_name = saved_state.player_name
 		# todo update name label for everyone

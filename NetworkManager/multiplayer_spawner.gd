@@ -44,11 +44,16 @@ func spawn_player(peer_id: int, selected_name: String) -> Player:
 	player.name = str(peer_id) # crucial
 	# Restore data if saved
 	print("selected name: " + selected_name)
-	var saved_state: Variant = Global.game_controller.network_manager.registered_players.get(selected_name, null)
-	if saved_state == null: # TODO
+	var saved_state: Dictionary = Global.game_controller.network_manager.registered_players.get(selected_name, null)
+	# Check if a save exists for the player
+	if saved_state == null:
 		push_error("No saved state found for character: " + selected_name)
-		return null 
-
+		return null # TODO handle this case
+	# Check if the save found is a dictionary
+	if typeof(saved_state) != TYPE_DICTIONARY:
+		push_error("Saved state is not a Dictionary for character: " + selected_name)
+		return null
+	
 	# The node should be added to the scene tree before loading data
 	var parent_node: Node = get_node(spawn_path)
 	parent_node.add_child(player)
