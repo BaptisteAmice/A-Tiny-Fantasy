@@ -1,6 +1,8 @@
 extends Node2D
 class_name World
 
+@onready var player_selection: PlayerSelection = $CanvasLayer/PlayerSelection
+
 func _ready() -> void:
 	pass
 

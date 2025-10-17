@@ -9,12 +9,62 @@ var multiplayer_spawner : MultiplayerSpawnerOfPlayer
 var registered_players: Dictionary = {}
 var logged_players: Array[Player] = []
 
+func _ready() -> void:
+	multiplayer.peer_connected.connect(_on_peer_connected) # Emitted to every peers
+	multiplayer.peer_disconnected.connect(_on_peer_disconnected) # Emitted to every peers
+
+func serialize_logged_players() -> Array[Dictionary]:
+	var logged_data: Array[Dictionary] = []
+	for player: Player in logged_players:
+		logged_data.append(player.save())
+	return logged_data
+
+
+# Will be called for everyone at least once
+func _on_peer_connected(peer_id: int) -> void:
+	print("Client connected: ", peer_id, " called by ", get_role_and_id())
+	
+	# Send all known character form the server to the clients
+	if multiplayer.is_server() :
+		print("im the server " + get_role_and_id())
+		rpc_id(peer_id, "_sync_players_lists_from_server", registered_players, serialize_logged_players())
+
+@rpc("any_peer")
+func _sync_players_lists_from_server(server_registered: Dictionary, server_logged_data: Array[Dictionary]) -> void:
+	if multiplayer.is_server() : return
+	print("Syncing data from server for " + get_role_and_id())
+	# Merge server_registered into local registered_players
+	for player_name: String in server_registered.keys():
+		registered_players[player_name] = server_registered[player_name]
+	
+	
+	#logged_players.clear() # the server always known all logged players
+	#for player_data: Dictionary in server_logged_data:
+	#	var new_player: Player = Global.game_controller.PLAYER.instantiate()
+	#	new_player.load_from_save(player_data)
+	#	logged_players.append(new_player)
+
+	if Global.game_controller.current_scene is World:
+		var world_scene: World = Global.game_controller.current_scene
+		world_scene.player_selection.draw_character_slots()
+
+
+# Will be called for everyone at least once
+func _on_peer_disconnected(peer_id: int) -> void:
+	print("Client disconnected: ", peer_id)
+	# TODO: update logged_players and broadcast to others
+
 func print_player_lists() -> void:
 	print("Registered Players names: ", registered_players.keys())
 	print("Logged Players: ")
 	for player: Player in logged_players:
 		print(player) 
 
+func get_role_and_id() -> String:
+	var role : String = "Server" if multiplayer.is_server() else "Client"
+	return "%s %d" % [role, multiplayer.get_unique_id()]
+
+		
 
 func start_server() -> void:
 	peer = ENetMultiplayerPeer.new()

@@ -8,7 +8,6 @@ func save_world() -> Dictionary:
 
 
 func save_all_data_to_file() -> void:
-	print("Called save")
 	var data: Dictionary = {
 		"players": {},  # We'll fill this with all saved players
 		"world": save_world()
