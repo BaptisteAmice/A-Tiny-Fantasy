@@ -1,7 +1,7 @@
 ## Credits
+
 ### Developer : Baptiste AMICE
 
-
-### Other ressources
+### Other resources
 - Sprites (player,...): Daniel Diggle
 - UI : Kenney
