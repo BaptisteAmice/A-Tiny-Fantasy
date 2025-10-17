@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var name_label: Label = $NameLabel
 @onready var player_animation_handler: PlayerAnimationHandler = $PlayerAnimationHandler
 @export var speed: int = 200
 @onready var all_interactions: Array = []
@@ -12,7 +13,6 @@ func _ready() -> void:
 	if !is_multiplayer_authority(): return
 	var player_camera: Camera2D = $Camera2D
 	player_camera.enabled = true # Personal camera, not shared
-	
 
 
 func get_input() -> void:
@@ -50,6 +50,7 @@ func _physics_process(delta: float) -> void:
 
 
 func save() -> Dictionary: #TODO coordinates aren't saved as expected but to 0,0
+	print("save", position.x,)
 	var save_dict: Dictionary = {
 		"filename" : get_scene_file_path(),
 		"parent" : get_parent().get_path(),
@@ -64,3 +65,4 @@ func load(saved_state: Variant) -> void:
 	if saved_state:
 		position = Vector2(saved_state.pos_x, saved_state.pos_y)
 		player_name = saved_state.player_name
+		# todo update name label for everyone

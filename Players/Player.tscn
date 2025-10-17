@@ -150,7 +150,7 @@ properties/2/path = NodePath("PlayerAnimationHandler:frame")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Players"]]
 collision_layer = 2
 script = ExtResource("1_ei3sg")
 
