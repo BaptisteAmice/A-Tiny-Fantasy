@@ -19,7 +19,6 @@ func serialize_logged_players() -> Array[Dictionary]:
 		logged_data.append(player.save())
 	return logged_data
 
-
 # Will be called for everyone at least once
 func _on_peer_connected(peer_id: int) -> void:
 	print("Client connected: ", peer_id, " called by ", get_role_and_id())
@@ -28,7 +27,13 @@ func _on_peer_connected(peer_id: int) -> void:
 	if multiplayer.is_server() :
 		print("im the server " + get_role_and_id())
 		rpc_id(peer_id, "_sync_players_lists_from_server", registered_players, serialize_logged_players())
+	
+	# Update interface for everyone
+	var world_scene: World = Global.game_controller.current_scene
+	world_scene.player_selection.draw_character_slots() # Used character should not be available
+	world_scene.player_selection.update_connected_players_label()
 
+	
 @rpc("any_peer")
 func _sync_players_lists_from_server(server_registered: Dictionary, server_logged_data: Array[Dictionary]) -> void:
 	if multiplayer.is_server() : return
@@ -47,6 +52,7 @@ func _sync_players_lists_from_server(server_registered: Dictionary, server_logge
 	if Global.game_controller.current_scene is World:
 		var world_scene: World = Global.game_controller.current_scene
 		world_scene.player_selection.draw_character_slots()
+		world_scene.player_selection.update_connected_players_label()
 
 
 # Will be called for everyone at least once
@@ -86,6 +92,7 @@ func close_server() -> void : # todo test
 		multiplayer.multiplayer_peer = null
 
 func disconnect_client() -> void:
+	#TODO remove from logged players
 	multiplayer.multiplayer_peer.disconnect_peer(1)
 
 func register_player(player_name: String) -> void :

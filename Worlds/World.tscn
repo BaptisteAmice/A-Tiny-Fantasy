@@ -136,9 +136,13 @@ horizontal_scroll_mode = 0
 [node name="CharacterSlotsVBoxContainer" type="VBoxContainer" parent="CanvasLayer/PlayerSelection/ScrollContainer"]
 layout_mode = 2
 
+[node name="ConnectedPlayersLabel" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
+layout_mode = 2
+text = "Connected players :"
+
 [node name="Label" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
 layout_mode = 2
-text = "Player"
+text = "Choose your Character"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
 layout_mode = 2

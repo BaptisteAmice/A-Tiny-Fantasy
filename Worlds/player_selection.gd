@@ -5,6 +5,7 @@ class_name PlayerSelection
 
 @onready var character_slots_v_box_container: VBoxContainer = $ScrollContainer/CharacterSlotsVBoxContainer
 @onready var error_label: Label = $ScrollContainer/CharacterSlotsVBoxContainer/ErrorLabel
+@onready var connected_players_label: Label = $ScrollContainer/CharacterSlotsVBoxContainer/ConnectedPlayersLabel
 
 
 const CHARACTER_SELECT_SLOT: PackedScene = preload("uid://r083atw3w18a")
@@ -16,8 +17,14 @@ func _ready() -> void:
 	#TODO update on client side
 	error_label.visible = false
 	if self.visible: 
-		draw_character_slots() 
+		draw_character_slots()
+		update_connected_players_label()
 	
+func update_connected_players_label() -> void:
+	var label_new_text: String = "Connected players: "
+	for player: Player in Global.game_controller.network_manager.logged_players:
+		label_new_text += player.player_name
+	connected_players_label.text = label_new_text
 	
 
 func draw_character_slots() -> void:
