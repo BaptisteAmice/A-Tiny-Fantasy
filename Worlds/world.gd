@@ -8,12 +8,12 @@ func _ready() -> void:
 
 
 func _on_save_button_pressed() -> void:
-	Global.game_controller.save_manager.save_all_data_to_file()
+	Global.game_controller.save_manager.request_save_data()
 
 
 func _on_exit_button_pressed() -> void:
 	#  Save data
-	Global.game_controller.save_manager.save_all_data_to_file()
+	Global.game_controller.save_manager.request_save_data()
 	# Disconnect from the server
 	Global.game_controller.network_manager.disconnect_client()
 	# return to main menu 

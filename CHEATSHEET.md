@@ -9,7 +9,7 @@ Canvas Item/Texture/Filter: Set it to Nearest.
 https://www.reddit.com/r/godot/comments/1lt0wdc/online_coopmultiplayer_guide_for_beginners_beyond/
 ### Run only on server
 ```
-if not multiplayer.is_server() # do nothing
+if not multiplayer.is_server(): return # do nothing
 ```
 
 ### Run only if is the multiplayer authority of the node

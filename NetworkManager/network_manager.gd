@@ -73,13 +73,11 @@ func get_role_and_id() -> String:
 		
 
 func start_server() -> void:
+	# TODO test if a server already exists
 	peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
 	multiplayer.multiplayer_peer = peer
-	var save_data: Dictionary = Global.game_controller.save_manager.load_data_from_file()
-	registered_players = save_data.get("players", {})
-	
-	#TODO load world data
+	Global.game_controller.save_manager.load_data_from_file()
 
 func start_client() -> void:
 	peer = ENetMultiplayerPeer.new()
