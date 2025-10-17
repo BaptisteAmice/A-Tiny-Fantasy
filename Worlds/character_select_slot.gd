@@ -1,11 +1,10 @@
 extends HBoxContainer
 class_name CharacterSelectSlot
 
-var character_name: String
 @onready var label: Label = $Label
 
 func _on_select_character_button_pressed() -> void:
-	select_character(character_name)
+	select_character(label.text)
 
 func select_character(selected_name: String) -> void:
 	print("select_char")
