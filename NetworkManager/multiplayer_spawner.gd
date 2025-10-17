@@ -45,8 +45,15 @@ func spawn_player(peer_id: int, selected_name: String) -> Player:
 	# Restore data if saved
 	print("selected name: " + selected_name)
 	var saved_state: Variant = Global.game_controller.network_manager.registered_players.get(selected_name, null)
-	player.load(saved_state)
+	if saved_state == null: # TODO
+		push_error("No saved state found for character: " + selected_name)
+		return null 
+
+	# The node should be added to the scene tree before loading data
 	var parent_node: Node = get_node(spawn_path)
 	parent_node.add_child(player)
+	# Load saved data
+	player.load(saved_state)
+	
 	print("character spawned")
 	return player
