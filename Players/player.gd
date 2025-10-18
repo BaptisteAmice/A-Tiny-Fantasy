@@ -70,4 +70,4 @@ func load(saved_state: Dictionary) -> void:
 		var coord_y: float = saved_state.pos_y
 		position = Vector2(coord_x, coord_y)
 		player_name = saved_state.player_name
-		# todo update name label for everyone
+		name_label.text = player_name
