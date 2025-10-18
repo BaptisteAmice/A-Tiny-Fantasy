@@ -18,12 +18,13 @@ func _ready() -> void:
 	error_label.visible = false
 	if self.visible: 
 		draw_character_slots()
-		update_connected_players_label()
 	
 func update_connected_players_label() -> void:
 	var label_new_text: String = "Connected players: "
 	for player: Player in Global.game_controller.network_manager.get_local_connected_players() :
-		label_new_text += player.player_name
+		label_new_text += player.player_name + ", "
+	if label_new_text.ends_with(", "):
+		label_new_text = label_new_text.substr(0, label_new_text.length() -2) # remove last ", "
 	connected_players_label.text = label_new_text
 	
 

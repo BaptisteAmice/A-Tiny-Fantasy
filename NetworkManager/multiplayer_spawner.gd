@@ -8,6 +8,10 @@ class_name MultiplayerSpawnerOfPlayer
 func _ready() -> void:
 	Global.game_controller.network_manager.multiplayer_spawner = self # to be accessable from everywhere
 
+func _process(delta: float) -> void:
+	# TODO temp, should be event based
+	Global.get_world_scene().player_selection.update_connected_players_label()
+
 @rpc("any_peer", "call_remote", "reliable")
 func request_spawn(selected_name: String) -> void:
 	if not multiplayer.is_server(): return

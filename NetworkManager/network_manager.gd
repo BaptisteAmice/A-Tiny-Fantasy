@@ -14,7 +14,10 @@ func _ready() -> void:
 
 func get_local_connected_players() -> Array[Player]:
 	var players : Array[Player] = []
-	for child: Node in Global.game_controller.current_scene.get_children():
+	if Global.get_world_scene() == null:
+		print("Warning: world is null for " + get_role_and_id())
+		return []
+	for child: Node in Global.get_world_scene().get_children():
 		if child is Player:
 			players.append(child)
 	return players
@@ -32,8 +35,6 @@ func _on_peer_connected(peer_id: int) -> void:
 	# Update interface for everyone
 	var world_scene: World = Global.game_controller.current_scene
 	world_scene.player_selection.draw_character_slots() # Used character should not be available
-	world_scene.player_selection.update_connected_players_label()
-
 	
 @rpc("any_peer")
 func _sync_registered_players_from_server(server_registered: Dictionary) -> void:
@@ -43,12 +44,9 @@ func _sync_registered_players_from_server(server_registered: Dictionary) -> void
 	for player_name: String in server_registered.keys():
 		registered_players[player_name] = server_registered[player_name]
 	
-	# Merge server_logged_data into logged_players TODO or not ?
-
-	if Global.game_controller.current_scene is World:
-		var world_scene: World = Global.game_controller.current_scene
-		world_scene.player_selection.draw_character_slots()
-		world_scene.player_selection.update_connected_players_label()
+	# Draw character slots
+	var world_scene: World = Global.get_world_scene() 
+	world_scene.player_selection.draw_character_slots()
 
 
 # Will be called for everyone at least once

@@ -5,7 +5,7 @@ class_name Player
 @onready var player_animation_handler: PlayerAnimationHandler = $PlayerAnimationHandler
 @export var speed: int = 200
 @onready var all_interactions: Array = []
-var player_name: String = "Default" # Displayed player name
+@export var player_name: String = "Default" # Displayed player name
 
 func _enter_tree() -> void : set_multiplayer_authority(name.to_int())
 
