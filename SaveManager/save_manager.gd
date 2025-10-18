@@ -15,13 +15,31 @@ func request_save_data() -> void:
 
 
 func save_world() -> Dictionary:
-	return {} # TODO
+	var world_data: Dictionary = {}
+	if not multiplayer.is_server():
+		printerr("This method should only be called by the server and has been called by " + Global.game_controller.network_manager.get_role_and_id())
+		return world_data
+	var save_nodes: Array[Node] = get_tree().get_nodes_in_group("Persist")
+	for node: Node in save_nodes:
+		# Check the node is an instanced scene so it can be instanced again during load.
+		if node.scene_file_path.is_empty():
+			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
+			continue
+		# Check the node has a save function.
+		if !node.has_method("save"):
+			print("persistent node '%s' is missing a save() function, skipped" % node.name)
+			continue
+		# Call the node's save function.
+		var node_data: Dictionary = node.call("save")
+		world_data[node.name] = node_data
+	return world_data
+		
+
 
 @rpc("any_peer")
 func save_all_data_to_file() -> void:
 	print(Global.game_controller.network_manager.get_role_and_id() + " is trying to save data.")
 	if not multiplayer.is_server(): return
-	# TODO: MAKE DICT BY SERVER ONLY
 	var data: Dictionary = {
 		"players": {},  # We'll fill this with all saved players
 		"world": save_world()

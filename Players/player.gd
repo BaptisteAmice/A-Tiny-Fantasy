@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 # Interaction methods
 
 
-func save() -> Dictionary: #TODO coordinates aren't saved as expected but to 0,0
+func save() -> Dictionary:
 	print("save", position.x,)
 	var save_dict: Dictionary = {
 		"filename" : get_scene_file_path(),
