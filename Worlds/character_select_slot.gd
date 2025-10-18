@@ -2,6 +2,12 @@ extends HBoxContainer
 class_name CharacterSelectSlot
 
 @onready var label: Label = $Label
+@onready var select_character_button: Button = $SelectCharacterButton
+
+func _ready() -> void:
+	# Disable interactions for server
+	if multiplayer.is_server():
+		select_character_button.disabled = true
 
 func _on_select_character_button_pressed() -> void:
 	select_character(label.text)

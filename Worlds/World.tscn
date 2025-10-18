@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://c7ho8gxtkvxyg"]
+[gd_scene load_steps=12 format=4 uid="uid://c7ho8gxtkvxyg"]
 
 [ext_resource type="Script" uid="uid://cdrshfxrhkobf" path="res://Worlds/world.gd" id="1_osawv"]
 [ext_resource type="Script" uid="uid://ggihq82b8v8s" path="res://NetworkManager/multiplayer_spawner.gd" id="2_d11ax"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cqjwuvkvsud2i" path="res://Assets/Placeholders/Stone_Block_placed_wall.webp" id="4_ysegl"]
 [ext_resource type="Texture2D" uid="uid://c6tiutygjqgf6" path="res://Assets/Placeholders/Stone_Block_placed_ground.webp" id="4_ywvb4"]
 [ext_resource type="Script" uid="uid://dm22dklxlpg53" path="res://Worlds/player_selection.gd" id="6_p83nl"]
+[ext_resource type="PackedScene" uid="uid://tft8q4g3amu6" path="res://Characters/enemy_skeleton.tscn" id="7_fc1d8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p83nl"]
 texture = ExtResource("4_ywvb4")
@@ -172,6 +173,9 @@ text = "Create character"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7786795, 0.015600187, 7.70092e-07, 1)
 text = "Error"
+
+[node name="enemy_skeleton" parent="." instance=ExtResource("7_fc1d8")]
+position = Vector2(407, 177)
 
 [connection signal="pressed" from="CanvasLayer/InGameMenu/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/InGameMenu/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

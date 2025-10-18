@@ -8,6 +8,8 @@ var multiplayer_spawner : MultiplayerSpawnerOfPlayer
 
 var registered_players: Dictionary = {}
 
+# TODO good handling of deconnections and server closing
+
 func _ready() -> void:
 	multiplayer.peer_connected.connect(_on_peer_connected) # Emitted to every peers
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected) # Emitted to every peers
