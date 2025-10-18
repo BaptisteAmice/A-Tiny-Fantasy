@@ -36,7 +36,7 @@ func _send_spawned_player_path(peer_id: int, player: Player) -> void:
 func receive_spawned_player(player_path: NodePath) -> void :
 	var player: Player = get_node(player_path) as Player
 	print("Received spawned player:", player)
-	pass
+	Global.get_world_scene().player_selection.visible = false # hide selection UI
 	
 func spawn_player(peer_id: int, selected_name: String) -> Player:
 	print("trying to spawn")
