@@ -42,20 +42,30 @@ func spawn_player(peer_id: int, selected_name: String) -> Player:
 	var player: Player = network_player.instantiate()
 	player.name = str(peer_id) # crucial
 	# Restore data if saved
-	print("selected name: " + selected_name)
-	var saved_state: Dictionary = Global.game_controller.network_manager.registered_players.get(selected_name, null)
+	var saved_state: Variant = Global.game_controller.network_manager.registered_players.get(selected_name, null)
+	var parent_node: Node 
 	# Check if a save exists for the player
 	if saved_state == null:
-		push_error("No saved state found for character: " + selected_name)
-		return null # TODO handle this case
-	# Check if the save found is a dictionary
-	if typeof(saved_state) != TYPE_DICTIONARY:
-		push_error("Saved state is not a Dictionary for character: " + selected_name)
-		return null
-	
+		# Create new data in memory to be able to load it
+		print("No saved state found for character: " + selected_name + ", creating new character")
+		parent_node = Global.game_controller.current_scene
+		
+	else: 
+		# Check if the save found is a dictionary
+		if typeof(saved_state) != TYPE_DICTIONARY:
+			push_error("Saved state is not a Dictionary for character: " + selected_name)
+			return null
+		parent_node = get_node(spawn_path)
+
 	# The node should be added to the scene tree before loading data
-	var parent_node: Node = get_node(spawn_path)
 	parent_node.add_child(player)
+	
+	if saved_state == null:
+		# create player serialization to share (need to be done after adding to the tree)
+		# All variables customized at creation should be set here
+		player.player_name = selected_name # 
+		saved_state = player.save()
+	
 	# Load saved data (on the client because he is the authority for the player)
 	player.rpc_id(peer_id, "load", saved_state)
 	
