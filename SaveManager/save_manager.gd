@@ -56,8 +56,6 @@ func save_all_data_to_file() -> void:
 	var json_string: String = JSON.stringify(data)
 	print("json_string"+json_string)
 
-	# TODO: SAVE THE FILES FOR THE SERVER ONLY?
-	
 	var save_file: FileAccess = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	# Store the save dictionary as a new line in the save file.
 	save_file.store_line(json_string)
@@ -70,8 +68,10 @@ func load_data_from_file() -> void:
 	if not multiplayer.is_server(): return
 	var file: FileAccess = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
 	if file == null:
-		print("No save file found, starting fresh")
-		return
+		print("No save file found, starting creating it then loading it")
+		save_all_data_to_file() 
+		load_data_from_file() # careful there, could lead to infinite loop if save fails
+		return # stop there, the work is done in the recursive call
 	
 	var json_string: String = file.get_line()
 	var json: JSON = JSON.new()
@@ -83,6 +83,28 @@ func load_data_from_file() -> void:
 	# Load player data
 	Global.game_controller.network_manager.registered_players = data.get("players", {})
 	
-	# Load world data TODO
+	# Load world data
+	var world_data: Dictionary = data.get("world", {})
+	# We need to revert the game state so we're not cloning objects
+	# we will accomplish this by deleting saveable objects.
+	remove_persistant_nodes()
+	# Load the data
+	for node_key: String in world_data.keys():
+		var node_data: Dictionary = world_data[node_key]
+		# Firstly, we need to create the object and add it to the tree and set its position.
+		var new_object: Node = load(node_data["filename"]).instantiate()
+		get_node(node_data["parent"]).add_child(new_object, true)
+		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
+		# Now we set the remaining variables.
+		for var_name: String in node_data.keys():
+			if var_name == "filename" or var_name == "parent" or var_name == "pos_x" or var_name == "pos_y":
+				continue
+			new_object.set(var_name, node_data[var_name])
 	
 	print("Load made by " + Global.game_controller.network_manager.get_role_and_id())
+	
+func remove_persistant_nodes() -> void :
+	var persistant_nodes: Array[Node] = get_tree().get_nodes_in_group("Persist")
+	for node: Node in persistant_nodes:
+		node.queue_free()
+	

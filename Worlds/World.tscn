@@ -73,7 +73,7 @@ sources/0 = SubResource("TileSetAtlasSource_ywvb4")
 script = ExtResource("1_osawv")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://d08gn81f5b74p")
+_spawnable_scenes = PackedStringArray("uid://d08gn81f5b74p", "uid://tft8q4g3amu6")
 spawn_path = NodePath("..")
 script = ExtResource("2_d11ax")
 network_player = ExtResource("3_8djc0")
@@ -175,7 +175,7 @@ theme_override_colors/font_color = Color(0.7786795, 0.015600187, 7.70092e-07, 1)
 text = "Error"
 
 [node name="enemy_skeleton" parent="." instance=ExtResource("7_fc1d8")]
-position = Vector2(407, 177)
+position = Vector2(202, 176)
 
 [connection signal="pressed" from="CanvasLayer/InGameMenu/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/InGameMenu/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

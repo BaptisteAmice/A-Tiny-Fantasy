@@ -8,6 +8,8 @@ var multiplayer_spawner : MultiplayerSpawnerOfPlayer
 
 var registered_players: Dictionary = {}
 
+const WORLD_SCENE_STRING: String = "uid://c7ho8gxtkvxyg"
+
 # TODO good handling of deconnections and server closing
 
 func _ready() -> void:
@@ -70,12 +72,15 @@ func get_role_and_id() -> String:
 
 func start_server() -> void:
 	# TODO test if a server already exists
+	Global.game_controller.change_scene(WORLD_SCENE_STRING) # should be done before loading data
+	Global.game_controller.save_manager.load_data_from_file() # don't think it matters if done before or after creating the peer
 	peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
 	multiplayer.multiplayer_peer = peer
-	Global.game_controller.save_manager.load_data_from_file()
 
 func start_client() -> void:
+	Global.game_controller.change_scene(WORLD_SCENE_STRING)
+	Global.game_controller.save_manager.remove_persistant_nodes() # should remove duplicates
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(IP_ADDRESS, PORT)
 	multiplayer.multiplayer_peer = peer
