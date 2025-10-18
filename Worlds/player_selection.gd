@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 func update_connected_players_label() -> void:
 	var label_new_text: String = "Connected players: "
-	for player: Player in Global.game_controller.network_manager.logged_players:
+	for player: Player in Global.game_controller.network_manager.get_local_connected_players() :
 		label_new_text += player.player_name
 	connected_players_label.text = label_new_text
 	

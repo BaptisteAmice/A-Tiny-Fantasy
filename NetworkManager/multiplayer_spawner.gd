@@ -32,8 +32,7 @@ func _send_spawned_player_path(peer_id: int, player: Player) -> void:
 func receive_spawned_player(player_path: NodePath) -> void :
 	var player: Player = get_node(player_path) as Player
 	print("Received spawned player:", player)
-	Global.game_controller.network_manager.logged_players.append(player)
-	Global.game_controller.network_manager.print_player_lists()
+	pass
 	
 func spawn_player(peer_id: int, selected_name: String) -> Player:
 	print("trying to spawn")
@@ -57,8 +56,8 @@ func spawn_player(peer_id: int, selected_name: String) -> Player:
 	# The node should be added to the scene tree before loading data
 	var parent_node: Node = get_node(spawn_path)
 	parent_node.add_child(player)
-	# Load saved data
-	player.load(saved_state)
+	# Load saved data (on the client because he is the authority for the player)
+	player.rpc_id(peer_id, "load", saved_state)
 	
 	print("character spawned")
 	return player

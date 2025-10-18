@@ -1,6 +1,8 @@
 extends Node2D
 class_name World
 
+@onready var multiplayer_spawner: MultiplayerSpawnerOfPlayer = $MultiplayerSpawner
+
 @onready var player_selection: PlayerSelection = $CanvasLayer/PlayerSelection
 
 func _ready() -> void:

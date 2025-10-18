@@ -7,26 +7,27 @@ var peer: ENetMultiplayerPeer
 var multiplayer_spawner : MultiplayerSpawnerOfPlayer
 
 var registered_players: Dictionary = {}
-var logged_players: Array[Player] = []
 
 func _ready() -> void:
 	multiplayer.peer_connected.connect(_on_peer_connected) # Emitted to every peers
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected) # Emitted to every peers
 
-func serialize_logged_players() -> Array[Dictionary]:
-	var logged_data: Array[Dictionary] = []
-	for player: Player in logged_players:
-		logged_data.append(player.save())
-	return logged_data
+func get_local_connected_players() -> Array[Player]:
+	var players : Array[Player] = []
+	for child: Node in Global.game_controller.current_scene.get_children():
+		if child is Player:
+			players.append(child)
+	return players
 
 # Will be called for everyone at least once
 func _on_peer_connected(peer_id: int) -> void:
 	print("Client connected: ", peer_id, " called by ", get_role_and_id())
+	print(get_local_connected_players())
 	
 	# Send all known character form the server to the clients
 	if multiplayer.is_server() :
 		print("im the server " + get_role_and_id())
-		rpc_id(peer_id, "_sync_players_lists_from_server", registered_players, serialize_logged_players())
+		rpc_id(peer_id, "_sync_registered_players_from_server", registered_players)
 	
 	# Update interface for everyone
 	var world_scene: World = Global.game_controller.current_scene
@@ -35,19 +36,14 @@ func _on_peer_connected(peer_id: int) -> void:
 
 	
 @rpc("any_peer")
-func _sync_players_lists_from_server(server_registered: Dictionary, server_logged_data: Array[Dictionary]) -> void:
+func _sync_registered_players_from_server(server_registered: Dictionary) -> void:
 	if multiplayer.is_server() : return
 	print("Syncing data from server for " + get_role_and_id())
 	# Merge server_registered into local registered_players
 	for player_name: String in server_registered.keys():
 		registered_players[player_name] = server_registered[player_name]
 	
-	
-	#logged_players.clear() # the server always known all logged players
-	#for player_data: Dictionary in server_logged_data:
-	#	var new_player: Player = Global.game_controller.PLAYER.instantiate()
-	#	new_player.load_from_save(player_data)
-	#	logged_players.append(new_player)
+	# Merge server_logged_data into logged_players TODO or not ?
 
 	if Global.game_controller.current_scene is World:
 		var world_scene: World = Global.game_controller.current_scene
@@ -58,12 +54,12 @@ func _sync_players_lists_from_server(server_registered: Dictionary, server_logge
 # Will be called for everyone at least once
 func _on_peer_disconnected(peer_id: int) -> void:
 	print("Client disconnected: ", peer_id)
-	# TODO: update logged_players and broadcast to others
+	# TODO: update logged_players and broadcast to others or not if not needed
 
 func print_player_lists() -> void:
 	print("Registered Players names: ", registered_players.keys())
 	print("Logged Players: ")
-	for player: Player in logged_players:
+	for player: Player in get_local_connected_players():
 		print(player) 
 
 func get_role_and_id() -> String:

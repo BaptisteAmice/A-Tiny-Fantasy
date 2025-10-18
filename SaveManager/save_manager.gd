@@ -28,7 +28,7 @@ func save_all_data_to_file() -> void:
 	}
 	
 	# Update connected players in saved players
-	for player: Player in Global.game_controller.network_manager.logged_players:
+	for player: Player in Global.game_controller.network_manager.get_local_connected_players() :
 		Global.game_controller.network_manager.registered_players[player.player_name] = player.save()
 	# Add all saved players to data
 	for player_name: String in Global.game_controller.network_manager.registered_players.keys():

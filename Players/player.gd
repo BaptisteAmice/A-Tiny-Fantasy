@@ -61,6 +61,7 @@ func save() -> Dictionary: #TODO coordinates aren't saved as expected but to 0,0
 	}
 	return save_dict
 	
+@rpc("any_peer")
 func load(saved_state: Dictionary) -> void:
 	if saved_state:
 		if typeof(saved_state.pos_x) != TYPE_FLOAT or typeof(saved_state.pos_y) != TYPE_FLOAT:
