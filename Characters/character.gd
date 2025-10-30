@@ -8,6 +8,8 @@ class_name Character
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var animated_emote: AnimatedEmote = $AnimatedEmote
+
 
 func target_player() -> void:
 	if not multiplayer.is_server(): return

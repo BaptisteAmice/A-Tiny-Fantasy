@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbmeoo3pu4d4i"]
+
+[ext_resource type="Texture2D" uid="uid://ds4kfvnv2lak8" path="res://Assets/Pipoya/pipo-popupemotes.png" id="1_obwsd"]
+[ext_resource type="Script" uid="uid://cm2kkt4en0j24" path="res://Characters/Emotes/animated_emote.gd" id="2_na5ll"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obwsd"]
+atlas = ExtResource("1_obwsd")
+region = Rect2(768, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kaqp"]
+atlas = ExtResource("1_obwsd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wyva"]
+atlas = ExtResource("1_obwsd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jplyh"]
+atlas = ExtResource("1_obwsd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l17d3"]
+atlas = ExtResource("1_obwsd")
+region = Rect2(768, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko2xy"]
+atlas = ExtResource("1_obwsd")
+region = Rect2(800, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7onqy"]
+atlas = ExtResource("1_obwsd")
+region = Rect2(832, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phtuy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obwsd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kaqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wyva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jplyh")
+}],
+"loop": false,
+"name": &"exclamation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17d3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ko2xy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7onqy")
+}],
+"loop": false,
+"name": &"hearth",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m7e8f"]
+properties/0/path = NodePath(".:animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:frame")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:visible")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="AnimatedEmote" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_phtuy")
+script = ExtResource("2_na5ll")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_m7e8f")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

@@ -37,5 +37,9 @@ func physics_update(_delta: float) -> void:
 			var direction: Vector2 = character.target.global_position - character.global_position
 			if direction.length() < distance_max_to_notice \
 					and direction.length() > distance_min_to_notice:
+				# play the exclamation emote
+				if character.animated_emote:
+					character.animated_emote.play_emote("exclamation")
+				# transition to the new state
 				transitioned.emit(self, target_noticed_action)
 			
