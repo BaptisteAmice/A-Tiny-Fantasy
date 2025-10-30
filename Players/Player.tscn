@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://d08gn81f5b74p"]
+[gd_scene load_steps=26 format=3 uid="uid://d08gn81f5b74p"]
 
 [ext_resource type="Script" uid="uid://67aewxmroe63" path="res://Players/player.gd" id="1_ei3sg"]
 [ext_resource type="Texture2D" uid="uid://d4k7y3lk852ql" path="res://Assets/Sunnyside_World_Assets/Characters/Human/IDLE/base_idle_strip9.png" id="2_h53b3"]
 [ext_resource type="Texture2D" uid="uid://drxd5ma08e2e0" path="res://Assets/Sunnyside_World_Assets/Characters/Human/RUN/base_run_strip8.png" id="3_ru3s8"]
 [ext_resource type="Script" uid="uid://cvuocfsg4w61o" path="res://Players/player_animation_handler.gd" id="4_1mk1h"]
+[ext_resource type="FontFile" uid="uid://cslyoid86no3o" path="res://Assets/Tiopalada/tinyRPGFontKit01_v1_2/TinyRPG-BadgeFont.ttf" id="5_esx48"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ru3s8"]
 atlas = ExtResource("2_h53b3")
@@ -184,4 +185,5 @@ offset_left = -28.0
 offset_top = -40.0
 offset_right = 29.0
 offset_bottom = -17.0
+theme_override_fonts/font = ExtResource("5_esx48")
 text = "Default"

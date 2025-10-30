@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://c7ho8gxtkvxyg"]
+[gd_scene load_steps=13 format=4 uid="uid://c7ho8gxtkvxyg"]
 
 [ext_resource type="Script" uid="uid://cdrshfxrhkobf" path="res://Worlds/world.gd" id="1_osawv"]
 [ext_resource type="Script" uid="uid://ggihq82b8v8s" path="res://NetworkManager/multiplayer_spawner.gd" id="2_d11ax"]
 [ext_resource type="PackedScene" uid="uid://d08gn81f5b74p" path="res://Players/Player.tscn" id="3_8djc0"]
 [ext_resource type="Texture2D" uid="uid://cqjwuvkvsud2i" path="res://Assets/Placeholders/Stone_Block_placed_wall.webp" id="4_ysegl"]
 [ext_resource type="Texture2D" uid="uid://c6tiutygjqgf6" path="res://Assets/Placeholders/Stone_Block_placed_ground.webp" id="4_ywvb4"]
+[ext_resource type="FontFile" uid="uid://cslyoid86no3o" path="res://Assets/Tiopalada/tinyRPGFontKit01_v1_2/TinyRPG-BadgeFont.ttf" id="6_m7av2"]
 [ext_resource type="Script" uid="uid://dm22dklxlpg53" path="res://Worlds/player_selection.gd" id="6_p83nl"]
 [ext_resource type="PackedScene" uid="uid://tft8q4g3amu6" path="res://Characters/enemy_skeleton.tscn" id="7_fc1d8"]
 
@@ -109,14 +110,17 @@ offset_bottom = 40.0
 
 [node name="SaveButton" type="Button" parent="CanvasLayer/InGameMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_m7av2")
 text = "Save"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/InGameMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_m7av2")
 text = "Exit"
 
 [node name="CloseServerButton" type="Button" parent="CanvasLayer/InGameMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_m7av2")
 text = "Close server"
 
 [node name="PlayerSelection" type="Control" parent="CanvasLayer"]
@@ -151,10 +155,12 @@ layout_mode = 2
 
 [node name="ConnectedPlayersLabel" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_m7av2")
 text = "Connected players :"
 
 [node name="Label" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_m7av2")
 text = "Choose your Character"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
@@ -163,15 +169,18 @@ layout_mode = 2
 [node name="CreateCharacterLineEdit" type="LineEdit" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_m7av2")
 placeholder_text = "Player name"
 
 [node name="CreateCharacterButton" type="Button" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_m7av2")
 text = "Create character"
 
 [node name="ErrorLabel" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7786795, 0.015600187, 7.70092e-07, 1)
+theme_override_fonts/font = ExtResource("6_m7av2")
 text = "Error"
 
 [node name="enemy_skeleton" parent="." instance=ExtResource("7_fc1d8")]
