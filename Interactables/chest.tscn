@@ -1,20 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://e8x2i0ukn5tc"]
+[gd_scene load_steps=7 format=3 uid="uid://e8x2i0ukn5tc"]
 
 [ext_resource type="Script" uid="uid://qxw3wm24418y" path="res://Interactables/chest.gd" id="1_o08mj"]
 [ext_resource type="Script" uid="uid://bfoeo8bnydmcc" path="res://InventorySystem/Inventory/inventory_data.gd" id="2_2ccwf"]
 [ext_resource type="Texture2D" uid="uid://bdyenpp7tga0k" path="res://Assets/Placeholders/Copper_Chest_placed_down.webp" id="2_enxnb"]
 [ext_resource type="Script" uid="uid://dyn3odoh24jxw" path="res://InventorySystem/Inventory/slot_data.gd" id="3_25v8b"]
-[ext_resource type="Resource" uid="uid://u27ycbqohljt" path="res://InventorySystem/Item/Items/carrot.tres" id="4_1anhx"]
-
-[sub_resource type="Resource" id="Resource_ovu33"]
-script = ExtResource("3_25v8b")
-item_data = ExtResource("4_1anhx")
-quantity = 77
-metadata/_custom_type_script = "uid://dyn3odoh24jxw"
 
 [sub_resource type="Resource" id="Resource_ohxn3"]
 script = ExtResource("2_2ccwf")
-slot_datas = Array[ExtResource("3_25v8b")]([SubResource("Resource_ovu33"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+slot_datas = Array[ExtResource("3_25v8b")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://bfoeo8bnydmcc"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_odjdj"]

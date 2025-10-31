@@ -7,6 +7,8 @@ const SLOT: PackedScene = preload("res://InventorySystem/Inventory/slot.tscn")
 
 func set_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_updated.connect(populate_item_grid)
+	inventory_data.inventory_updated.connect(call_sync_player_inventories_to_server)
+	
 	populate_item_grid(inventory_data)
 	
 func clear_inventory_data(inventory_data: InventoryData) -> void:
@@ -25,3 +27,6 @@ func populate_item_grid(inventory_data: InventoryData) -> void:
 		
 		if slot_data:
 			slot.set_slot_data(slot_data)
+
+func call_sync_player_inventories_to_server(inventory_data: InventoryData) -> void:
+	PlayerManager.my_player.sync_player_inventories_to_server()

@@ -171,7 +171,6 @@ radius = 45.099888
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_ei3sg")
-speed = null
 inventory_data = ExtResource("2_0r1d2")
 equip_inventory_data = SubResource("Resource_bwdm4")
 

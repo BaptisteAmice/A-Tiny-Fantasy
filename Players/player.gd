@@ -71,8 +71,8 @@ func save() -> Dictionary:
 		"pos_y" : position.y,
 		"name": name, # id for saving and loading player data
 		"player_name" : player_name,
-		#todo
-		#"inventory_data" : inventory_data.save(),
+		"inventory_data": inventory_data.save(),
+		"equip_inventory_data": equip_inventory_data.save(),
 	}
 	return save_dict
 	
@@ -86,8 +86,11 @@ func load(saved_state: Dictionary) -> void:
 		position = Vector2(coord_x, coord_y)
 		player_name = saved_state.player_name
 		name_label.text = player_name
-		#todo
-		#inventory_data.load(saved_state.inventory_data)
+		
+		var saved_inventory_data : Dictionary = saved_state.inventory_data
+		inventory_data.load(saved_inventory_data)
+		var saved_equip_inventory_data : Dictionary = saved_state.equip_inventory_data
+		equip_inventory_data.load(saved_equip_inventory_data)
 
 		Global.get_world_scene().setup_local_player(self)
 
@@ -110,3 +113,21 @@ func update_interactions() -> void:
 func heal(amount: int) -> void:
 	health = min(health + amount, max_health)
 	
+func sync_player_inventories_to_server() -> void:
+	if !is_multiplayer_authority(): return
+	# Send inventory to server
+	var inventories: Dictionary = {
+		"inventory": inventory_data.save(),
+		"equip_inventory": equip_inventory_data.save() 
+	}
+	rpc_id(1, "_update_player_inventories_from_client", inventories)
+	
+@rpc("any_peer")
+func _update_player_inventories_from_client(inventories: Dictionary) -> void:
+	if !multiplayer.is_server(): return
+	if inventories.has("inventory"):
+		var inv: Dictionary = inventories["inventory"]
+		inventory_data.load(inv)
+	if inventories.has("equip_inventory"):
+		var equp_inv: Dictionary = inventories["equip_inventory"]
+		equip_inventory_data.load(equp_inv)

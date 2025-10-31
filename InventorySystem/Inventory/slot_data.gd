@@ -32,3 +32,26 @@ func set_quantity(value: int) -> void:
 	if quantity > 1 and not item_data.stackable:
 		quantity = 1
 		push_error("%s is not stackable, setting quantity to 1" % item_data.name)
+
+func save() -> Dictionary:
+	return {
+		"item_path": item_data.resource_path, # store the Resource path
+		"quantity": quantity,
+	}
+
+func load(saved_state: Dictionary) -> void:
+	if not saved_state.has("item_path") or not saved_state.has("quantity"):
+		push_error("Invalid saved_state for SlotData: ", saved_state)
+		return
+	var path: String = saved_state["item_path"]
+	if path == "":
+		item_data = null
+		return
+	# Load the resource from path
+	var res: Resource = ResourceLoader.load(path)
+	if res:
+		item_data = res
+		quantity = saved_state["quantity"] # need to set quantity after item_data
+	else:
+		push_error("Failed to load item resource at: ", path)
+		item_data = null

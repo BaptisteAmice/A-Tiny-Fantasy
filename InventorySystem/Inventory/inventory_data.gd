@@ -71,3 +71,26 @@ func pick_up_slot_data(slot_data: SlotData) -> bool:
 			inventory_updated.emit(self)
 			return true
 	return false
+	
+func save() -> Dictionary:
+	var saved_slots: Array = []
+	for slot: SlotData in slot_datas:
+		if slot:
+			saved_slots.append(slot.save()) # assume SlotData has a save() method
+		else:
+			saved_slots.append(null)
+	return {"slots": saved_slots}
+
+func load(saved_state: Dictionary) -> void:
+	var saved_slots: Array = saved_state.get("slots", [])
+	for i: int in range(saved_slots.size()):
+		if saved_slots[i]:
+			if slot_datas.size() <= i:
+				slot_datas.resize(i + 1)
+			slot_datas[i] = SlotData.new()
+			var saved_slot_i: Dictionary = saved_slots[i]
+			slot_datas[i].load(saved_slot_i)
+		else:
+			if slot_datas.size() > i:
+				slot_datas[i] = null
+	emit_signal("inventory_updated", self)
