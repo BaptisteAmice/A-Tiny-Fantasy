@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbkewafchkam1"]
+
+[ext_resource type="Script" uid="uid://cxcy26kg0vkch" path="res://InventorySystem/Item/PickUp/pick_up.gd" id="1_vexjm"]
+[ext_resource type="Resource" uid="uid://u27ycbqohljt" path="res://InventorySystem/Item/Items/carrot.tres" id="2_fhga6"]
+[ext_resource type="Texture2D" uid="uid://cyks1tuoknqa7" path="res://Assets/Sunnyside_World_Assets/Crops/egg.png" id="2_viox4"]
+[ext_resource type="Script" uid="uid://dyn3odoh24jxw" path="res://InventorySystem/Inventory/slot_data.gd" id="3_3q75r"]
+
+[sub_resource type="Resource" id="Resource_7ruak"]
+script = ExtResource("3_3q75r")
+item_data = ExtResource("2_fhga6")
+metadata/_custom_type_script = "uid://dyn3odoh24jxw"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_njxn4"]
+
+[node name="PickUp" type="RigidBody2D"]
+collision_layer = 0
+gravity_scale = 0.0
+script = ExtResource("1_vexjm")
+slot_data = SubResource("Resource_7ruak")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_viox4")
+
+[node name="PhysicCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_njxn4")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="PickUpCollisionShape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_njxn4")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

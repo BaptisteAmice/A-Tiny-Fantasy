@@ -34,6 +34,9 @@ func _send_spawned_player_path(peer_id: int, player: Player) -> void:
 # Client receives spawned player response from server
 @rpc("authority", "call_remote")
 func receive_spawned_player(player_path: NodePath) -> void :
+	if multiplayer.is_server():
+		push_error("Only clients should receive spawned player paths")
+		return
 	var player: Player = get_node(player_path) as Player
 	print("Received spawned player:", player)
 	Global.get_world_scene().player_selection.visible = false # hide selection UI

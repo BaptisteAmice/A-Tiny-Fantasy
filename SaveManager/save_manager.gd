@@ -92,9 +92,16 @@ func load_data_from_file() -> void:
 	for node_key: String in world_data.keys():
 		var node_data: Dictionary = world_data[node_key]
 		# Firstly, we need to create the object and add it to the tree and set its position.
-		var new_object: Node = load(node_data["filename"]).instantiate()
-		get_node(node_data["parent"]).add_child(new_object, true)
-		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
+		var file_name : String = node_data["filename"]
+		var scene_resource : PackedScene = load(file_name)
+		# Shouldn't need to instantiate something else than a Node2D
+		var new_object: Node2D = scene_resource.instantiate()
+		var node_parent_path: NodePath = node_data["parent"]
+		get_node(node_parent_path).add_child(new_object, true)
+		# Warning : could cause problems because float is on 64 bits but Vector2 use values on 32 bits
+		var node_pos_x: float = node_data["pos_x"]
+		var node_pos_y: float = node_data["pos_y"]
+		new_object.position = Vector2(node_pos_x, node_pos_y)
 		# Now we set the remaining variables.
 		for var_name: String in node_data.keys():
 			if var_name == "filename" or var_name == "parent" or var_name == "pos_x" or var_name == "pos_y":

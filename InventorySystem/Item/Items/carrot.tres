@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemDataConsumable" load_steps=3 format=3 uid="uid://u27ycbqohljt"]
+
+[ext_resource type="Script" uid="uid://c6ievvoxfq5vn" path="res://InventorySystem/Item/item_data_consumable.gd" id="1_e40ll"]
+[ext_resource type="Texture2D" uid="uid://b2vbgh0pvy0ah" path="res://Assets/Sunnyside_World_Assets/Crops/carrot_05.png" id="2_bnv0v"]
+
+[resource]
+script = ExtResource("1_e40ll")
+heal_value = 1
+name = "Carrot"
+description = "A tasty carrot"
+stackable = true
+texture = ExtResource("2_bnv0v")
+metadata/_custom_type_script = "uid://bfg4pqu152t6d"

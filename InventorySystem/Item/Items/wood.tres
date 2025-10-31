@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bfaqjtprl6s12"]
+
+[ext_resource type="Script" uid="uid://bfg4pqu152t6d" path="res://InventorySystem/Item/item_data.gd" id="1_vbedn"]
+[ext_resource type="Texture2D" uid="uid://cw4areyigq4ot" path="res://Assets/Sunnyside_World_Assets/Crops/wood.png" id="2_j7ksh"]
+
+[resource]
+script = ExtResource("1_vbedn")
+name = "Wood"
+description = "A wood log"
+stackable = true
+texture = ExtResource("2_j7ksh")
+metadata/_custom_type_script = "uid://bfg4pqu152t6d"

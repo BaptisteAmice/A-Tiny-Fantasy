@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=8 format=3 uid="uid://b4q85qdnd251j"]
+
+[ext_resource type="Script" uid="uid://bfoeo8bnydmcc" path="res://InventorySystem/Inventory/inventory_data.gd" id="1_7audq"]
+[ext_resource type="Script" uid="uid://dyn3odoh24jxw" path="res://InventorySystem/Inventory/slot_data.gd" id="2_me3kn"]
+[ext_resource type="Resource" uid="uid://u27ycbqohljt" path="res://InventorySystem/Item/Items/carrot.tres" id="3_7dq8b"]
+[ext_resource type="Resource" uid="uid://bfaqjtprl6s12" path="res://InventorySystem/Item/Items/wood.tres" id="4_teksq"]
+
+[sub_resource type="Resource" id="Resource_xkrfh"]
+script = ExtResource("2_me3kn")
+item_data = ExtResource("3_7dq8b")
+quantity = 10
+metadata/_custom_type_script = "uid://dyn3odoh24jxw"
+
+[sub_resource type="Resource" id="Resource_j8s5x"]
+script = ExtResource("2_me3kn")
+item_data = ExtResource("4_teksq")
+quantity = 20
+metadata/_custom_type_script = "uid://dyn3odoh24jxw"
+
+[sub_resource type="Resource" id="Resource_7dq8b"]
+script = ExtResource("2_me3kn")
+item_data = ExtResource("4_teksq")
+quantity = 85
+metadata/_custom_type_script = "uid://dyn3odoh24jxw"
+
+[resource]
+script = ExtResource("1_7audq")
+slot_datas = Array[ExtResource("2_me3kn")]([SubResource("Resource_xkrfh"), SubResource("Resource_j8s5x"), SubResource("Resource_7dq8b"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://bfoeo8bnydmcc"

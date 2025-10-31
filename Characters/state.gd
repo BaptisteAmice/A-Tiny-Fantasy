@@ -1,7 +1,7 @@
 extends Node
 class_name State
 
-@warning_ignore("unused_signal")
+@warning_ignore("unused_signal") # Used by subclasses
 signal transitioned
 
 func enter() -> void:

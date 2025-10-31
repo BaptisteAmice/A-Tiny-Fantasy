@@ -1,13 +1,19 @@
-[gd_scene load_steps=13 format=4 uid="uid://c7ho8gxtkvxyg"]
+[gd_scene load_steps=19 format=4 uid="uid://c7ho8gxtkvxyg"]
 
 [ext_resource type="Script" uid="uid://cdrshfxrhkobf" path="res://Worlds/world.gd" id="1_osawv"]
 [ext_resource type="Script" uid="uid://ggihq82b8v8s" path="res://NetworkManager/multiplayer_spawner.gd" id="2_d11ax"]
 [ext_resource type="PackedScene" uid="uid://d08gn81f5b74p" path="res://Players/Player.tscn" id="3_8djc0"]
 [ext_resource type="Texture2D" uid="uid://cqjwuvkvsud2i" path="res://Assets/Placeholders/Stone_Block_placed_wall.webp" id="4_ysegl"]
 [ext_resource type="Texture2D" uid="uid://c6tiutygjqgf6" path="res://Assets/Placeholders/Stone_Block_placed_ground.webp" id="4_ywvb4"]
+[ext_resource type="PackedScene" uid="uid://cm484nbkovv0n" path="res://InventorySystem/Inventory/inventory.tscn" id="6_4reng"]
 [ext_resource type="FontFile" uid="uid://cslyoid86no3o" path="res://Assets/Tiopalada/tinyRPGFontKit01_v1_2/TinyRPG-BadgeFont.ttf" id="6_m7av2"]
 [ext_resource type="Script" uid="uid://dm22dklxlpg53" path="res://Worlds/player_selection.gd" id="6_p83nl"]
+[ext_resource type="Script" uid="uid://c2t8qhqvtygel" path="res://InventorySystem/Inventory/inventory_interface.gd" id="6_pu5gi"]
 [ext_resource type="PackedScene" uid="uid://tft8q4g3amu6" path="res://Characters/enemy_skeleton.tscn" id="7_fc1d8"]
+[ext_resource type="PackedScene" uid="uid://8irnp68kgu1a" path="res://InventorySystem/Inventory/slot.tscn" id="8_esbd5"]
+[ext_resource type="PackedScene" uid="uid://e8x2i0ukn5tc" path="res://Interactables/chest.tscn" id="9_sp2ln"]
+[ext_resource type="PackedScene" uid="uid://d2td87qjw6n1x" path="res://InventorySystem/Inventory/hot_bar_inventory.tscn" id="11_473q8"]
+[ext_resource type="PackedScene" uid="uid://dbkewafchkam1" path="res://InventorySystem/Item/PickUp/pick_up.tscn" id="13_eqiri"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p83nl"]
 texture = ExtResource("4_ywvb4")
@@ -92,10 +98,58 @@ tile_set = SubResource("TileSet_ywvb4")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryInterface" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_pu5gi")
+
+[node name="PlayerInventory" parent="CanvasLayer/InventoryInterface" instance=ExtResource("6_4reng")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="EquipInventory" parent="CanvasLayer/InventoryInterface" instance=ExtResource("6_4reng")]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 490.0
+offset_bottom = 50.0
+
+[node name="ExternalInventory" parent="CanvasLayer/InventoryInterface" instance=ExtResource("6_4reng")]
+visible = false
+layout_mode = 0
+offset_left = 596.0
+offset_top = 195.0
+offset_right = 636.0
+offset_bottom = 235.0
+
+[node name="GrabbedSlot" parent="CanvasLayer/InventoryInterface" instance=ExtResource("8_esbd5")]
+visible = false
+modulate = Color(1, 1, 1, 0.49803922)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="GrabbedSlot2" parent="CanvasLayer/InventoryInterface" instance=ExtResource("8_esbd5")]
+visible = false
+modulate = Color(1, 1, 1, 0.49803922)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="HotBarInventory" parent="CanvasLayer" instance=ExtResource("11_473q8")]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 430.0
+offset_bottom = 90.0
 
 [node name="InGameMenu" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -186,6 +240,15 @@ text = "Error"
 [node name="enemy_skeleton" parent="." instance=ExtResource("7_fc1d8")]
 position = Vector2(202, 176)
 
+[node name="Chest" parent="." instance=ExtResource("9_sp2ln")]
+position = Vector2(51, 163)
+
+[node name="PickUp" parent="." instance=ExtResource("13_eqiri")]
+position = Vector2(197, 71)
+
+[connection signal="drop_slot_data" from="CanvasLayer/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
+[connection signal="gui_input" from="CanvasLayer/InventoryInterface" to="CanvasLayer/InventoryInterface" method="_on_gui_input"]
+[connection signal="visibility_changed" from="CanvasLayer/InventoryInterface" to="CanvasLayer/InventoryInterface" method="_on_visibility_changed"]
 [connection signal="pressed" from="CanvasLayer/InGameMenu/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/InGameMenu/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/InGameMenu/VBoxContainer/CloseServerButton" to="." method="_on_close_server_button_pressed"]

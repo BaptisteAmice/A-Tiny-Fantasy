@@ -1,10 +1,18 @@
-[gd_scene load_steps=26 format=3 uid="uid://d08gn81f5b74p"]
+[gd_scene load_steps=31 format=3 uid="uid://d08gn81f5b74p"]
 
 [ext_resource type="Script" uid="uid://67aewxmroe63" path="res://Players/player.gd" id="1_ei3sg"]
+[ext_resource type="Resource" uid="uid://b4q85qdnd251j" path="res://test_inventory.tres" id="2_0r1d2"]
 [ext_resource type="Texture2D" uid="uid://d4k7y3lk852ql" path="res://Assets/Sunnyside_World_Assets/Characters/Human/IDLE/base_idle_strip9.png" id="2_h53b3"]
+[ext_resource type="Script" uid="uid://boo7l8i1p2kmj" path="res://InventorySystem/Inventory/inventory_data_equip.gd" id="2_qfgad"]
+[ext_resource type="Script" uid="uid://dyn3odoh24jxw" path="res://InventorySystem/Inventory/slot_data.gd" id="3_ncu4g"]
 [ext_resource type="Texture2D" uid="uid://drxd5ma08e2e0" path="res://Assets/Sunnyside_World_Assets/Characters/Human/RUN/base_run_strip8.png" id="3_ru3s8"]
 [ext_resource type="Script" uid="uid://cvuocfsg4w61o" path="res://Players/player_animation_handler.gd" id="4_1mk1h"]
 [ext_resource type="FontFile" uid="uid://cslyoid86no3o" path="res://Assets/Tiopalada/tinyRPGFontKit01_v1_2/TinyRPG-BadgeFont.ttf" id="5_esx48"]
+
+[sub_resource type="Resource" id="Resource_bwdm4"]
+script = ExtResource("2_qfgad")
+slot_datas = Array[ExtResource("3_ncu4g")]([null, null, null, null, null])
+metadata/_custom_type_script = "uid://boo7l8i1p2kmj"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ru3s8"]
 atlas = ExtResource("2_h53b3")
@@ -157,9 +165,15 @@ properties/4/path = NodePath(".:player_name")
 properties/4/spawn = true
 properties/4/replication_mode = 1
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0r1d2"]
+radius = 45.099888
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_ei3sg")
+speed = null
+inventory_data = ExtResource("2_0r1d2")
+equip_inventory_data = SubResource("Resource_bwdm4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
@@ -187,3 +201,17 @@ offset_right = 29.0
 offset_bottom = -17.0
 theme_override_fonts/font = ExtResource("5_esx48")
 text = "Default"
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("CircleShape2D_0r1d2")
+
+[node name="InteractLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_area_entered"]
+[connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]
