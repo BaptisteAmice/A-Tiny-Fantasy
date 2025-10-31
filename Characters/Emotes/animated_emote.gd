@@ -7,6 +7,7 @@ func _ready() -> void:
 	visible = false
 
 func play_emote(emote_name: String, loop_number: int = 2) -> void:
+	if not emote_name: return
 	if loop_number <= 0:
 		return
 	animation = emote_name

@@ -160,6 +160,7 @@ character = NodePath("../..")
 distance_min_to_notice = 25
 distance_max_to_notice = 75
 target_noticed_action = "CharacterFollow"
+target_noticed_emote = "exclamation"
 metadata/_custom_type_script = "uid://yfqow0ccr5ah"
 
 [node name="CharacterFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
@@ -167,7 +168,8 @@ script = ExtResource("5_dthud")
 character = NodePath("../..")
 move_speed = 30.0
 distance_min_to_follow = 1
-distance_max_to_follow = 100
+distance_max_to_follow = 200
+distance_max_emote = "frustration"
 metadata/_custom_type_script = "uid://yfqow0ccr5ah"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

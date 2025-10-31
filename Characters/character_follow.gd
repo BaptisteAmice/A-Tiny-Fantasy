@@ -6,6 +6,7 @@ class_name CharacterFollow
 
 @export var distance_min_to_follow : int
 @export var distance_max_to_follow: int
+@export var distance_max_emote: String
 
 func enter() -> void:
 	pass
@@ -22,4 +23,8 @@ func physics_update(_delta: float) -> void:
 		
 	if direction.length() > distance_max_to_follow \
 	or direction.length() < distance_min_to_follow:
+		# play an emote
+		if character.animated_emote and distance_max_emote:
+			character.animated_emote.play_emote(distance_max_emote)
+		#change state
 		transitioned.emit(self,"CharacterIdle")

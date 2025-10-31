@@ -10,6 +10,7 @@ var wander_time: float
 @export var distance_min_to_notice : int
 @export var distance_max_to_notice: int
 @export var target_noticed_action: String
+@export var target_noticed_emote: String
 
 
 func randomize_wander() -> void:
@@ -37,9 +38,9 @@ func physics_update(_delta: float) -> void:
 			var direction: Vector2 = character.target.global_position - character.global_position
 			if direction.length() < distance_max_to_notice \
 					and direction.length() > distance_min_to_notice:
-				# play the exclamation emote
-				if character.animated_emote:
-					character.animated_emote.play_emote("exclamation")
+				# play an emote
+				if character.animated_emote and target_noticed_emote:
+					character.animated_emote.play_emote(target_noticed_emote)
 				# transition to the new state
 				transitioned.emit(self, target_noticed_action)
 			

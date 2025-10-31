@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbmeoo3pu4d4i"]
+[gd_scene load_steps=15 format=3 uid="uid://cbmeoo3pu4d4i"]
 
 [ext_resource type="Texture2D" uid="uid://ds4kfvnv2lak8" path="res://Assets/Pipoya/pipo-popupemotes.png" id="1_obwsd"]
 [ext_resource type="Script" uid="uid://cm2kkt4en0j24" path="res://Characters/Emotes/animated_emote.gd" id="2_na5ll"]
@@ -18,6 +18,18 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jplyh"]
 atlas = ExtResource("1_obwsd")
 region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na5ll"]
+atlas = ExtResource("1_obwsd")
+region = Rect2(768, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phtuy"]
+atlas = ExtResource("1_obwsd")
+region = Rect2(800, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7e8f"]
+atlas = ExtResource("1_obwsd")
+region = Rect2(832, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l17d3"]
 atlas = ExtResource("1_obwsd")
@@ -57,6 +69,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_na5ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phtuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7e8f")
+}],
+"loop": false,
+"name": &"frustration",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_l17d3")
 }, {
 "duration": 1.0,
@@ -83,6 +109,7 @@ properties/2/replication_mode = 1
 
 [node name="AnimatedEmote" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_phtuy")
+animation = &"frustration"
 script = ExtResource("2_na5ll")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
