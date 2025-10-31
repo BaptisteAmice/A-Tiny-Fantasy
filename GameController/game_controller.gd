@@ -9,6 +9,8 @@ var removed_scenes: Dictionary = {}
 
 const PLAYER: PackedScene = preload("uid://d08gn81f5b74p")
 
+@onready var music_audio_stream_player: AudioStreamPlayer = $MusicAudioStreamPlayer
+@onready var audio_manager: AudioManager = $AudioManager
 
 func _ready() -> void:
 	Global.game_controller = self
