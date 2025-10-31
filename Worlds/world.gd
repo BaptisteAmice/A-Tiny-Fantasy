@@ -9,6 +9,8 @@ const PICKUP: PackedScene = preload("uid://dbkewafchkam1")
 @onready var inventory_interface: InventoryInterface = $CanvasLayer/InventoryInterface
 @onready var hot_bar_inventory: HotBarInventory = $CanvasLayer/HotBarInventory
 
+@onready var world_tile_map: WorldTileMap = $WorldTileMap
+
 
 
 func setup_local_player(player: Player) -> void:

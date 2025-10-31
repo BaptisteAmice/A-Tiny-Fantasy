@@ -18,7 +18,6 @@ func _physics_process(_delta: float) -> void:
 		animated_sprite_2d.flip_h = true
 		
 func save() -> Dictionary:
-	print("save", position.x,)
 	var save_dict: Dictionary = {
 		"filename" : get_scene_file_path(),
 		"parent" : get_parent().get_path(),
