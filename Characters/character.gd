@@ -10,6 +10,25 @@ class_name Character
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var animated_emote: AnimatedEmote = $AnimatedEmote
 
+func _ready() -> void:
+	test_if_all_children_are_in_multiplayer_spawner() 
+	
+func test_if_all_children_are_in_multiplayer_spawner() -> void:
+	if not multiplayer.is_server(): return # less work for the clients
+	if Global.get_world_scene(true) == null: return # don't do it if the world isn't loaded yet
+	#throw error if type of child not in the spawner
+	var spawner : MultiplayerSpawner = Global.get_world_scene().multiplayer_spawner
+	if spawner == null:
+		push_error("MultiplayerSpawner not found in world scene")
+		return
+	var this_scene : String = scene_file_path
+	var registered : bool = false
+	for i: int in spawner.get_spawnable_scene_count():
+		if spawner.get_spawnable_scene(i) == this_scene:
+			registered = true
+			break
+	if not registered:
+		push_error("%s is not registered in MultiplayerSpawner!" % this_scene)
 
 func target_player() -> void:
 	if not multiplayer.is_server(): return

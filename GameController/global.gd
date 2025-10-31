@@ -2,8 +2,8 @@ extends Node
 
 var game_controller: GameController
 
-func get_world_scene() -> World:
-	if not Global.game_controller.current_scene is World:
+func get_world_scene(can_be_null: bool = false) -> World:
+	if not Global.game_controller.current_scene is World and not can_be_null:
 		push_error("Current scene is not a World!")
 		return null
 	return Global.game_controller.current_scene as World

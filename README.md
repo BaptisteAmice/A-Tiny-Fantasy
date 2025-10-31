@@ -5,6 +5,7 @@
 - Multiplayer game
 - Save/Load system on the server side (characters linked to world)
 - NPCs with basic AI
+- Inventory system
 
 ## Credits
 
