@@ -11,9 +11,10 @@ class_name Character
 @onready var animated_emote: AnimatedEmote = $AnimatedEmote
 
 func _ready() -> void:
-	test_if_all_children_are_in_multiplayer_spawner() 
+	test_if_child_scene_path_is_in_multiplayer_spawner()
+	test_if_child_is_in_persist_group()
 	
-func test_if_all_children_are_in_multiplayer_spawner() -> void:
+func test_if_child_scene_path_is_in_multiplayer_spawner() -> void:
 	if not multiplayer.is_server(): return # less work for the clients
 	if Global.get_world_scene(true) == null: return # don't do it if the world isn't loaded yet
 	#throw error if type of child not in the spawner
@@ -29,6 +30,12 @@ func test_if_all_children_are_in_multiplayer_spawner() -> void:
 			break
 	if not registered:
 		push_error("%s is not registered in MultiplayerSpawner!" % this_scene)
+
+func test_if_child_is_in_persist_group() -> void:
+	if not multiplayer.is_server(): return # less work for clients
+	# Ensure node belongs to group "persist"
+	if not is_in_group("Persist"):
+		push_error("%s is NOT in the 'Persist' group!" % name)
 
 func target_player() -> void:
 	if not multiplayer.is_server(): return
