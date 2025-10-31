@@ -17,3 +17,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		@warning_ignore("unsafe_method_access", "unsafe_property_access") # checked above
 		if await body.inventory_data.pick_up_slot_data(slot_data):
 			queue_free()
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body == dropped_by:
+		dropped_by = null

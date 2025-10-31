@@ -42,12 +42,11 @@ func setup_local_player(player: Player) -> void:
 func toggle_inventory_interface(external_inventory_owner: Node = null) -> void:
 	inventory_interface.visible = not inventory_interface.visible
 
-	#todo don't seem to work properly
 	if inventory_interface.visible:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		hot_bar_inventory.hide()
 	else:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		hot_bar_inventory.show()
 		
 	if external_inventory_owner and inventory_interface.visible:
