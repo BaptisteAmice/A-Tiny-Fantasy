@@ -35,10 +35,15 @@ func _on_peer_connected(peer_id: int) -> void:
 	if multiplayer.is_server() :
 		print("im the server " + get_role_and_id())
 		rpc_id(peer_id, "_sync_registered_players_from_server", registered_players)
-	
+
 	# Update interface for everyone
 	var world_scene: World = Global.game_controller.current_scene
 	world_scene.player_selection.draw_character_slots() # Used character should not be available
+
+	# Put here all clients request on login
+	# Clients should request the full map when they connect
+	if not multiplayer.is_server():
+		world_scene.world_tile_map.request_full_map()
 	
 @rpc("any_peer")
 func _sync_registered_players_from_server(server_registered: Dictionary) -> void:

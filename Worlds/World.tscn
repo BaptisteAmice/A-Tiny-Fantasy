@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://c7ho8gxtkvxyg"]
+[gd_scene load_steps=21 format=4 uid="uid://c7ho8gxtkvxyg"]
 
 [ext_resource type="Script" uid="uid://cdrshfxrhkobf" path="res://Worlds/world.gd" id="1_osawv"]
 [ext_resource type="Script" uid="uid://ggihq82b8v8s" path="res://NetworkManager/multiplayer_spawner.gd" id="2_d11ax"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bhu8puj4inhtk" path="res://Assets/EmanuelleDev/Tileset/walls.png" id="5_7yxei"]
 [ext_resource type="PackedScene" uid="uid://cm484nbkovv0n" path="res://InventorySystem/Inventory/inventory.tscn" id="6_4reng"]
 [ext_resource type="Texture2D" uid="uid://dlcpjppr2n32y" path="res://Assets/EmanuelleDev/Tileset/ground.png" id="6_7yxei"]
+[ext_resource type="Script" uid="uid://6eua6nd2ns4h" path="res://Worlds/TileMap/walls.gd" id="6_lqu5m"]
 [ext_resource type="FontFile" uid="uid://cslyoid86no3o" path="res://Assets/Tiopalada/tinyRPGFontKit01_v1_2/TinyRPG-BadgeFont.ttf" id="6_m7av2"]
 [ext_resource type="Script" uid="uid://dm22dklxlpg53" path="res://Worlds/player_selection.gd" id="6_p83nl"]
 [ext_resource type="Script" uid="uid://c2t8qhqvtygel" path="res://InventorySystem/Inventory/inventory_interface.gd" id="6_pu5gi"]
@@ -874,10 +875,11 @@ network_player = ExtResource("3_8djc0")
 [node name="WorldTileMap" type="Node2D" parent="."]
 script = ExtResource("4_7yxei")
 
-[node name="Walls" type="TileMapLayer" parent="WorldTileMap"]
+[node name="Walls" type="TileMapLayer" parent="WorldTileMap" groups=["Persist", "PersistLite"]]
 z_index = 9
 tile_map_data = PackedByteArray("AAAIAAEAAAABAAQAAAAJAAEAAAACAAQAAAAKAAEAAAAFAAMAAAAKAAAAAAAEAAEAAAAKAP//AAAAAAAAAAALAAAAAAALAAAAAAALAAEAAAAGAAMAAAAMAAEAAAADAAQAAAAOAAEAAAABAAQAAAAPAAEAAAAFAAAAAAAQAAEAAAALAAAAAAAQAAIAAAALAAMAAAAPAAIAAAAEAAIAAAAPAAMAAAAAAAIAAAARAAQAAAABAAQAAAASAAQAAAAFAAMAAAASAAMAAAAIAAAAAAATAAMAAAAHAAEAAAATAAIAAAAAAAAAAAATAAQAAAALAAMAAAAUAAUAAAAAAAAAAAAUAAYAAAABAAIAAAAVAAYAAAADAAQAAAARAAgAAAAIAAAAAAASAAgAAAAKAAAAAAATAAgAAAALAAAAAAATAAkAAAALAAMAAAASAAkAAAAKAAMAAAASAAoAAAAAAAIAAAARAAkAAAAIAAMAAAANAAgAAAAIAAMAAAANAAcAAAAIAAAAAAAOAAcAAAALAAAAAAAOAAgAAAALAAMAAAAXAAoAAAABAAQAAAAYAAkAAAAIAAAAAAAZAAkAAAALAAAAAAAZAAoAAAALAAMAAAAYAAoAAAAHAAAAAAAYAAsAAAAAAAIAAAASAP7/AAAAAAAAAAASAP//AAAAAAIAAAAGAP7/AAABAAAAAAAGAP//AAAAAAIAAAAHAP3/AAAAAAAAAAAHAP7/AAADAAIAAAAJAAcAAAAIAAAAAAAKAAcAAAALAAAAAAAKAAgAAAALAAMAAAAJAAgAAAAHAAAAAAAIAAgAAAABAAQAAAAJAAkAAAAAAAIAAAAJAAUAAAABAAQAAAAKAAUAAAADAAIAAAAKAAQAAAABAAAAAAALAAQAAAACAAQAAAAMAAQAAAADAAAAAAAMAAUAAAABAAIAAAANAAUAAAADAAQAAAA=")
 tile_set = SubResource("TileSet_lqu5m")
+script = ExtResource("6_lqu5m")
 
 [node name="Ground" type="TileMapLayer" parent="WorldTileMap"]
 position = Vector2(-8, -15)

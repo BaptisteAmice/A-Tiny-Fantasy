@@ -1,17 +1,73 @@
 extends Node2D
 class_name WorldTileMap
 
-enum TERRAIN_SETS {
-	WALLS = 0, 
-}
-
-enum TERRAINS {
-	DIRT_WALLS = 0,
-}
-
 @onready var ground: TileMapLayer = $Ground
 @onready var walls: TileMapLayer = $Walls
 @onready var interactable_layer: Node2D = $InteractableLayer
+
+###### ALL TILEMAPS
+
+func get_tilemap_dict(tilemap: TileMapLayer) -> Dictionary:
+	var data: Dictionary = {}
+	var used_cells: Array[Vector2i] = tilemap.get_used_cells()
+	
+	for cell: Vector2i in used_cells:
+		var cell_id: String = str(cell.x) + "_" + str(cell.y) 
+		
+		var tile_data: TileData =  tilemap.get_cell_tile_data(cell)
+		
+		data[cell_id] = {
+			"x": cell.x,
+			"y": cell.y,
+			"terrain_set": tile_data.terrain_set,
+			"terrain": tile_data.terrain
+		}
+	
+	return data
+
+func load_tilemap_from_dict(tilemap: TileMapLayer, data: Dictionary) -> void:	
+	# Add or update tiles
+	for cell_id: String in data:
+		var cell_data: Dictionary = data[cell_id]
+		var cell_pos: Vector2i = Vector2i(cell_data["x"], cell_data["y"])
+		var terrain_set: int = cell_data["terrain_set"]
+		var terrain: int = cell_data["terrain"]
+		place_wall_at_cell_pos(cell_pos, terrain_set, terrain)
+
+# -------------------------
+# Full tilemap sync
+# -------------------------
+
+# Client requests full map from server
+func request_full_map() -> void:
+	if multiplayer.is_server():
+		# If server calls it locally, does nothing
+		return
+	else:
+		rpc_id(1, "_server_send_full_map_request", multiplayer.get_unique_id())
+
+# Server receives request from client
+@rpc("any_peer")
+func _server_send_full_map_request(client_id: int) -> void:
+	if not multiplayer.is_server():
+		push_error("Server only action called by client")
+		return
+	_send_full_map_to_client(client_id)
+
+# Server sends the full map to a client
+func _send_full_map_to_client(client_id: int) -> void:
+	var wall_data: Dictionary = get_tilemap_dict(walls)
+	# could also include ground, interactable layers etc.
+	rpc_id(client_id, "_client_receive_full_map", wall_data)
+
+# Client receives full map
+@rpc("any_peer")
+func _client_receive_full_map(data: Dictionary) -> void:
+	if multiplayer.is_server():
+		return # server doesn't need to receive it
+	load_tilemap_from_dict(walls, data)
+
+####### WALLS
 
 const ERASE_CELL_ID: int = -1
 #todo place ground, walls, interacables, make multiplayer and saves work

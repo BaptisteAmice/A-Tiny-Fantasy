@@ -22,7 +22,7 @@ func save_world() -> Dictionary:
 	var save_nodes: Array[Node] = get_tree().get_nodes_in_group("Persist")
 	for node: Node in save_nodes:
 		# Check the node is an instanced scene so it can be instanced again during load.
-		if node.scene_file_path.is_empty():
+		if node.scene_file_path.is_empty() and not node.is_in_group("PersistLite"):
 			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
 			continue
 		# Check the node has a save function.
@@ -90,28 +90,43 @@ func load_data_from_file() -> void:
 	remove_persistant_nodes()
 	# Load the data
 	for node_key: String in world_data.keys():
+		var loaded_node: Node2D = null
 		var node_data: Dictionary = world_data[node_key]
 		# Firstly, we need to create the object and add it to the tree and set its position.
-		var file_name : String = node_data["filename"]
-		var scene_resource : PackedScene = load(file_name)
-		# Shouldn't need to instantiate something else than a Node2D
-		var new_object: Node2D = scene_resource.instantiate()
-		var node_parent_path: NodePath = node_data["parent"]
-		get_node(node_parent_path).add_child(new_object, true)
-		# Warning : could cause problems because float is on 64 bits but Vector2 use values on 32 bits
-		var node_pos_x: float = node_data["pos_x"]
-		var node_pos_y: float = node_data["pos_y"]
-		new_object.position = Vector2(node_pos_x, node_pos_y)
-		# Now we set the remaining variables.
-		for var_name: String in node_data.keys():
-			if var_name == "filename" or var_name == "parent" or var_name == "pos_x" or var_name == "pos_y":
+		# Only do it for nodes not in PersistLite (so with a saved filename amongother things)
+		if node_data.get("filename", "") != "":
+			var file_name : String = node_data["filename"]
+			var scene_resource : PackedScene = load(file_name)
+			# Shouldn't need to instantiate something else than a Node2D
+			loaded_node = scene_resource.instantiate()
+			var node_parent_path: NodePath = node_data["parent"]
+			get_node(node_parent_path).add_child(loaded_node, true)
+			# Warning : could cause problems because float is on 64 bits but Vector2 use values on 32 bits
+			var node_pos_x: float = node_data["pos_x"]
+			var node_pos_y: float = node_data["pos_y"]
+			loaded_node.position = Vector2(node_pos_x, node_pos_y)
+			# Now we set the remaining variables.
+			for var_name: String in node_data.keys():
+				if var_name == "filename" or var_name == "parent" or var_name == "pos_x" or var_name == "pos_y":
+					continue
+				loaded_node.set(var_name, node_data[var_name])
+		
+		else:
+			#for PeristLite, get the node in the tree
+			var node_path_str: String = node_data.get("persist_lite_path", "")
+			if node_path_str != "":
+				loaded_node = get_node(node_path_str) as Node2D
+				loaded_node.call("load", node_data)
+			else:
+				print("Warning: no filename and no path for node_key ", node_key)
 				continue
-			new_object.set(var_name, node_data[var_name])
+				
 	
 	print("Load made by " + Global.game_controller.network_manager.get_role_and_id())
 	
 func remove_persistant_nodes() -> void :
 	var persistant_nodes: Array[Node] = get_tree().get_nodes_in_group("Persist")
 	for node: Node in persistant_nodes:
-		node.queue_free()
+		if not node.is_in_group("PersistLite"):
+			node.queue_free()
 	
