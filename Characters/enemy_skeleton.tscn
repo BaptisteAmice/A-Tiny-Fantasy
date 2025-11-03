@@ -120,6 +120,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jcbu8"]
+radius = 7.0
+height = 20.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dthud"]
 properties/0/path = NodePath(".:position")
@@ -141,7 +143,6 @@ script = ExtResource("1_eq2me")
 metadata/_custom_type_script = "uid://b6aflivfv6oxu"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_62l4d")
 animation = &"running"
 

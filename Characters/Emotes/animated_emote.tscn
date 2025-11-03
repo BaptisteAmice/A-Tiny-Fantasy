@@ -108,6 +108,7 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [node name="AnimatedEmote" type="AnimatedSprite2D"]
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_phtuy")
 animation = &"frustration"
 script = ExtResource("2_na5ll")

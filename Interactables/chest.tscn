@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://e8x2i0ukn5tc"]
+[gd_scene load_steps=10 format=3 uid="uid://e8x2i0ukn5tc"]
 
 [ext_resource type="Script" uid="uid://qxw3wm24418y" path="res://Interactables/chest.gd" id="1_o08mj"]
 [ext_resource type="Script" uid="uid://bfoeo8bnydmcc" path="res://InventorySystem/Inventory/inventory_data.gd" id="2_2ccwf"]
-[ext_resource type="Texture2D" uid="uid://bdyenpp7tga0k" path="res://Assets/Placeholders/Copper_Chest_placed_down.webp" id="2_enxnb"]
 [ext_resource type="Script" uid="uid://dyn3odoh24jxw" path="res://InventorySystem/Inventory/slot_data.gd" id="3_25v8b"]
+[ext_resource type="Texture2D" uid="uid://casj8j7be81yf" path="res://Assets/EmanuelleDev/chest.png" id="4_waagb"]
 
 [sub_resource type="Resource" id="Resource_ohxn3"]
 script = ExtResource("2_2ccwf")
@@ -12,6 +12,28 @@ metadata/_custom_type_script = "uid://bfoeo8bnydmcc"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_odjdj"]
 radius = 42.0119
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ccwf"]
+atlas = ExtResource("4_waagb")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25v8b"]
+atlas = ExtResource("4_waagb")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1anhx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ccwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25v8b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Chest" type="Area2D" groups=["external_inventory"]]
 collision_layer = 5
@@ -24,5 +46,5 @@ metadata/_custom_type_script = "uid://dupmkxd0bijdw"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_odjdj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_enxnb")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1anhx")

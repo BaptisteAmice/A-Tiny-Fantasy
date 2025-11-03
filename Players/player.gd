@@ -3,7 +3,7 @@ class_name Player
 
 @onready var name_label: Label = $NameLabel
 @onready var player_animation_handler: PlayerAnimationHandler = $PlayerAnimationHandler
-@export var speed: int = 200
+@export var speed: int = 100
 @onready var all_interactions: Array[InteractableArea] = []
 @onready var interact_area: Area2D = $InteractArea
 @onready var interact_label: Label = $InteractLabel

@@ -147,6 +147,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h53b3"]
+radius = 6.0
+height = 18.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ei3sg"]
 properties/0/path = NodePath(".:position")
@@ -166,7 +168,7 @@ properties/4/spawn = true
 properties/4/replication_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0r1d2"]
-radius = 45.099888
+radius = 32.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -176,10 +178,10 @@ equip_inventory_data = SubResource("Resource_bwdm4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
+zoom = Vector2(2, 2)
 
 [node name="PlayerAnimationHandler" type="AnimatedSprite2D" parent="."]
 z_index = 10
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tseti")
 animation = &"running"
 autoplay = "idle"
