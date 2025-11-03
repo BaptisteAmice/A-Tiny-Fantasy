@@ -376,7 +376,7 @@ texture = ExtResource("5_7yxei")
 
 [sub_resource type="TileSet" id="TileSet_lqu5m"]
 terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "dirt_walls"
+terrain_set_0/terrain_0/name = "DIRT_WALLS"
 terrain_set_0/terrain_0/color = Color(0.11926595, 0.42528695, 0.5175056, 1)
 sources/0 = SubResource("TileSetAtlasSource_7yxei")
 

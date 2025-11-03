@@ -39,7 +39,7 @@ func get_input() -> void:
 	#todo better input handling
 	if Input.is_action_just_pressed("left_click"):
 		#todo choose tile
-		Global.get_world_scene().world_tile_map.place_wall_at_mouse(0)
+		Global.get_world_scene().world_tile_map.place_wall_at_mouse(Constants.TERRAIN_SETS.WALLS, Constants.TERRAINS.DIRT_WALLS)
 
 	
 	

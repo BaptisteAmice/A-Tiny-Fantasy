@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Constants="*res://GameController/constants.gd"
 Global="*res://GameController/global.gd"
 PlayerManager="*res://Players/player_manager.gd"
 
