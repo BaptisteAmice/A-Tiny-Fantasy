@@ -9,6 +9,9 @@ class_name Player
 @onready var interact_label: Label = $InteractLabel
 @export var player_name: String = "Default" # Displayed player name
 
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
+
 var max_health: int = 10
 var health: int = 10
 
@@ -89,7 +92,8 @@ func load(saved_state: Dictionary) -> void:
 			push_error("Saved coordinates should be floats: ",  saved_state.pos_x, saved_state.pos_y)
 		var coord_x: float = saved_state.pos_x
 		var coord_y: float = saved_state.pos_y
-		position = Vector2(coord_x, coord_y)
+		# can't just spawn the player at the position because of collisions etc
+		position = Global.get_world_scene().find_valid_spawn_position(coord_x, coord_y, self.collision_shape_2d)
 		player_name = saved_state.player_name
 		name_label.text = player_name
 		

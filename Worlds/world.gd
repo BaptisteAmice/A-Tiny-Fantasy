@@ -41,6 +41,32 @@ func setup_local_player(player: Player) -> void:
 
 	print("Local player set up:", PlayerManager.my_player)
 
+## Used to find a valid spawn position for a player or entity
+func find_valid_spawn_position(x: float, y: float, collision_shape: CollisionShape2D) -> Vector2:
+	var spawn_position: Vector2 = Vector2(x, y)
+	
+	# Create the query parameters for the shape
+	var shape_params: PhysicsShapeQueryParameters2D = PhysicsShapeQueryParameters2D.new()
+	shape_params.shape = collision_shape.shape
+	shape_params.transform.origin = spawn_position
+	
+	# Access the physics space
+	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
+	
+	# Check collisions at the spawn position
+	var collisions: Array = space_state.collide_shape(shape_params)
+	
+	# If there's a collision, adjust spawn position
+	if collisions.size() > 0:
+		# Simple adjustment: move up until no collision
+		while collisions.size() > 0:
+			spawn_position.y -= 1
+			shape_params.transform.origin = spawn_position
+			collisions = space_state.collide_shape(shape_params)
+	
+	return spawn_position
+
+
 func toggle_inventory_interface(external_inventory_owner: Node = null) -> void:
 	inventory_interface.visible = not inventory_interface.visible
 
