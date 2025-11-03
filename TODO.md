@@ -20,7 +20,6 @@ audio sound effects
 global rng with one global seed in Global
 global class SignalBus : for signals from really different places
 global script: Refs.gd with export values that need to be set in editor (icons, colors, etc.) @export_group @export
-scene changer: add a quick animation https://youtu.be/KOI0y1OC_tM?t=535
 
 
 

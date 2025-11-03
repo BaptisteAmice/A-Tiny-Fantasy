@@ -139,6 +139,7 @@ properties/3/replication_mode = 1
 
 [node name="enemy_skeleton" type="CharacterBody2D" groups=["Persist"]]
 z_index = 10
+collision_layer = 0
 script = ExtResource("1_eq2me")
 metadata/_custom_type_script = "uid://b6aflivfv6oxu"
 

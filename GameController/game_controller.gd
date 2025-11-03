@@ -12,11 +12,18 @@ const PLAYER: PackedScene = preload("uid://d08gn81f5b74p")
 @onready var music_audio_stream_player: AudioStreamPlayer = $MusicAudioStreamPlayer
 @onready var audio_manager: AudioManager = $AudioManager
 
+@onready var animation_player: AnimationPlayer = $CanvasLayer/AnimationPlayer
+@onready var color_rect: ColorRect = $CanvasLayer/ColorRect
+
+
 func _ready() -> void:
 	Global.game_controller = self
-	change_scene("res://Menus/main_menu.tscn")
+	
+	animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
+	
+	change_scene("res://Menus/main_menu.tscn", false)
 
-func change_scene(new_scene: String) -> void:
+func change_scene(new_scene: String, play_animation: bool = true) -> void:
 	if not current_scene == null:
 		current_scene.queue_free() # remove node entirely
 		
@@ -31,3 +38,16 @@ func change_scene(new_scene: String) -> void:
 		print_debug("not Reusing scene")
 	self.add_child(new_scene_instance)
 	current_scene = new_scene_instance
+	
+	if play_animation:
+		play_transition_animation()
+		
+func play_transition_animation() -> void:
+	if animation_player.is_playing():
+		animation_player.stop()
+	color_rect.show()
+	animation_player.play("fade_in_out")
+
+func _on_animation_finished(anim_name: String) -> void:
+	if anim_name == "fade_in_out":
+		color_rect.hide()
