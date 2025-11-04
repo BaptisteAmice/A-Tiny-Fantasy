@@ -1047,7 +1047,7 @@ offset_bottom = 40.0
 [node name="SaveButton" type="Button" parent="CanvasLayer/InGameMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_m7av2")
-text = "Save"
+text = "SAVE_BUTTON"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/InGameMenu/VBoxContainer"]
 layout_mode = 2
@@ -1092,12 +1092,12 @@ layout_mode = 2
 [node name="ConnectedPlayersLabel" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_m7av2")
-text = "Connected players :"
+text = "CONNECTED_PLAYERS"
 
 [node name="Label" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_m7av2")
-text = "Choose your Character"
+text = "CHOOSE_CHARACTER"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
 layout_mode = 2
@@ -1106,12 +1106,12 @@ layout_mode = 2
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_m7av2")
-placeholder_text = "Player name"
+placeholder_text = "CHARACTER_NAME"
 
 [node name="CreateCharacterButton" type="Button" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_m7av2")
-text = "Create character"
+text = "CREATE_CHARACTER"
 
 [node name="ErrorLabel" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
 layout_mode = 2

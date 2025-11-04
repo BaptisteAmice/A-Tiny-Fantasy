@@ -20,7 +20,7 @@ func _ready() -> void:
 		draw_character_slots()
 	
 func update_connected_players_label() -> void:
-	var label_new_text: String = "Connected players: "
+	var label_new_text: String = "CONNECTED_PLAYERS"
 	for player: Player in Global.game_controller.network_manager.get_local_connected_players() :
 		label_new_text += player.player_name + ", "
 	if label_new_text.ends_with(", "):

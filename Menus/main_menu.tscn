@@ -21,7 +21,7 @@ text = "HOST_BUTTON"
 layout_mode = 2
 localize_numeral_system = false
 theme_override_fonts/font = ExtResource("2_p3jrs")
-text = "Play"
+text = "JOIN_BUTTON"
 
 [node name="LangageSelection" type="CanvasLayer" parent="."]
 

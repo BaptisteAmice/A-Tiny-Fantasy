@@ -1,3 +1,12 @@
-key;en;fr
-HOST_BUTTON;Host;Héberger
-JOIN_BUTTON;Join;Rejoindre
+key;en;fr;
+HOST_BUTTON;Host;Héberger;
+JOIN_BUTTON;Join;Rejoindre;
+SAVE_BUTTON;Save;Sauvegarder;
+LOAD_BUTTON;Load;Charger;
+
+OPEN_ACTION;Open;Ouvrir;
+
+CONNECTED_PLAYERS;Connected players: ;Joueurs connectés : ;
+CHOOSE_CHARACTER;Choose your character;Choisis ton personnage;
+CREATE_CHARACTER;Create character;Créer personnage;
+CHARACTER_NAME;Character name;Nom du personnage;
