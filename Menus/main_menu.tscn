@@ -15,7 +15,7 @@ offset_bottom = 40.0
 [node name="HostButton" type="Button" parent="PlayingSelection/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p3jrs")
-text = "Host"
+text = "HOST_BUTTON"
 
 [node name="PlayButton" type="Button" parent="PlayingSelection/VBoxContainer"]
 layout_mode = 2

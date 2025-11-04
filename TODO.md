@@ -25,6 +25,7 @@ terrrains
 peut etre besoin d'un plugin pour connecter differents terrains
 https://www.reddit.com/r/godot/comments/11xtn2i/godot_4_tilemaps_how_can_i_get_different_terrains/
 https://github.com/Portponky/better-terrain
+https://www.youtube.com/watch?v=0ia6yOKKiGg -> code examples
 
 terrain generation (maybe)
 - pass 1: biomes determination, creates x biomes limits with each their custom rules (min/max size), including fixed biomes like spawn area

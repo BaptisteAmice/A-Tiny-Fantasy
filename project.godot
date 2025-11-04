@@ -75,6 +75,10 @@ left_click={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Localization/translations.en.translation", "res://Localization/translations.fr.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

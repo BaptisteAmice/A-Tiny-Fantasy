@@ -6,4 +6,5 @@ enum TERRAIN_SETS {
 
 enum TERRAINS {
 	DIRT_WALLS = 0,
+	PIPES = 1,
 }
