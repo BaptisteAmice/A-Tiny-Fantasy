@@ -23,5 +23,25 @@ localize_numeral_system = false
 theme_override_fonts/font = ExtResource("2_p3jrs")
 text = "Play"
 
+[node name="LangageSelection" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LangageSelection"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 61.0
+grow_vertical = 0
+
+[node name="ENLanguageButton" type="Button" parent="LangageSelection/HBoxContainer"]
+layout_mode = 2
+text = "EN"
+
+[node name="FRLanguageButton" type="Button" parent="LangageSelection/HBoxContainer"]
+layout_mode = 2
+text = "FR"
+
 [connection signal="pressed" from="PlayingSelection/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="PlayingSelection/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="LangageSelection/HBoxContainer/ENLanguageButton" to="." method="_on_en_language_button_pressed"]
+[connection signal="pressed" from="LangageSelection/HBoxContainer/FRLanguageButton" to="." method="_on_fr_language_button_pressed"]

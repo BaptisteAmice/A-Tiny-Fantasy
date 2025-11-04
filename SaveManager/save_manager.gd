@@ -1,8 +1,6 @@
 extends Node
 class_name SaveManager
 
-const SAVE_FILE_PATH: String = "user://save_data.json"
-
 func request_save_data() -> void:
 	print(Global.game_controller.network_manager.get_role_and_id() + ' is asking the server to save')
 	# Clients send a request to the server
@@ -56,7 +54,7 @@ func save_all_data_to_file() -> void:
 	var json_string: String = JSON.stringify(data)
 	print("json_string"+json_string)
 
-	var save_file: FileAccess = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
+	var save_file: FileAccess = FileAccess.open(Constants.SAVE_FILE_PATH, FileAccess.WRITE)
 	# Store the save dictionary as a new line in the save file.
 	save_file.store_line(json_string)
 	save_file.close()
@@ -66,7 +64,7 @@ func save_all_data_to_file() -> void:
 func load_data_from_file() -> void:
 	print(Global.game_controller.network_manager.get_role_and_id() + " is trying to load data.")
 	if not multiplayer.is_server(): return
-	var file: FileAccess = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
+	var file: FileAccess = FileAccess.open(Constants.SAVE_FILE_PATH, FileAccess.READ)
 	if file == null:
 		print("No save file found, starting creating it then loading it")
 		save_all_data_to_file() 
@@ -130,3 +128,12 @@ func remove_persistant_nodes() -> void :
 		if not node.is_in_group("PersistLite"):
 			node.queue_free()
 	
+####### CLIENT SIDE SAVE AND LOAD
+
+func save_ressource_at_path(ressource: Resource, path: String) -> void:
+	ResourceSaver.save(ressource, path)
+	
+func load_ressource_at_path(path: String) -> Resource:
+	if not ResourceLoader.exists(path):
+		return ClientConfig.new()
+	return load(path)

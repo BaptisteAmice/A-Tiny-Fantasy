@@ -15,12 +15,18 @@ const PLAYER: PackedScene = preload("uid://d08gn81f5b74p")
 @onready var animation_player: AnimationPlayer = $CanvasLayer/AnimationPlayer
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
 
+var client_config: ClientConfig
 
 func _ready() -> void:
+	# Singleton
 	Global.game_controller = self
 	
-	animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
+	# Load client config
+	client_config = save_manager.load_ressource_at_path(Constants.CLIENT_CONFIG_SAVE_FILE_PATH)
 	
+	# Connect signals
+	animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
+	# Set main menu
 	change_scene("res://Menus/main_menu.tscn", false)
 
 func change_scene(new_scene: String, play_animation: bool = true) -> void:
