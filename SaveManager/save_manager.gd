@@ -130,10 +130,44 @@ func remove_persistant_nodes() -> void :
 	
 ####### CLIENT SIDE SAVE AND LOAD
 
-func save_ressource_at_path(ressource: Resource, path: String) -> void:
-	ResourceSaver.save(ressource, path)
+## Should not be used for important data, as it is dependent on the OS id, that can change.
+func save_ressource_at_path(resource: Resource, path: String) -> void:
+	# Can't just save as is (_ready could be updated in the file!!!), so we use a temp file to encrypt the save
+	var password: String = get_encryption_password()
+	var temp_path: String = Constants.TEMP_RESOURCE_SAVE_FILE_PATH
+	ResourceSaver.save(resource, temp_path)
+	var file: FileAccess = FileAccess.open(temp_path, FileAccess.READ)
+	var buffer: PackedByteArray = file.get_buffer(file.get_length())
+	file.close()
 	
-func load_ressource_at_path(path: String) -> Resource:
-	if not ResourceLoader.exists(path):
-		return ClientConfig.new()
-	return load(path)
+	var encrypted_file: FileAccess = FileAccess.open_encrypted_with_pass(path, FileAccess.WRITE, password)
+	encrypted_file.store_buffer(buffer)
+	encrypted_file.close()
+ 
+	DirAccess.remove_absolute(temp_path)
+	
+func load_ressource_at_path(path: String, res_type: GDScript) -> Resource:
+	var password: String = get_encryption_password()
+	var temp_path: String = Constants.TEMP_RESOURCE_SAVE_FILE_PATH
+	var file: FileAccess = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, password)
+	if not file:
+		return res_type.new()
+ 
+	var buffer: PackedByteArray = file.get_buffer(file.get_length())
+	file.close()
+ 
+	var temp_file: FileAccess = FileAccess.open(temp_path, FileAccess.WRITE)
+	temp_file.store_buffer(buffer)
+	temp_file.close()
+ 
+	var res: Resource = ResourceLoader.load(temp_path)
+	DirAccess.remove_absolute(temp_path)
+ 
+	return res
+
+func get_encryption_password() -> String:
+	var salt: String = "16BitDev"
+	# Can only be used on the same computer
+	var password: String = (salt + OS.get_unique_id()).sha256_text()
+ 
+	return password

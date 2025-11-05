@@ -22,7 +22,7 @@ func _ready() -> void:
 	Global.game_controller = self
 	
 	# Load client config
-	client_config = save_manager.load_ressource_at_path(Constants.CLIENT_CONFIG_SAVE_FILE_PATH)
+	client_config = save_manager.load_ressource_at_path(Constants.CLIENT_CONFIG_SAVE_FILE_PATH, ClientConfig)
 	
 	# Connect signals
 	animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
