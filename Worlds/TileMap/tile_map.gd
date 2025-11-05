@@ -12,27 +12,29 @@ func get_tilemap_dict(tilemap: TileMapLayer) -> Dictionary:
 	var used_cells: Array[Vector2i] = tilemap.get_used_cells()
 	
 	for cell: Vector2i in used_cells:
-		var cell_id: String = str(cell.x) + "_" + str(cell.y) 
-		
-		var tile_data: TileData =  tilemap.get_cell_tile_data(cell)
-		
+		var cell_id: String = str(cell.x) + "_" + str(cell.y)
 		data[cell_id] = {
 			"x": cell.x,
 			"y": cell.y,
-			"terrain_set": tile_data.terrain_set,
-			"terrain": tile_data.terrain
+			"cell_type": BetterTerrain.get_cell(tilemap, cell)
 		}
 	
 	return data
 
-func load_tilemap_from_dict(tilemap: TileMapLayer, data: Dictionary) -> void:	
-	# Add or update tiles
+func load_tilemap_from_dict(tilemap: TileMapLayer, data: Dictionary) -> void:
+	# Add or update cells from data
 	for cell_id: String in data:
 		var cell_data: Dictionary = data[cell_id]
 		var cell_pos: Vector2i = Vector2i(cell_data["x"], cell_data["y"])
-		var terrain_set: int = cell_data["terrain_set"]
-		var terrain: int = cell_data["terrain"]
-		place_wall_at_cell_pos(cell_pos, terrain_set, terrain)
+		var cell_type: int = cell_data["cell_type"]
+		place_cells_on_layer(tilemap, [cell_pos], cell_type)
+
+	# Remove any cells that are not in the data
+	var used_cells: Array[Vector2i] = tilemap.get_used_cells()
+	for cell: Vector2i in used_cells:
+		var cell_id: String = str(cell.x) + "_" + str(cell.y)
+		if not data.has(cell_id):
+			BetterTerrain.set_cell(tilemap, cell, Constants.TERRAINS.Decoration) # remove cell
 
 # -------------------------
 # Full tilemap sync
@@ -67,69 +69,82 @@ func _client_receive_full_map(data: Dictionary) -> void:
 		return # server doesn't need to receive it
 	load_tilemap_from_dict(walls, data)
 
-####### WALLS
-
-const ERASE_CELL_ID: int = -1
-#todo place ground, walls, interacables, make multiplayer and saves work
+####### Placing and removing tiles
 
 func get_clicked_wall_cell() -> Vector2i:
 	var clicked_cell: Vector2i = walls.local_to_map(walls.get_local_mouse_position())
 	return clicked_cell
-	
-func place_wall_at_mouse(terrain_set: int, terrain: int) -> void:
+
+func place_wall_at_mouse(cell_id: int) -> void:
 	if not walls:
 		push_warning("No tilemaplayer available to place a wall") #todo see if normal
 		return
 	var cell_pos: Vector2i = get_clicked_wall_cell()
-	place_wall_at_cell_pos(cell_pos, terrain_set, terrain)
+	place_cells_on_layer(walls, [cell_pos], cell_id)
 	
-func place_wall_at_cell_pos(cell_pos: Vector2i, terrain_set: int, terrain: int) -> void:
+func place_cells_on_layer(layer: TileMapLayer, cells: Array[Vector2i], cell_type: int) -> void:
 	if multiplayer.is_server():
-		_server_place_wall(cell_pos, terrain_set, terrain)
+		_server_place_cells_on_layer(layer.get_path(), cells, cell_type)
 	else:
 		# send request to server (server id is usually 1)
-		rpc_id(1, "_server_place_wall", cell_pos, terrain_set, terrain)
+		rpc_id(1, "_server_place_cells_on_layer", layer.get_path(), cells, cell_type)
 	
 func remove_wall_at_mouse() -> void:
 	if not walls:
 		push_warning("No tilemaplayer available to remove a wall")
 		return
 	var cell_pos: Vector2i = get_clicked_wall_cell()
-	remove_wall_cell_pos(cell_pos) 
+	place_cells_on_layer(walls, [cell_pos], Constants.TERRAINS.Decoration) # todo dunno if Decoration is the right id for empty
 	
-func remove_wall_cell_pos(cell_pos: Vector2i) -> void:
-	if multiplayer.is_server():
-		_server_remove_wall(cell_pos)
-	else:
-		rpc_id(1, "_server_remove_wall", cell_pos)
-		
+
+func locally_place_cell(layer: TileMapLayer, cells: Array[Vector2i], cell_type: int) -> void:
+	for cell_pos: Vector2i in cells:
+		BetterTerrain.set_cell(layer, cell_pos, cell_type)
+	# Update the terrain area
+	if cells.size() > 0:
+		var min_x: int = cells[0].x
+		var min_y: int = cells[0].y
+		var max_x: int = cells[0].x
+		var max_y: int = cells[0].y
+		for cell_pos: Vector2i in cells:
+			min_x = min(min_x, cell_pos.x)
+			min_y = min(min_y, cell_pos.y)
+			max_x = max(max_x, cell_pos.x)
+			max_y = max(max_y, cell_pos.y)
+		var update_rect: Rect2i = Rect2i(Vector2i(min_x, min_y), Vector2i(max_x - min_x + 1, max_y - min_y + 1))
+		BetterTerrain.update_terrain_area(layer, update_rect, true)
+
 # -------------------------
 # Server functions
 # -------------------------
 @rpc("any_peer")
-func _server_place_wall(cell_pos: Vector2i, terrain_set: int, terrain: int) -> void:	
+func _server_place_cells_on_layer(layer_path: String, cells: Array[Vector2i], cell_type: int) -> void:	
 	if not multiplayer.is_server():
 		push_error("Server only action called by client")
 		return
-	walls.set_cells_terrain_connect([cell_pos], terrain_set, terrain)
+
+	if cells.size() < 1:
+		return
+
+	var layer: TileMapLayer = get_node_or_null(layer_path)
+	if layer == null:
+		push_error("Invalid layer path sent to server: " + layer_path)
+		return
+
+	# Place cells on server
+	locally_place_cell(layer, cells, cell_type)
 	
 	# broadcast to all clients
-	rpc("_client_update_wall", cell_pos, terrain_set, terrain)
-
-@rpc("any_peer")
-func _server_remove_wall(cell_pos: Vector2i) -> void:
-	# default atlas coord (only given for rpc call)
-	var atlas_coord: Vector2i = Vector2i(-1,-1)
-	if not multiplayer.is_server():
-		push_error("Server only action called by client")
-		return
-	walls.set_cell(cell_pos, ERASE_CELL_ID, atlas_coord)
-	rpc("_client_update_wall", cell_pos, ERASE_CELL_ID, atlas_coord)
+	rpc("_client_update_layer_cells", layer.get_path(), cells, cell_type)
 
 # -------------------------
 # Client updates from server
 # -------------------------
 @rpc("any_peer")
-func _client_update_wall(cell_pos: Vector2i, terrain_set: int, terrain: int) -> void:
+func _client_update_layer_cells(layer_path: String, cells: Array[Vector2i], cell_type: int) -> void:
 	if multiplayer.is_server(): return
-	walls.set_cells_terrain_connect([cell_pos], terrain_set, terrain)
+	var layer: TileMapLayer = get_node_or_null(layer_path)
+	if layer == null:
+		push_error("Invalid layer path sent to client: " + layer_path)
+		return
+	locally_place_cell(layer, cells, cell_type)

@@ -1,12 +1,10 @@
 extends Node
 
-enum TERRAIN_SETS {
-	WALLS = 0, 
-}
-
 enum TERRAINS {
-	DIRT_WALLS = 0,
+	Decoration = -1,
+	WALLS_DIRT = 0,
 	PIPES = 1,
+	WALLS = 2,
 }
 
 const LANGUAGES : Dictionary = {
