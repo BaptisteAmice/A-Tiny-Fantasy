@@ -11,7 +11,7 @@
 [ext_resource type="FontFile" uid="uid://cslyoid86no3o" path="res://Assets/Tiopalada/tinyRPGFontKit01_v1_2/TinyRPG-BadgeFont.ttf" id="6_m7av2"]
 [ext_resource type="Script" uid="uid://dm22dklxlpg53" path="res://Worlds/player_selection.gd" id="6_p83nl"]
 [ext_resource type="Script" uid="uid://c2t8qhqvtygel" path="res://InventorySystem/Inventory/inventory_interface.gd" id="6_pu5gi"]
-[ext_resource type="Texture2D" uid="uid://b747mp8xygkwn" path="res://Assets/Custom/pipes.png" id="6_wa8bn"]
+[ext_resource type="Texture2D" uid="uid://bh6yqqg5u74mv" path="res://Assets/Custom/pipes.png" id="6_wa8bn"]
 [ext_resource type="PackedScene" uid="uid://tft8q4g3amu6" path="res://Characters/enemy_skeleton.tscn" id="7_fc1d8"]
 [ext_resource type="PackedScene" uid="uid://8irnp68kgu1a" path="res://InventorySystem/Inventory/slot.tscn" id="8_esbd5"]
 [ext_resource type="PackedScene" uid="uid://e8x2i0ukn5tc" path="res://Interactables/chest.tscn" id="9_sp2ln"]
@@ -511,99 +511,269 @@ texture = ExtResource("5_7yxei")
 texture = ExtResource("6_wa8bn")
 0:0/0 = 0
 0:0/0/metadata/_better_terrain = {
-4: [1],
+4: [1, 3],
 &"type": 1
 }
 1:0/0 = 0
 1:0/0/metadata/_better_terrain = {
-0: [1],
-4: [1],
+0: [1, 3],
+4: [1, 3],
 &"type": 1
 }
 2:0/0 = 0
 2:0/0/metadata/_better_terrain = {
-0: [1],
-4: [1],
-8: [1],
+0: [1, 3],
+4: [1, 3],
+8: [1, 3],
 &"type": 1
 }
 3:0/0 = 0
 3:0/0/metadata/_better_terrain = {
-4: [1],
-8: [1],
+4: [1, 3],
+8: [1, 3],
 &"type": 1
 }
 0:1/0 = 0
 0:1/0/metadata/_better_terrain = {
-4: [1],
-12: [1],
+4: [1, 3],
+12: [1, 3],
 &"type": 1
 }
 1:1/0 = 0
 1:1/0/metadata/_better_terrain = {
-0: [1],
-4: [1],
-12: [1],
+0: [1, 3],
+4: [1, 3],
+12: [1, 3],
 &"type": 1
 }
 2:1/0 = 0
 2:1/0/metadata/_better_terrain = {
-0: [1],
-4: [1],
-8: [1],
-12: [1],
+0: [1, 3],
+4: [1, 3],
+8: [1, 3],
+12: [1, 3],
 &"type": 1
 }
 3:1/0 = 0
 3:1/0/metadata/_better_terrain = {
-4: [1],
-8: [1],
-12: [1],
+4: [1, 3],
+8: [1, 3],
+12: [1, 3],
 &"type": 1
 }
 0:2/0 = 0
 0:2/0/metadata/_better_terrain = {
-12: [1],
+12: [1, 3],
 &"type": 1
 }
 1:2/0 = 0
 1:2/0/metadata/_better_terrain = {
-0: [1],
-12: [1],
+0: [1, 3],
+12: [1, 3],
 &"type": 1
 }
 2:2/0 = 0
 2:2/0/metadata/_better_terrain = {
-0: [1],
-8: [1],
-12: [1],
+0: [1, 3],
+8: [1, 3],
+12: [1, 3],
 &"type": 1
 }
 3:2/0 = 0
 3:2/0/metadata/_better_terrain = {
-8: [1],
-12: [1],
+8: [1, 3],
+12: [1, 3],
 &"type": 1
 }
 0:3/0 = 0
 0:3/0/metadata/_better_terrain = {
+4: [3],
 &"type": 1
 }
 1:3/0 = 0
 1:3/0/metadata/_better_terrain = {
-0: [1],
+0: [1, 3],
 &"type": 1
 }
 2:3/0 = 0
 2:3/0/metadata/_better_terrain = {
-0: [1],
-8: [1],
+0: [1, 3],
+8: [1, 3],
 &"type": 1
 }
 3:3/0 = 0
 3:3/0/metadata/_better_terrain = {
-8: [1],
+8: [1, 3],
 &"type": 1
+}
+0:4/0 = 0
+0:4/0/metadata/_better_terrain = {
+4: [1],
+&"type": 3
+}
+0:6/0 = 0
+0:6/0/metadata/_better_terrain = {
+12: [1],
+&"type": 3
+}
+0:7/0 = 0
+0:7/0/metadata/_better_terrain = {
+&"type": 3
+}
+1:7/0 = 0
+1:7/0/metadata/_better_terrain = {
+0: [1],
+&"type": 3
+}
+3:7/0 = 0
+3:7/0/metadata/_better_terrain = {
+8: [1],
+&"type": 3
+}
+4:7/0 = 0
+4:7/0/metadata/_better_terrain = {
+&"type": 3
+}
+5:7/0 = 0
+5:7/0/metadata/_better_terrain = {
+0: [1],
+&"type": 3
+}
+7:7/0 = 0
+7:7/0/metadata/_better_terrain = {
+8: [1],
+&"type": 3
+}
+4:6/0 = 0
+4:6/0/metadata/_better_terrain = {
+12: [1],
+&"type": 3
+}
+4:4/0 = 0
+4:4/0/metadata/_better_terrain = {
+4: [1],
+&"type": 3
+}
+5:5/0 = 0
+5:5/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+12: [1],
+&"type": 3
+}
+6:5/0 = 0
+6:5/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+12: [1],
+&"type": 3
+}
+7:5/0 = 0
+7:5/0/metadata/_better_terrain = {
+4: [1],
+8: [1],
+11: [1],
+12: [1],
+&"type": 3
+}
+7:4/0 = 0
+7:4/0/metadata/_better_terrain = {
+4: [1],
+8: [1],
+&"type": 3
+}
+6:4/0 = 0
+6:4/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+&"type": 3
+}
+5:4/0 = 0
+5:4/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+&"type": 3
+}
+5:6/0 = 0
+5:6/0/metadata/_better_terrain = {
+0: [1],
+12: [1],
+&"type": 3
+}
+6:6/0 = 0
+6:6/0/metadata/_better_terrain = {
+0: [1],
+8: [1],
+12: [1],
+&"type": 3
+}
+7:6/0 = 0
+7:6/0/metadata/_better_terrain = {
+8: [1],
+12: [1],
+&"type": 3
+}
+2:6/0 = 0
+2:6/0/metadata/_better_terrain = {
+0: [1],
+8: [1],
+12: [1],
+&"type": 3
+}
+2:5/0 = 0
+2:5/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+12: [1],
+&"type": 3
+}
+2:4/0 = 0
+2:4/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+&"type": 3
+}
+1:4/0 = 0
+1:4/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+&"type": 3
+}
+1:5/0 = 0
+1:5/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+12: [1],
+&"type": 3
+}
+1:6/0 = 0
+1:6/0/metadata/_better_terrain = {
+0: [1],
+12: [1],
+&"type": 3
+}
+3:6/0 = 0
+3:6/0/metadata/_better_terrain = {
+8: [1],
+12: [1],
+&"type": 3
+}
+3:5/0 = 0
+3:5/0/metadata/_better_terrain = {
+4: [1],
+8: [1],
+12: [1],
+&"type": 3
+}
+3:4/0 = 0
+3:4/0/metadata/_better_terrain = {
+4: [1],
+8: [1],
+&"type": 3
 }
 
 [sub_resource type="TileSet" id="TileSet_lqu5m"]
@@ -621,6 +791,8 @@ metadata/_better_terrain = {
 }], ["PIPES", Color(0.15331547, 0.17518961, 0.7156413, 1), 0, [], {
 &"path": ""
 }], ["WALLS", Color(0.3753517, 0.72464734, 0.009214397, 1), 2, [], {
+&"path": ""
+}], ["PiPES_CONNECTIONS", Color(0.029263107, 0.50962913, 0.60153335, 1), 0, [], {
 &"path": ""
 }]],
 &"version": "0.2"
@@ -740,7 +912,7 @@ script = ExtResource("4_7yxei")
 
 [node name="Walls" type="TileMapLayer" parent="WorldTileMap" groups=["Persist", "PersistLite"]]
 z_index = 9
-tile_map_data = PackedByteArray("AAAIAAcAAQABAAMAAAAJAAcAAQACAAMAAAAKAAcAAQACAAMAAAALAAcAAQADAAMAAAAPAAUAAAAIAAAAAAAQAAUAAAAKAAAAAAARAAUAAAALAAAAAAAPAAYAAAAIAAEAAAAQAAYAAAAJAAIAAAARAAYAAAALAAIAAAAPAAcAAAAIAAEAAAAQAAcAAAAJAAIAAAARAAcAAAALAAIAAAAPAAgAAAAIAAMAAAAQAAgAAAAJAAMAAAARAAgAAAALAAMAAAA=")
+tile_map_data = PackedByteArray("AAAIAAcAAQABAAMAAAAJAAcAAQACAAMAAAAKAAcAAQACAAMAAAALAAcAAQADAAMAAAAPAAUAAAAIAAAAAAAQAAUAAAAKAAAAAAARAAUAAAALAAAAAAAPAAYAAAAIAAEAAAAQAAYAAAAJAAIAAAARAAYAAAALAAIAAAAPAAcAAAAIAAEAAAAQAAcAAAAJAAIAAAARAAcAAAALAAIAAAAPAAgAAAAIAAMAAAAQAAgAAAAJAAMAAAARAAgAAAALAAMAAAAUAAwAAQABAAMAAAAVAAwAAQACAAMAAAAWAAwAAQACAAEAAAAXAAwAAQACAAAAAAAYAAwAAQACAAIAAAAZAAwAAQACAAAAAAAaAAwAAQADAAIAAAAYAAsAAQAAAAEAAAAYAAoAAQAAAAEAAAAYAAkAAQAAAAEAAAAYAAgAAQAAAAAAAAAWAA0AAQABAAIAAAAXAA0AAQADAAEAAAAXAA4AAQAAAAEAAAAXAA8AAQABAAIAAAAYAA8AAQACAAMAAAAZAA8AAQADAAIAAAAZAA4AAQAAAAEAAAAZAA0AAQAAAAEAAAAaAAsAAQABAAEAAAAaAAoAAQAAAAEAAAAaAAkAAQABAAAAAAAbAAkAAQACAAMAAAAcAAkAAQACAAMAAAAdAAkAAQACAAMAAAAeAAkAAQADAAMAAAAbAAsAAQACAAMAAAAcAAsAAQACAAMAAAAdAAsAAQADAAAAAAAdAAwAAQAAAAEAAAAdAA0AAQAAAAEAAAAdAA4AAQAAAAIAAAAWAAsAAQAAAAEAAAAWAAoAAQAAAAEAAAAWAAkAAQADAAAAAAAVAAkAAQACAAMAAAAUAAkAAQABAAIAAAAUAAgAAQADAAAAAAATAAgAAQACAAMAAAASAAgAAQABAAMAAAAbAAYAAAABAAQAAAAcAAYAAAACAAQAAAAdAAYAAAACAAQAAAAeAAYAAAAFAAMAAAAfAAYAAAALAAMAAAAfAAUAAAAGAAIAAAAeAAUAAAAIAAEAAAAeAAQAAAAIAAAAAAAfAAQAAAAKAAAAAAAgAAQAAAALAAAAAAAgAAUAAAALAAMAAAAtAAkAAQABAAAAAAAuAAkAAQACAAAAAAAvAAkAAQACAAAAAAAwAAkAAQACAAEAAAAxAAkAAQADAAEAAAAtAAoAAQACAAEAAAAuAAoAAQACAAEAAAAvAAoAAQACAAIAAAAwAAoAAQACAAEAAAAxAAoAAQACAAEAAAAwAAgAAQAFAAQAAAAxAAgAAQADAAEAAAAxAAcAAQABAAAAAAAyAAcAAQACAAMAAAAzAAcAAQADAAIAAAAzAAYAAQABAAEAAAA0AAYAAQACAAMAAAA1AAYAAQADAAAAAAA1AAcAAQABAAIAAAA2AAcAAQACAAMAAAA3AAgAAQAAAAEAAAA3AAkAAQABAAEAAAA4AAkAAQACAAAAAAA4AAoAAQADAAIAAAA3AAoAAQABAAEAAAA3AAsAAQAAAAEAAAA2AAwAAQACAAAAAAA1AAwAAQACAAMAAAA0AAwAAQACAAMAAAAzAAwAAQACAAMAAAAyAAwAAQABAAEAAAAyAAsAAQADAAEAAAAyAAoAAQACAAAAAAAxAAsAAQACAAIAAAAwAAsAAQABAAEAAAAwAAwAAQADAAIAAAAvAAwAAQACAAMAAAAuAAwAAQACAAEAAAAuAAsAAQADAAEAAAAtAAsAAQABAAEAAAAtAAwAAQABAAIAAAAuAA0AAQAAAAEAAAAuAA4AAQABAAIAAAAvAA4AAQACAAAAAAAvAA8AAQABAAIAAAAwAA8AAQADAAIAAAAwAA4AAQACAAAAAAAxAA4AAQACAAMAAAAyAA4AAQACAAIAAAAzAA4AAQACAAMAAAA0AA4AAQACAAMAAAA1AA4AAQACAAAAAAA2AA4AAQADAAIAAAA2AA0AAQABAAEAAAA3AA0AAQADAAIAAAA3AAwAAQACAAEAAAA3AAYAAQAAAAAAAAA3AAcAAQACAAEAAAA1AA8AAQAEAAYAAAA4AAwAAQAHAAcAAAA5AAkAAQADAAcAAAA4AAcAAQAHAAcAAAAzAAUAAQAAAAQAAAAsAAoAAQABAAcAAAAzAAoAAQADAAcAAAAyAA0AAQAEAAQAAAA=")
 tile_set = SubResource("TileSet_lqu5m")
 script = ExtResource("6_lqu5m")
 

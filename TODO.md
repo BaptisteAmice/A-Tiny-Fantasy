@@ -31,3 +31,13 @@ terrain generation (maybe)
 - pass 1: biomes determination, creates x biomes limits with each their custom rules (min/max size), including fixed biomes like spawn area
 - pass 2: custom generation passes per biome
 - pass next+1 : cutom strucuture generation per biome 
+
+
+font
+https://somepx.itch.io/humble-fonts-gold
+
+
+logique tuyaux
+- un ensemble de tuyaux a un inventaire commun -> avec n entrées et m sorties
+- qd on casse, ce qu'il y a dans les tuyaux tombe par terre
+- besoin tuyaux special pour input/output
