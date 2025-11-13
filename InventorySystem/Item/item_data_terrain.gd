@@ -1,4 +1,4 @@
-extends ItemDataConsumable
+extends ItemDataUsable
 class_name ItemDataTerrain
 
 @export var terrain_id: Constants.TERRAINS

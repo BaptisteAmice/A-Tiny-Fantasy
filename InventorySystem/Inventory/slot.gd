@@ -29,7 +29,7 @@ func _on_gui_input(event: InputEvent) -> void:
 
 func refresh_style() -> void:
 	var hot_bar_inventory: HotBarInventory = Global.get_world_scene().hot_bar_inventory
-	print("Refreshing style for slot %s, active slot is %s" % [get_index(), hot_bar_inventory.active_item_slot])
+	#print("Refreshing style for slot %s, active slot is %s" % [get_index(), hot_bar_inventory.active_item_slot])
 	if hot_bar_inventory.active_item_slot == get_index():
 		selected_texture_rect.show()
 	else:

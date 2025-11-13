@@ -61,10 +61,11 @@ func use_slot_data(index: int) -> void:
 	if not slot_data:
 		return
 	
-	if slot_data.item_data is ItemDataConsumable:
-		slot_data.quantity -= 1
-		if slot_data.quantity < 1:
-			slot_datas[index] = null
+	if slot_data.item_data is ItemDataUsable:
+		if slot_data.item_data.consumable:
+			slot_data.quantity -= 1
+			if slot_data.quantity < 1:
+				slot_datas[index] = null
 	PlayerManager.use_slot_data(slot_data)
 	inventory_updated.emit(self)
 	

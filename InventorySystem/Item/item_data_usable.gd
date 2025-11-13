@@ -1,7 +1,8 @@
 extends ItemData
-class_name ItemDataConsumable
+class_name ItemDataUsable
 
 @export var heal_value: int
+@export var consumable: bool = true
 
 func use(target: Node) -> void:
 	if heal_value != 0:
