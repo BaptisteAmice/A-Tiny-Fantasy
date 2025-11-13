@@ -16,6 +16,14 @@ func _ready() -> void:
 	multiplayer.peer_connected.connect(_on_peer_connected) # Emitted to every peers
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected) # Emitted to every peers
 
+	# Check command line args to start a server if needed
+	var args : PackedStringArray= OS.get_cmdline_args()
+	print("Command line args: ", args)
+	if "--server" in args:
+		print("=====Starting server=====")
+		await get_tree().create_timer(0.1).timeout # todo need to wait for everything to be ready #todo bad practice
+		start_server()
+
 func get_local_connected_players() -> Array[Player]:
 	var players : Array[Player] = []
 	if Global.get_world_scene() == null:
@@ -73,7 +81,18 @@ func get_role_and_id() -> String:
 	var role : String = "Server" if multiplayer.is_server() else "Client"
 	return "%s %d" % [role, multiplayer.get_unique_id()]
 
-		
+
+## Create the server in a new window/process
+func create_server(headless: bool = false) -> void:
+	print("Creating dedicated server...")
+	# create a new process that runs the game in dedicated server mode
+	var args: Array = []
+	args.append("--server")
+	if headless:
+		args.append("--headless") #todo need to be able to delete process when the client closes
+	var server_pid: int = OS.create_process(OS.get_executable_path(), args)
+	if server_pid == -1:
+		print("Failed to create dedicated server process: ", server_pid)
 
 func start_server() -> void:
 	# TODO test if a server already exists

@@ -42,3 +42,6 @@ logique tuyaux
 - les tuyaux servent juste à update cette liste de target inventories
 - un ensemble de tuyaux a un inventaire commun -> avec n entrées et m sorties
 - besoin tuyaux special pour input/output
+
+
+add minimap that can be extended
