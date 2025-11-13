@@ -38,6 +38,7 @@ https://somepx.itch.io/humble-fonts-gold
 
 
 logique tuyaux
+- un objet avec un inventory peu avoir une liste de target inventories avec un débit d'item/seconde
+- les tuyaux servent juste à update cette liste de target inventories
 - un ensemble de tuyaux a un inventaire commun -> avec n entrées et m sorties
-- qd on casse, ce qu'il y a dans les tuyaux tombe par terre
 - besoin tuyaux special pour input/output

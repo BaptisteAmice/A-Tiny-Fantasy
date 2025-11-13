@@ -6,6 +6,17 @@ signal inventory_interact(inventory_data: InventoryData, index: int, button: int
 
 @export var slot_datas: Array[SlotData]
 
+#todo implement
+# Allow tranfer of items from inventory to inventory (for exemple with pipes)
+var connected_input_inventories: Array[InventoryData] # only needed for stats and display
+var blocked_input_items: Array[ItemData] # items that can't enter
+var connected_output_inventories: Array[InventoryData]
+var blocked_output_items: Array[ItemData] # items that can't exit
+var locked_output_slots: Array[int] # locked slots
+var outputs_per_second: int = 0 # takes the speed of the worst connected pipe
+# to handle priority for interactables with several inventories (eg. furnace)
+@export var item_priorities: Dictionary[Constants.ITEM_TAG, Constants.PRIORITY]
+
 func on_slot_clicked(index: int, button: int) -> void:
 	inventory_interact.emit(self, index, button)
 	
