@@ -6,7 +6,7 @@ signal inventory_interact(inventory_data: InventoryData, index: int, button: int
 
 @export var slot_datas: Array[SlotData]
 
-#todo implement
+#todo implement, todo use subscriber pattern to notify connected inventories of changes
 # Allow tranfer of items from inventory to inventory (for exemple with pipes)
 var connected_input_inventories: Array[InventoryData] # only needed for stats and display
 var blocked_input_items: Array[ItemData] # items that can't enter
