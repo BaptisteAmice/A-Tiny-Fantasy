@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://c7ho8gxtkvxyg"]
+[gd_scene load_steps=33 format=4 uid="uid://c7ho8gxtkvxyg"]
 
 [ext_resource type="Script" uid="uid://cdrshfxrhkobf" path="res://Worlds/world.gd" id="1_osawv"]
 [ext_resource type="Script" uid="uid://ggihq82b8v8s" path="res://NetworkManager/multiplayer_spawner.gd" id="2_d11ax"]
@@ -19,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://e8x2i0ukn5tc" path="res://Interactables/chest.tscn" id="9_sp2ln"]
 [ext_resource type="PackedScene" uid="uid://d2td87qjw6n1x" path="res://InventorySystem/Inventory/hot_bar_inventory.tscn" id="11_473q8"]
 [ext_resource type="PackedScene" uid="uid://dbkewafchkam1" path="res://InventorySystem/Item/PickUp/pick_up.tscn" id="13_eqiri"]
+[ext_resource type="Script" uid="uid://clau5tp4ua26h" path="res://TimeManager/time_manager.gd" id="17_4lmcg"]
+[ext_resource type="Texture2D" uid="uid://2ql8mnj0axdf" path="res://Assets/EmanuelleDev/UI/Clock.png" id="17_l8vuk"]
+[ext_resource type="Texture2D" uid="uid://dypnnlx2p3yvm" path="res://Assets/EmanuelleDev/UI/clock hand.png" id="18_4lmcg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7yxei"]
 texture = ExtResource("5_7yxei")
@@ -975,6 +978,82 @@ texture = ExtResource("6_7yxei")
 [sub_resource type="TileSet" id="TileSet_wa8bn"]
 sources/0 = SubResource("TileSetAtlasSource_lqu5m")
 
+[sub_resource type="Animation" id="Animation_4lmcg"]
+resource_name = "DayAndNight"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TimeManager")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"next_day"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TimeManager/Clock/ClockHandTextureRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3.141592653589793, 3.141592653589793]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TimeManager/DirectionalLight2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 3, 4.25, 5.75, 7, 8, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.1764706, 0.16862746, 0.3647059, 1), Color(0.17647058, 0.16862744, 0.36470592, 1), Color(0.6901961, 0.5176471, 0.3882353, 1), Color(0.8879468, 0.8868796, 0.91355896, 1), Color(0.86930346, 0.86805874, 0.89917696, 1), Color(0.54901963, 0.24705882, 0.6, 1), Color(0.17647058, 0.16862744, 0.36470592, 1), Color(0.17647058, 0.16862744, 0.36470592, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hsp7p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TimeManager/Clock/ClockHandTextureRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TimeManager/DirectionalLight2D:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hsp7p"]
+_data = {
+&"DayAndNight": SubResource("Animation_4lmcg"),
+&"RESET": SubResource("Animation_hsp7p")
+}
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_osawv")
 
@@ -989,7 +1068,7 @@ script = ExtResource("4_7yxei")
 
 [node name="Walls" type="TileMapLayer" parent="WorldTileMap" groups=["Persist", "PersistLite"]]
 z_index = 9
-tile_map_data = PackedByteArray("AAAIAAcAAQABAAMAAAAJAAcAAQACAAMAAAAKAAcAAQACAAMAAAALAAcAAQADAAMAAAAPAAUAAAAIAAAAAAAQAAUAAAAKAAAAAAARAAUAAAALAAAAAAAPAAYAAAAIAAEAAAAQAAYAAAAJAAIAAAARAAYAAAALAAIAAAAPAAcAAAAIAAEAAAAQAAcAAAAJAAIAAAARAAcAAAALAAIAAAAPAAgAAAAIAAMAAAAQAAgAAAAJAAMAAAARAAgAAAALAAMAAAAbAAYAAAABAAQAAAAcAAYAAAACAAQAAAAdAAYAAAACAAQAAAAeAAYAAAAFAAMAAAAfAAYAAAALAAMAAAAfAAUAAAAGAAIAAAAeAAUAAAAIAAEAAAAeAAQAAAAIAAAAAAAfAAQAAAAKAAAAAAAgAAQAAAALAAAAAAAgAAUAAAALAAMAAAAtAAkAAQABAAAAAAAuAAkAAQACAAAAAAAvAAkAAQACAAAAAAAwAAkAAQACAAEAAAAxAAkAAQADAAEAAAAtAAoAAQACAAEAAAAuAAoAAQACAAEAAAAvAAoAAQACAAIAAAAwAAoAAQACAAEAAAAxAAoAAQACAAEAAAAwAAgAAQAFAAQAAAAxAAgAAQADAAEAAAAxAAcAAQABAAAAAAAyAAcAAQACAAMAAAAzAAcAAQADAAIAAAAzAAYAAQABAAEAAAA0AAYAAQACAAMAAAA1AAYAAQADAAAAAAA1AAcAAQABAAIAAAA2AAcAAQACAAMAAAA3AAgAAQAAAAEAAAA3AAkAAQABAAEAAAA4AAkAAQACAAAAAAA4AAoAAQADAAIAAAA3AAoAAQABAAEAAAA3AAsAAQAAAAEAAAA2AAwAAQACAAAAAAA1AAwAAQACAAMAAAA0AAwAAQACAAMAAAAzAAwAAQACAAMAAAAyAAwAAQABAAEAAAAyAAsAAQADAAEAAAAyAAoAAQACAAAAAAAxAAsAAQACAAIAAAAwAAsAAQABAAEAAAAwAAwAAQADAAIAAAAvAAwAAQACAAMAAAAuAAwAAQACAAEAAAAuAAsAAQADAAEAAAAtAAsAAQABAAEAAAAuAA0AAQAAAAEAAAAuAA4AAQABAAIAAAAvAA4AAQACAAAAAAAvAA8AAQABAAIAAAAwAA8AAQADAAIAAAAwAA4AAQACAAAAAAAxAA4AAQACAAMAAAAyAA4AAQACAAIAAAAzAA4AAQACAAMAAAA0AA4AAQACAAMAAAA1AA4AAQACAAAAAAA2AA4AAQADAAIAAAA2AA0AAQABAAEAAAA3AA0AAQADAAIAAAA3AAwAAQACAAEAAAA3AAYAAQAAAAAAAAA3AAcAAQACAAEAAAA1AA8AAQAEAAYAAAA4AAwAAQAHAAcAAAA5AAkAAQADAAcAAAA4AAcAAQAHAAcAAAAzAAUAAQAAAAQAAAAsAAoAAQABAAcAAAAzAAoAAQADAAcAAAAyAA0AAQAEAAQAAAAIAAwAAgAIAAAAAAACAA4AAgAIAAAAAAAGAA8AAwADAAIAAAAIAA8AAwAAAAMAAAAJABAAAwADAAsAAAAHABEAAwADAAsAAAAEABEAAwADAAkAAAAEAA8AAwACAAcAAAABABEAAwADAAUAAAAXAAwAAQABAAAAAAAYAAwAAQACAAMAAAAZAAwAAQACAAEAAAAaAAwAAQACAAAAAAAbAAwAAQACAAAAAAAcAAwAAQACAAEAAAAZAAsAAQAAAAEAAAAZAAoAAQADAAEAAAAZAA0AAQABAAEAAAAZAA4AAQAAAAEAAAAZAA8AAQADAAIAAAAaAA0AAQACAAIAAAAbAA4AAQABAAIAAAAcAA4AAQADAAEAAAAcAA0AAQADAAEAAAAbAA0AAQACAAEAAAAdAAwAAQACAAMAAAAeAAwAAQACAAIAAAAfAAwAAQADAAMAAAAYAA8AAQACAAAAAAAXAA8AAQABAAIAAAAXAA4AAQAAAAEAAAAXAA0AAQADAAEAAAAWAA0AAQACAAMAAAAVAA0AAQACAAIAAAAUAA0AAQACAAAAAAATAA0AAQABAAMAAAAVAAwAAQAAAAEAAAAVAAsAAQADAAEAAAAVAAoAAQABAAAAAAAWAAoAAQACAAMAAAAXAAoAAQACAAMAAAAYAAoAAQACAAIAAAAYAAkAAQABAAAAAAAZAAkAAQACAAAAAAAaAAkAAQACAAMAAAAbAAkAAQADAAAAAAAbAAoAAQABAAIAAAAcAAoAAQADAAAAAAAcAAsAAQAAAAEAAAAYABAAAQAAAAEAAAAYABEAAQABAAEAAAAYABIAAQAAAAIAAAAcAA8AAQAAAAEAAAAcABAAAQABAAIAAAAdABAAAQACAAAAAAAeABAAAQACAAMAAAAfABAAAQADAAMAAAAUAA4AAQAAAAYAAAAUAAsAAQABAAcAAAAZABEAAQAHAAcAAAAdABEAAQAEAAYAAAAeAAsAAQAEAAQAAAA=")
+tile_map_data = PackedByteArray("AAAIAAcAAQABAAMAAAAJAAcAAQACAAMAAAAKAAcAAQACAAMAAAALAAcAAQADAAMAAAAPAAUAAAAIAAAAAAAQAAUAAAAKAAAAAAARAAUAAAALAAAAAAAPAAYAAAAIAAEAAAAQAAYAAAAJAAIAAAARAAYAAAALAAIAAAAPAAcAAAAIAAEAAAAQAAcAAAAJAAIAAAARAAcAAAALAAIAAAAPAAgAAAAIAAMAAAAQAAgAAAAJAAMAAAARAAgAAAALAAMAAAAbAAYAAAABAAQAAAAcAAYAAAACAAQAAAAdAAYAAAACAAQAAAAeAAYAAAAFAAMAAAAfAAYAAAALAAMAAAAfAAUAAAAGAAIAAAAeAAUAAAAIAAEAAAAeAAQAAAAIAAAAAAAfAAQAAAAKAAAAAAAgAAQAAAALAAAAAAAgAAUAAAALAAMAAAAtAAkAAQABAAAAAAAuAAkAAQACAAAAAAAvAAkAAQACAAAAAAAwAAkAAQACAAEAAAAxAAkAAQADAAEAAAAtAAoAAQACAAEAAAAuAAoAAQACAAEAAAAvAAoAAQACAAIAAAAwAAoAAQACAAEAAAAxAAoAAQACAAEAAAAwAAgAAQAFAAQAAAAxAAgAAQADAAEAAAAxAAcAAQABAAAAAAAyAAcAAQACAAMAAAAzAAcAAQADAAIAAAAzAAYAAQABAAEAAAA0AAYAAQACAAMAAAA1AAYAAQADAAAAAAA1AAcAAQABAAIAAAA2AAcAAQACAAMAAAA3AAgAAQAAAAEAAAA3AAkAAQABAAEAAAA4AAkAAQACAAAAAAA4AAoAAQADAAIAAAA3AAoAAQABAAEAAAA3AAsAAQAAAAEAAAA2AAwAAQACAAAAAAA1AAwAAQACAAMAAAA0AAwAAQACAAMAAAAzAAwAAQACAAMAAAAyAAwAAQABAAEAAAAyAAsAAQADAAEAAAAyAAoAAQACAAAAAAAxAAsAAQACAAIAAAAwAAsAAQABAAEAAAAwAAwAAQADAAIAAAAvAAwAAQACAAMAAAAuAAwAAQACAAEAAAAuAAsAAQADAAEAAAAtAAsAAQABAAEAAAAuAA0AAQAAAAEAAAAuAA4AAQABAAIAAAAvAA4AAQACAAAAAAAvAA8AAQABAAIAAAAwAA8AAQADAAIAAAAwAA4AAQACAAAAAAAxAA4AAQACAAMAAAAyAA4AAQACAAIAAAAzAA4AAQACAAMAAAA0AA4AAQACAAMAAAA1AA4AAQACAAAAAAA2AA4AAQADAAIAAAA2AA0AAQABAAEAAAA3AA0AAQADAAIAAAA3AAwAAQACAAEAAAA3AAYAAQAAAAAAAAA3AAcAAQACAAEAAAA1AA8AAQAEAAYAAAA4AAwAAQAHAAcAAAA5AAkAAQADAAcAAAA4AAcAAQAHAAcAAAAzAAUAAQAAAAQAAAAsAAoAAQABAAcAAAAzAAoAAQADAAcAAAAyAA0AAQAEAAQAAAAIAAwAAgAIAAAAAAACAA4AAgAIAAAAAAAGAA8AAwADAAIAAAAIAA8AAwAAAAMAAAAJABAAAwADAAsAAAAHABEAAwADAAsAAAAEABEAAwADAAkAAAAEAA8AAwACAAcAAAABABEAAwADAAUAAAAXAAwAAQABAAAAAAAYAAwAAQACAAMAAAAZAAwAAQACAAEAAAAaAAwAAQACAAAAAAAbAAwAAQACAAAAAAAcAAwAAQACAAEAAAAZAAsAAQAAAAEAAAAZAAoAAQADAAEAAAAZAA0AAQABAAEAAAAZAA4AAQAAAAEAAAAZAA8AAQADAAIAAAAaAA0AAQACAAIAAAAbAA4AAQABAAIAAAAcAA4AAQADAAEAAAAcAA0AAQADAAEAAAAbAA0AAQACAAEAAAAdAAwAAQACAAMAAAAeAAwAAQACAAIAAAAfAAwAAQADAAMAAAAYAA8AAQACAAAAAAAXAA8AAQABAAIAAAAXAA4AAQAAAAEAAAAXAA0AAQADAAEAAAAWAA0AAQACAAMAAAAVAA0AAQACAAIAAAAUAA0AAQACAAAAAAATAA0AAQABAAMAAAAVAAwAAQAAAAEAAAAVAAsAAQADAAEAAAAVAAoAAQABAAAAAAAWAAoAAQACAAMAAAAXAAoAAQACAAMAAAAYAAoAAQACAAIAAAAYAAkAAQABAAAAAAAZAAkAAQACAAAAAAAaAAkAAQACAAMAAAAbAAkAAQADAAAAAAAbAAoAAQABAAIAAAAcAAoAAQADAAAAAAAcAAsAAQAAAAEAAAAYABAAAQAAAAEAAAAYABEAAQABAAEAAAAYABIAAQAAAAIAAAAcAA8AAQAAAAEAAAAcABAAAQABAAIAAAAdABAAAQACAAAAAAAeABAAAQACAAMAAAAfABAAAQADAAMAAAAUAA4AAQAAAAYAAAAUAAsAAQABAAcAAAAZABEAAQAHAAcAAAAdABEAAQAEAAYAAAAeAAsAAQAEAAQAAAAtAAwAAQAFAAYAAAA=")
 tile_set = SubResource("TileSet_lqu5m")
 script = ExtResource("6_lqu5m")
 
@@ -1143,6 +1222,76 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.7786795, 0.015600187, 7.70092e-07, 1)
 theme_override_fonts/font = ExtResource("6_m7av2")
 text = "Error"
+
+[node name="Information" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1073.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeManager" type="Control" parent="CanvasLayer/Information"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_4lmcg")
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/Information/TimeManager"]
+layout_mode = 0
+offset_left = -50.0
+offset_top = 19.0
+offset_right = -9.0
+offset_bottom = 42.0
+text = "12:00"
+
+[node name="DayLabel" type="Label" parent="CanvasLayer/Information/TimeManager"]
+layout_mode = 0
+offset_left = -51.0
+offset_right = -8.0
+offset_bottom = 23.0
+text = "Day 0"
+
+[node name="Clock" type="Control" parent="CanvasLayer/Information/TimeManager"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+
+[node name="ClockTextureRect" type="TextureRect" parent="CanvasLayer/Information/TimeManager/Clock"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+texture = ExtResource("17_l8vuk")
+
+[node name="ClockHandTextureRect" type="TextureRect" parent="CanvasLayer/Information/TimeManager/Clock"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+pivot_offset = Vector2(20.625, 20.625)
+texture = ExtResource("18_4lmcg")
+
+[node name="TimeAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Information/TimeManager"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_hsp7p")
+}
+autoplay = "DayAndNight"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="CanvasLayer/Information/TimeManager"]
+position = Vector2(-1073, 0)
+blend_mode = 2
 
 [node name="enemy_skeleton" parent="." instance=ExtResource("7_fc1d8")]
 position = Vector2(202, 176)

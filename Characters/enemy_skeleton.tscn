@@ -178,4 +178,4 @@ metadata/_custom_type_script = "uid://yfqow0ccr5ah"
 replication_config = SubResource("SceneReplicationConfig_dthud")
 
 [node name="AnimatedEmote" parent="." instance=ExtResource("7_4djip")]
-position = Vector2(1, -30)
+position = Vector2(1, -18)
