@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemDataTerrain" load_steps=4 format=3 uid="uid://70t0lt7uyqlc"]
+
+[ext_resource type="Script" uid="uid://b52u4uyvp5aky" path="res://InventorySystem/Item/item_data_terrain.gd" id="1_rgc5f"]
+[ext_resource type="Texture2D" uid="uid://h4olm8traspp" path="res://Assets/EmanuelleDev/Tileset/ground icons.png" id="2_th6c4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wshyu"]
+atlas = ExtResource("2_th6c4")
+region = Rect2(0, 0, 16.16275, 14.932865)
+
+[resource]
+script = ExtResource("1_rgc5f")
+name = "Dirt"
+texture = SubResource("AtlasTexture_wshyu")
+metadata/_custom_type_script = "uid://b52u4uyvp5aky"

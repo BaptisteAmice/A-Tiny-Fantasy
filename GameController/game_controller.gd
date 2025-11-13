@@ -7,8 +7,6 @@ var removed_scenes: Dictionary = {}
 @onready var save_manager: SaveManager = $SaveManager
 @onready var network_manager: NetworkManager = $NetworkManager
 
-const PLAYER: PackedScene = preload("uid://d08gn81f5b74p")
-
 @onready var music_audio_stream_player: AudioStreamPlayer = $MusicAudioStreamPlayer
 @onready var audio_manager: AudioManager = $AudioManager
 

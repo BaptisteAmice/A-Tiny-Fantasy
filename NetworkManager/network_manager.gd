@@ -120,7 +120,7 @@ func disconnect_client() -> void:
 
 func register_player(player_name: String) -> void :
 	# Create temp new player
-	var new_player: Player = Global.game_controller.PLAYER.instantiate()
+	var new_player: Player = Constants.PLAYER.instantiate()
 	Global.game_controller.current_scene.add_child(new_player)
 	# Set it's name and other custom var
 	new_player.player_name = player_name

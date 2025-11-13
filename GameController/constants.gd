@@ -1,5 +1,8 @@
 extends Node
 
+### PACKED SCENES
+const PLAYER: PackedScene = preload("uid://d08gn81f5b74p")
+
 ### TERRAINS
 enum TERRAINS {
 	Decoration = -1,

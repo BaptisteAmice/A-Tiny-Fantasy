@@ -43,11 +43,17 @@ func get_input() -> void:
 	if Input.is_action_just_pressed("left_click"):
 		#todo choose tile
 		#todo can only place if: has tile, tile isn't occupied by an entity, tile is in range
-		Global.get_world_scene().world_tile_map.place_wall_at_mouse(Constants.TERRAINS.WALLS_DIRT)
-
+		#Global.get_world_scene().world_tile_map.place_wall_at_mouse(Constants.TERRAINS.WALLS_DIRT)
+		Global.get_world_scene().hot_bar_inventory.use_active_item()
 	if Input.is_action_just_pressed("right_click"):
 		#todo can only remove if: tile is in range and have adapted tool
 		Global.get_world_scene().world_tile_map.remove_wall_at_mouse()
+	
+	# scroll in hot bar
+	if Input.is_action_just_pressed("scroll_up"):
+		Global.get_world_scene().hot_bar_inventory.active_item_scroll_up()
+	if Input.is_action_just_pressed("scroll_down"):
+		Global.get_world_scene().hot_bar_inventory.active_item_scroll_down()
 
 func execute_interaction() -> void:
 	if all_interactions and all_interactions.size() > 0:
