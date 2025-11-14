@@ -1,6 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+*.tmp
 
 
 # Ignore recommended in the Godot docs
@@ -8,3 +9,6 @@
 
 # Ignore utility tools
 utilityTools/
+
+# Ignore IDE specific files
+.vscode/
