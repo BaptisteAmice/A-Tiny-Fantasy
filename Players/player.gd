@@ -46,8 +46,7 @@ func get_input() -> void:
 		#Global.get_world_scene().world_tile_map.place_wall_at_mouse(Constants.TERRAINS.WALLS_DIRT)
 		Global.get_world_scene().hot_bar_inventory.use_active_item()
 	if Input.is_action_just_pressed("right_click"):
-		#todo can only remove if: tile is in range and have adapted tool
-		Global.get_world_scene().world_tile_map.remove_wall_at_mouse()
+		pass
 	
 	# scroll in hot bar
 	if Input.is_action_just_pressed("scroll_up"):

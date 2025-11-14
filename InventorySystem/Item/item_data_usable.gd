@@ -4,7 +4,10 @@ class_name ItemDataUsable
 @export var heal_value: int
 @export var consumable: bool = true
 
-func use(target: Node) -> void:
+func use(_target: Node) -> void:
+	pass
+	
+func heal(target: Node) -> void:
 	if heal_value != 0:
 		if target.has_method("heal"):
 			@warning_ignore("unsafe_method_access") # checked above
