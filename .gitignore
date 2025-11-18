@@ -12,3 +12,6 @@ utilityTools/
 
 # Ignore IDE specific files
 .vscode/
+
+# Ignore build outputs
+Exports/
