@@ -113,12 +113,16 @@ func load(saved_state: Dictionary) -> void:
 
 
 func _on_interact_area_area_entered(area: Area2D) -> void:
+	if all_interactions.size() > 0:
+		all_interactions[0].deactivate_shader()
 	all_interactions.insert(0, area)
+	all_interactions[0].activate_shader()
 	update_interactions()
 
 
-func _on_interact_area_area_exited(area: Area2D) -> void:
+func _on_interact_area_area_exited(area: InteractableArea) -> void:
 	all_interactions.erase(area)
+	area.deactivate_shader()
 	update_interactions()
 	
 func update_interactions() -> void:

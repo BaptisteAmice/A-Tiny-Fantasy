@@ -2,6 +2,7 @@ extends Node2D
 class_name WorldTileMap
 
 @onready var ground: TileMapLayer = $Ground
+@onready var carpet: TileMapLayer = $Carpet
 @onready var walls: TileMapLayer = $Walls
 @onready var interactable_layer: Node2D = $InteractableLayer
 

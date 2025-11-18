@@ -35,12 +35,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Chest" type="Area2D" groups=["external_inventory"]]
+[node name="Chest" type="Area2D" node_paths=PackedStringArray("visual") groups=["external_inventory"]]
 collision_layer = 5
 collision_mask = 0
 script = ExtResource("1_o08mj")
 inventory_data = SubResource("Resource_ohxn3")
 interact_text = "OPEN_ACTION"
+visual = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://dupmkxd0bijdw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

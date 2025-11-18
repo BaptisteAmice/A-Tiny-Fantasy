@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://6q6c104hftk4"]
+
+[ext_resource type="Shader" uid="uid://bnf2htuauow0" path="res://Shaders/sprite_outline.gdshader" id="1_6ovdq"]
+
+[resource]
+shader = ExtResource("1_6ovdq")
+shader_parameter/width = 1
+shader_parameter/outline_color = Color(1, 1, 0, 1)
+shader_parameter/flickering_speed = 0.0
+shader_parameter/minimal_flickering_alpha = 0.0
