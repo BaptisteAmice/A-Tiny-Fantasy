@@ -50,3 +50,6 @@ add minimap that can be extended
 
 plant growth
 https://youtu.be/lGb4M4aSYZs
+
+
+syncrhonize pickup (dropped item)

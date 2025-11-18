@@ -74,7 +74,8 @@ func _client_receive_full_map(data: Dictionary) -> void:
 ####### Placing and removing tiles
 
 func get_clicked_wall_cell() -> Vector2i:
-	var clicked_cell: Vector2i = walls.local_to_map(walls.get_local_mouse_position())
+	var virtual_mouse_position: Vector2 = Global.game_controller.mouse_controller.virtual_mouse_position
+	var clicked_cell: Vector2i = walls.local_to_map(walls.to_local(virtual_mouse_position))
 	return clicked_cell
 
 func place_wall_at_mouse(cell_id: int) -> void:

@@ -1,6 +1,9 @@
 extends Node
 class_name GameController
 
+@onready var mouse_controller: MouseController = $MouseController
+
+
 var current_scene: Node
 var removed_scenes: Dictionary = {}
 
