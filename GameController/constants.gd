@@ -11,6 +11,10 @@ enum TERRAINS {
 	WALLS = 2,
 }
 
+var TERRAINS_DROPS: Dictionary[int,Resource] = {
+	TERRAINS.WALLS_DIRT: preload("uid://70t0lt7uyqlc"),
+}
+
 ### ITEMS
 
 enum ITEM_TAG {

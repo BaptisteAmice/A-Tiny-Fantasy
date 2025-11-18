@@ -99,9 +99,14 @@ func _on_close_server_button_pressed() -> void:
 	Global.game_controller.network_manager.close_server()
 
 
-func _on_inventory_interface_drop_slot_data(slot_data: SlotData) -> void:
+func drop_slot_data_at_position(slot_data: SlotData, drop_position: Vector2, dropped_by: Node2D) -> void:
 	var pick_up: PickUp = PICKUP.instantiate()
 	pick_up.slot_data = slot_data
-	pick_up.position = PlayerManager.my_player.get_drop_position()
-	pick_up.dropped_by = PlayerManager.my_player
+	pick_up.position = drop_position
+	pick_up.dropped_by = dropped_by
 	add_child(pick_up)
+
+func _on_inventory_interface_drop_slot_data(slot_data: SlotData) -> void:
+	var player: Player = PlayerManager.my_player
+	var player_position: Vector2 = player.get_drop_position()
+	drop_slot_data_at_position(slot_data, player_position, player)

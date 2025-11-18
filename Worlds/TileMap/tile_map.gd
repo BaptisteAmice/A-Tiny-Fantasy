@@ -1,6 +1,7 @@
 extends Node2D
 class_name WorldTileMap
 
+@onready var world: World = $".."
 @onready var ground: TileMapLayer = $Ground
 @onready var carpet: TileMapLayer = $Carpet
 @onready var walls: TileMapLayer = $Walls
@@ -95,7 +96,12 @@ func remove_wall_at_mouse() -> void:
 		push_warning("No tilemaplayer available to remove a wall")
 		return
 	var cell_pos: Vector2i = get_clicked_wall_cell()
+	var removed_cell_type: int = BetterTerrain.get_cell(walls, cell_pos)
 	place_cells_on_layer(walls, [cell_pos], Constants.TERRAINS.Decoration) # todo dunno if Decoration is the right id for empty
+	# drop tile item at cell position
+	var global_cell_pos: Vector2 = walls.map_to_local(cell_pos)
+	spawn_terrain_drop(removed_cell_type, global_cell_pos)
+	
 	
 
 func locally_place_cell(layer: TileMapLayer, cells: Array[Vector2i], cell_type: int) -> void:
@@ -114,6 +120,15 @@ func locally_place_cell(layer: TileMapLayer, cells: Array[Vector2i], cell_type: 
 			max_y = max(max_y, cell_pos.y)
 		var update_rect: Rect2i = Rect2i(Vector2i(min_x, min_y), Vector2i(max_x - min_x + 1, max_y - min_y + 1))
 		BetterTerrain.update_terrain_area(layer, update_rect, true)
+
+func spawn_terrain_drop(spawned_terrain_type: int, spawn_position: Vector2) -> void:
+	if Constants.TERRAINS_DROPS.has(spawned_terrain_type):
+		var dropped_slot_data: SlotData = SlotData.new()
+		dropped_slot_data.quantity = 1
+		var item_data: ItemData = Constants.TERRAINS_DROPS[spawned_terrain_type]
+		dropped_slot_data.item_data = item_data
+
+		world.drop_slot_data_at_position(dropped_slot_data, spawn_position, null)
 
 # -------------------------
 # Server functions
