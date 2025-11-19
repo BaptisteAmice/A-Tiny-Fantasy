@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce0d426g1adxd"]
+[gd_scene load_steps=3 format=3 uid="uid://ce0d426g1adxd"]
 
 [ext_resource type="Script" uid="uid://ct2vf1y3hj7v2" path="res://CustomInput/input_callers_controller_option_button.gd" id="1_bckgr"]
+[ext_resource type="PackedScene" uid="uid://c70mj2qdk4dy0" path="res://CustomInput/input_callers_controller_random.tscn" id="2_i4360"]
 
 [node name="InputCallersControllerOptionButton" type="OptionButton"]
 offset_right = 32.0
 offset_bottom = 20.0
 script = ExtResource("1_bckgr")
+
+[node name="InputCallersControllerRandom" parent="." instance=ExtResource("2_i4360")]
 
 [connection signal="item_selected" from="." to="." method="_on_item_selected"]
