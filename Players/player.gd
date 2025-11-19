@@ -10,6 +10,7 @@ class_name Player
 @export var player_name: String = "Default" # Displayed player name
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var camera_2d: Camera2D = $Camera2D
 
 
 var max_health: int = 10
@@ -25,8 +26,7 @@ func _enter_tree() -> void : set_multiplayer_authority(name.to_int())
 
 func _ready() -> void:
 	if !is_multiplayer_authority(): return
-	var player_camera: Camera2D = $Camera2D
-	player_camera.enabled = true # Personal camera, not shared
+	camera_2d.enabled = true # Personal camera, not shared
 
 
 func get_input() -> void:

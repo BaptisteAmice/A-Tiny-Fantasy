@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://btgqrhnjyyi3y"]
+[gd_scene load_steps=17 format=3 uid="uid://btgqrhnjyyi3y"]
 
 [ext_resource type="Script" uid="uid://sl3cd2fwcan5" path="res://GameController/game_controller.gd" id="1_tinjj"]
 [ext_resource type="Script" uid="uid://ciyyv7opmx8yf" path="res://NetworkManager/network_manager.gd" id="2_bxeof"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dg6kv5ldjvx03" path="res://Assets/Audio/Effects/Fantasy UI SFX/Fantasy UI SFX/Fantasy/Fantasy_UI (6).wav" id="7_ir2ws"]
 [ext_resource type="AudioStream" uid="uid://c138omt8xuplp" path="res://Assets/Audio/Effects/Fantasy UI SFX/Fantasy UI SFX/Fantasy/Fantasy_UI (8).wav" id="8_l0eps"]
 [ext_resource type="Script" uid="uid://cxlo3l8vb3pod" path="res://GameController/mouse_controller.gd" id="9_iy4tg"]
+[ext_resource type="Texture2D" uid="uid://b2ii1ermxaalm" path="res://icon.svg" id="10_hihb0"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_7l8mg"]
 
@@ -95,3 +96,9 @@ libraries = {
 
 [node name="MouseController" type="Node2D" parent="."]
 script = ExtResource("9_iy4tg")
+
+[node name="VirtualCursor" type="Sprite2D" parent="MouseController"]
+visible = false
+z_index = 100
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("10_hihb0")

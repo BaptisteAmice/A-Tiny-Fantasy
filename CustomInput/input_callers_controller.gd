@@ -9,7 +9,11 @@ class_name InputCallersController
 	"left_click",
 	"left_click",
 	"scroll_up",
-	"scroll_down"
+	"scroll_down",
+	"mouse_move_left",
+	"mouse_move_right",
+	"mouse_move_up",
+	"mouse_move_down"
 ]
 
 var input_callers: Array[InputCaller] = []

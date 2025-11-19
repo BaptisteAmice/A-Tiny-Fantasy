@@ -3,7 +3,8 @@ class_name InputCallersControllerRandom
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var last_call_time : float = Time.get_unix_time_from_system()
-var sleeping_time : float = 0.1 # seconds
+var sleeping_time : float = 0.05 # seconds
+var click_press_time : float = 0.05
 
 func _process(_delta: float) -> void:
 	#only active on world scene
@@ -18,4 +19,4 @@ func _process(_delta: float) -> void:
 	var index: int = rng.randi_range(0, input_callers.size()-1)
 	print(index)
 	var caller: InputCaller = input_callers[index]
-	caller.trigger_press(0.1)
+	caller.trigger_press(click_press_time)
