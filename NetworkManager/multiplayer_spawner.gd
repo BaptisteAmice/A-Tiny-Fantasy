@@ -10,7 +10,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	# TODO temp, should be event based
-	Global.get_world_scene().player_selection.update_connected_players_label()
+	if Global.get_world_scene(true) != null:
+		Global.get_world_scene().player_selection.update_connected_players_label()
 
 @rpc("any_peer", "call_remote", "reliable")
 func request_spawn(selected_name: String) -> void:

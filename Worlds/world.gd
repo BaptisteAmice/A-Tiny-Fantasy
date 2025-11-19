@@ -83,12 +83,12 @@ func toggle_inventory_interface(external_inventory_owner: Node = null) -> void:
 		inventory_interface.clear_external_inventory()
 
 func _on_save_button_pressed() -> void:
-	Global.game_controller.save_manager.request_save_data()
+	await Global.game_controller.save_manager.request_save_data()
 
 
 func _on_exit_button_pressed() -> void:
 	#  Save data
-	Global.game_controller.save_manager.request_save_data()
+	await Global.game_controller.save_manager.request_save_data() # wait for save to finish else player isn't saved if we disconnect too fast
 	# Disconnect from the server
 	Global.game_controller.network_manager.disconnect_client()
 	# return to main menu

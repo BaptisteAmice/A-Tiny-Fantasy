@@ -1,6 +1,15 @@
 extends Node
 class_name SaveManager
 
+# Signal to notify completion
+signal save_confirmed
+
+@rpc("any_peer", "call_remote", "reliable")
+func save_confirmed_by_server() -> void:
+	print("Client received save confirmation from server")
+	emit_signal("save_confirmed")
+
+## Coroutine
 func request_save_data() -> void:
 	print(Global.game_controller.network_manager.get_role_and_id() + ' is asking the server to save')
 	# Clients send a request to the server
@@ -10,6 +19,7 @@ func request_save_data() -> void:
 	else:
 		# If we are a client, send an RPC to the server
 		rpc_id(1, "save_all_data_to_file")
+		await self.save_confirmed  # Wait for the confirmation signal from the server
 
 
 func save_world() -> Dictionary:
@@ -59,6 +69,7 @@ func save_all_data_to_file() -> void:
 	save_file.store_line(json_string)
 	save_file.close()
 	print("Save made by " + Global.game_controller.network_manager.get_role_and_id())
+	rpc("save_confirmed_by_server") # broadcast to clients that save is done
 
 # RPC should not be needed for this methode because only the server calls it
 func load_data_from_file() -> void:
