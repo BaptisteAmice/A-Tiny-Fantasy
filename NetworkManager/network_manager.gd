@@ -4,13 +4,19 @@ class_name NetworkManager
 const IP_ADDRESS: String = "localhost"
 const PORT: int = 42069
 var peer: ENetMultiplayerPeer
-var multiplayer_spawner : MultiplayerSpawnerOfPlayer
+var multiplayer_spawner : MultiplayerSpawnerOfPlayer = null
 
 var registered_players: Dictionary = {}
 
 const WORLD_SCENE_STRING: String = "uid://c7ho8gxtkvxyg"
 
 # TODO good handling of deconnections and server closing
+
+func reset_network_manager() -> void:
+	print("Resetting NetworkManager for" + get_role_and_id())
+	peer = null
+	multiplayer_spawner = null
+	registered_players = {}
 
 func _ready() -> void:
 	multiplayer.peer_connected.connect(_on_peer_connected) # Emitted to every peers
@@ -68,8 +74,15 @@ func _sync_registered_players_from_server(server_registered: Dictionary) -> void
 
 # Will be called for everyone at least once
 func _on_peer_disconnected(peer_id: int) -> void:
+	if not multiplayer.is_server(): return
 	print("Client disconnected: ", peer_id)
 	# TODO: update logged_players and broadcast to others or not if not needed
+	# remove the player instance from the world
+	for player: Player in get_local_connected_players():
+		if player.get_multiplayer_authority() == peer_id:
+			player.queue_free()
+			player = null
+
 
 func print_player_lists() -> void:
 	print("Registered Players names: ", registered_players.keys())
@@ -96,18 +109,23 @@ func create_server(headless: bool = false) -> void:
 
 func start_server() -> void:
 	# TODO test if a server already exists
-	Global.game_controller.change_scene(WORLD_SCENE_STRING) # should be done before loading data
-	Global.game_controller.save_manager.load_data_from_file() # don't think it matters if done before or after creating the peer
 	peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
 	multiplayer.multiplayer_peer = peer
+	# after creating peer
+	Global.game_controller.change_scene(WORLD_SCENE_STRING) # should be done before loading data
+	Global.game_controller.save_manager.load_data_from_file() # don't think it matters if done before or after creating the peer
+	
 
 func start_client() -> void:
-	Global.game_controller.change_scene(WORLD_SCENE_STRING)
-	Global.game_controller.save_manager.remove_persistant_nodes() # should remove duplicates
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(IP_ADDRESS, PORT)
 	multiplayer.multiplayer_peer = peer
+	
+	# after creating peer (particulary important when reconnecting without closing the game)
+	Global.game_controller.change_scene(WORLD_SCENE_STRING)
+	Global.game_controller.save_manager.remove_persistant_nodes() # should remove duplicates
+	
 
 func close_server() -> void : # todo test
 	if multiplayer.is_server() and multiplayer.multiplayer_peer:

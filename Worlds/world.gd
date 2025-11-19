@@ -91,9 +91,10 @@ func _on_exit_button_pressed() -> void:
 	Global.game_controller.save_manager.request_save_data()
 	# Disconnect from the server
 	Global.game_controller.network_manager.disconnect_client()
-	# return to main menu 
+	# return to main menu
 	Global.game_controller.change_scene("res://Menus/main_menu.tscn")
-
+	# reset whatever is needed
+	Global.game_controller.network_manager.reset_network_manager()
 
 func _on_close_server_button_pressed() -> void:
 	Global.game_controller.network_manager.close_server()
