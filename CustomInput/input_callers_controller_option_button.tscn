@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce0d426g1adxd"]
+
+[ext_resource type="Script" uid="uid://ct2vf1y3hj7v2" path="res://CustomInput/input_callers_controller_option_button.gd" id="1_bckgr"]
+
+[node name="InputCallersControllerOptionButton" type="OptionButton"]
+offset_right = 32.0
+offset_bottom = 20.0
+script = ExtResource("1_bckgr")
+
+[connection signal="item_selected" from="." to="." method="_on_item_selected"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkghhlgsam82m"]
+[gd_scene load_steps=4 format=3 uid="uid://dkghhlgsam82m"]
 
 [ext_resource type="Script" uid="uid://c8sl8eca86y8o" path="res://Menus/main_menu.gd" id="1_jf8mj"]
 [ext_resource type="FontFile" uid="uid://cslyoid86no3o" path="res://Assets/Tiopalada/tinyRPGFontKit01_v1_2/TinyRPG-BadgeFont.ttf" id="2_p3jrs"]
+[ext_resource type="PackedScene" uid="uid://ce0d426g1adxd" path="res://CustomInput/input_callers_controller_option_button.tscn" id="3_at0u2"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_jf8mj")
@@ -40,6 +41,12 @@ text = "EN"
 [node name="FRLanguageButton" type="Button" parent="LangageSelection/HBoxContainer"]
 layout_mode = 2
 text = "FR"
+
+[node name="InputCallersControllerOptionButton" parent="." instance=ExtResource("3_at0u2")]
+offset_left = 11.0
+offset_top = 175.0
+offset_right = 43.0
+offset_bottom = 195.0
 
 [connection signal="pressed" from="PlayingSelection/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="PlayingSelection/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

@@ -6,6 +6,10 @@ var last_call_time : float = Time.get_unix_time_from_system()
 var sleeping_time : float = 0.1 # seconds
 
 func _process(_delta: float) -> void:
+	#only active on world scene
+	if not Global.get_world_scene(true):
+		return
+	#only active after some time
 	if Time.get_unix_time_from_system()- last_call_time - sleeping_time < 0:
 		return
 	last_call_time = Time.get_unix_time_from_system()

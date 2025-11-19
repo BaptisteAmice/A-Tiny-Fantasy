@@ -16,6 +16,7 @@ var current_scene: Node
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
 
 var client_config: ClientConfig
+var input_caller_controller: InputCallersController
 
 func _ready() -> void:
 	# Singleton
