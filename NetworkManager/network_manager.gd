@@ -106,6 +106,8 @@ func create_server(headless: bool = false) -> void:
 	var server_pid: int = OS.create_process(OS.get_executable_path(), args)
 	if server_pid == -1:
 		print("Failed to create dedicated server process: ", server_pid)
+	else:
+		Global.game_controller.window_manager.created_process_ids.append(server_pid)
 
 func start_server() -> void:
 	# TODO test if a server already exists

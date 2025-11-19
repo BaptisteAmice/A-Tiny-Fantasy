@@ -9,6 +9,8 @@ var current_scene: Node
 @onready var save_manager: SaveManager = $SaveManager
 @onready var network_manager: NetworkManager = $NetworkManager
 
+@onready var window_manager: WindowManager = $WindowManager
+
 @onready var music_audio_stream_player: AudioStreamPlayer = $MusicAudioStreamPlayer
 @onready var audio_manager: AudioManager = $AudioManager
 
