@@ -91,6 +91,8 @@ func print_player_lists() -> void:
 		print(player) 
 
 func get_role_and_id() -> String:
+	if multiplayer.multiplayer_peer == null:
+		return "Removed peer"
 	var role : String = "Server" if multiplayer.is_server() else "Client"
 	return "%s %d" % [role, multiplayer.get_unique_id()]
 
@@ -136,7 +138,10 @@ func close_server() -> void : # todo test
 
 func disconnect_client() -> void:
 	#TODO remove from logged players
-	multiplayer.multiplayer_peer.disconnect_peer(1)
+	multiplayer.disconnect_peer(1)
+	# disable multiplayer
+	multiplayer.multiplayer_peer = null
+	
 
 func register_player(player_name: String) -> void :
 	# Create temp new player
@@ -151,3 +156,6 @@ func register_player(player_name: String) -> void :
 	
 func get_player(registered_player_name: String) -> Dictionary :
 	return registered_players.get(registered_player_name, null)
+
+func is_multiplayer_peer_removed() -> bool:
+	return multiplayer.multiplayer_peer == null

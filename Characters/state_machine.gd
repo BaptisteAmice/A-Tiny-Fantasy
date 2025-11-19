@@ -14,7 +14,8 @@ func _ready() -> void:
 		current_state.enter()
 			
 func _process(delta: float) -> void :
-	if not multiplayer.is_server(): return
+	if Global.game_controller.network_manager.is_multiplayer_peer_removed or \
+		not multiplayer.is_server(): return
 	if current_state:
 		current_state.update(delta)
 
