@@ -1,5 +1,9 @@
 # TODO
 
+- les item doivent etre drop coté serveur puis syncrho sur les clients
+
+-----
+
 add pause state to characters
 -> no player => no movements
 
@@ -53,3 +57,12 @@ https://youtu.be/lGb4M4aSYZs
 
 
 syncrhonize pickup (dropped item)
+
+
+------
+Note that requesting a coroutine's return value without await will trigger an error:
+
+func wrong():
+	var confirmed = wait_confirmation() # Will give an error.
+
+todo : metttre valeur de retour sur toutes mes coroutines

@@ -26,21 +26,21 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7yxei"]
 texture = ExtResource("5_7yxei")
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 0:0/0/metadata/_better_terrain = {
 4: [2, 0],
 &"symmetry": 0,
 &"type": 0
 }
 1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 1:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
 &"type": 0
 }
 2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 2:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -48,14 +48,14 @@ texture = ExtResource("5_7yxei")
 &"type": 0
 }
 3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 3:0/0/metadata/_better_terrain = {
 4: [0],
 8: [0],
 &"type": 0
 }
 4:0/0 = 0
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 4:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -66,7 +66,7 @@ texture = ExtResource("5_7yxei")
 &"type": 0
 }
 5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 5:0/0/metadata/_better_terrain = {
 0: [0],
 3: [0],
@@ -76,7 +76,7 @@ texture = ExtResource("5_7yxei")
 &"type": 0
 }
 6:0/0 = 0
-6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 6:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -86,7 +86,7 @@ texture = ExtResource("5_7yxei")
 &"type": 0
 }
 7:0/0 = 0
-7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 7:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -97,7 +97,7 @@ texture = ExtResource("5_7yxei")
 &"type": 0
 }
 8:0/0 = 0
-8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 8:0/0/metadata/_better_terrain = {
 0: [0],
 3: [0],
@@ -106,7 +106,7 @@ texture = ExtResource("5_7yxei")
 &"type": 0
 }
 9:0/0 = 0
-9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 9:0/0/metadata/_better_terrain = {
 0: [0],
 3: [0],
@@ -118,7 +118,7 @@ texture = ExtResource("5_7yxei")
 &"type": 0
 }
 10:0/0 = 0
-10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 10:0/0/metadata/_better_terrain = {
 0: [0],
 3: [0],
@@ -129,7 +129,7 @@ texture = ExtResource("5_7yxei")
 &"type": 0
 }
 11:0/0 = 0
-11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 11:0/0/metadata/_better_terrain = {
 4: [0],
 7: [0],
@@ -470,14 +470,14 @@ texture = ExtResource("5_7yxei")
 0:4/size_in_atlas = Vector2i(1, 2)
 0:4/0 = 0
 0:4/0/texture_origin = Vector2i(0, -8)
-0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 0:4/0/metadata/_better_terrain = {
 &"type": 0
 }
 1:4/size_in_atlas = Vector2i(1, 2)
 1:4/0 = 0
 1:4/0/texture_origin = Vector2i(0, -8)
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 1:4/0/metadata/_better_terrain = {
 0: [0],
 &"symmetry": 0,
@@ -486,7 +486,7 @@ texture = ExtResource("5_7yxei")
 2:4/size_in_atlas = Vector2i(1, 2)
 2:4/0 = 0
 2:4/0/texture_origin = Vector2i(0, -8)
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 2:4/0/metadata/_better_terrain = {
 0: [0],
 8: [0],
@@ -496,7 +496,7 @@ texture = ExtResource("5_7yxei")
 3:4/size_in_atlas = Vector2i(1, 2)
 3:4/0 = 0
 3:4/0/texture_origin = Vector2i(0, -8)
-3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.4, 8, -1.4, 8, 8, -8, 8)
 3:4/0/metadata/_better_terrain = {
 8: [0],
 &"symmetry": 0,
@@ -1055,6 +1055,7 @@ _data = {
 }
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_osawv")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
@@ -1064,10 +1065,12 @@ script = ExtResource("2_d11ax")
 network_player = ExtResource("3_8djc0")
 
 [node name="WorldTileMap" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("4_7yxei")
 
 [node name="Walls" type="TileMapLayer" parent="WorldTileMap" groups=["Persist", "PersistLite"]]
-z_index = 9
+z_index = 10
+y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAIAAcAAQABAAMAAAAJAAcAAQACAAMAAAAKAAcAAQACAAMAAAALAAcAAQADAAMAAAAPAAUAAAAIAAAAAAAQAAUAAAAKAAAAAAARAAUAAAALAAAAAAAPAAYAAAAIAAEAAAAQAAYAAAAJAAIAAAARAAYAAAALAAIAAAAPAAcAAAAIAAEAAAAQAAcAAAAJAAIAAAARAAcAAAALAAIAAAAPAAgAAAAIAAMAAAAQAAgAAAAJAAMAAAARAAgAAAALAAMAAAAbAAYAAAABAAQAAAAcAAYAAAACAAQAAAAdAAYAAAACAAQAAAAeAAYAAAAFAAMAAAAfAAYAAAALAAMAAAAfAAUAAAAGAAIAAAAeAAUAAAAIAAEAAAAeAAQAAAAIAAAAAAAfAAQAAAAKAAAAAAAgAAQAAAALAAAAAAAgAAUAAAALAAMAAAAtAAkAAQABAAAAAAAuAAkAAQACAAAAAAAvAAkAAQACAAAAAAAwAAkAAQACAAEAAAAxAAkAAQADAAEAAAAtAAoAAQACAAEAAAAuAAoAAQACAAEAAAAvAAoAAQACAAIAAAAwAAoAAQACAAEAAAAxAAoAAQACAAEAAAAwAAgAAQAFAAQAAAAxAAgAAQADAAEAAAAxAAcAAQABAAAAAAAyAAcAAQACAAMAAAAzAAcAAQADAAIAAAAzAAYAAQABAAEAAAA0AAYAAQACAAMAAAA1AAYAAQADAAAAAAA1AAcAAQABAAIAAAA2AAcAAQACAAMAAAA3AAgAAQAAAAEAAAA3AAkAAQABAAEAAAA4AAkAAQACAAAAAAA4AAoAAQADAAIAAAA3AAoAAQABAAEAAAA3AAsAAQAAAAEAAAA2AAwAAQACAAAAAAA1AAwAAQACAAMAAAA0AAwAAQACAAMAAAAzAAwAAQACAAMAAAAyAAwAAQABAAEAAAAyAAsAAQADAAEAAAAyAAoAAQACAAAAAAAxAAsAAQACAAIAAAAwAAsAAQABAAEAAAAwAAwAAQADAAIAAAAvAAwAAQACAAMAAAAuAAwAAQACAAEAAAAuAAsAAQADAAEAAAAtAAsAAQABAAEAAAAuAA0AAQAAAAEAAAAuAA4AAQABAAIAAAAvAA4AAQACAAAAAAAvAA8AAQABAAIAAAAwAA8AAQADAAIAAAAwAA4AAQACAAAAAAAxAA4AAQACAAMAAAAyAA4AAQACAAIAAAAzAA4AAQACAAMAAAA0AA4AAQACAAMAAAA1AA4AAQACAAAAAAA2AA4AAQADAAIAAAA2AA0AAQABAAEAAAA3AA0AAQADAAIAAAA3AAwAAQACAAEAAAA3AAYAAQAAAAAAAAA3AAcAAQACAAEAAAA1AA8AAQAEAAYAAAA4AAwAAQAHAAcAAAA5AAkAAQADAAcAAAA4AAcAAQAHAAcAAAAzAAUAAQAAAAQAAAAsAAoAAQABAAcAAAAzAAoAAQADAAcAAAAyAA0AAQAEAAQAAAAIAAwAAgAIAAAAAAACAA4AAgAIAAAAAAAGAA8AAwADAAIAAAAIAA8AAwAAAAMAAAAJABAAAwADAAsAAAAHABEAAwADAAsAAAAEABEAAwADAAkAAAAEAA8AAwACAAcAAAABABEAAwADAAUAAAAXAAwAAQABAAAAAAAYAAwAAQACAAMAAAAZAAwAAQACAAEAAAAaAAwAAQACAAAAAAAbAAwAAQACAAAAAAAcAAwAAQACAAEAAAAZAAsAAQAAAAEAAAAZAAoAAQADAAEAAAAZAA0AAQABAAEAAAAZAA4AAQAAAAEAAAAZAA8AAQADAAIAAAAaAA0AAQACAAIAAAAbAA4AAQABAAIAAAAcAA4AAQADAAEAAAAcAA0AAQADAAEAAAAbAA0AAQACAAEAAAAdAAwAAQACAAMAAAAeAAwAAQACAAIAAAAfAAwAAQADAAMAAAAYAA8AAQACAAAAAAAXAA8AAQABAAIAAAAXAA4AAQAAAAEAAAAXAA0AAQADAAEAAAAWAA0AAQACAAMAAAAVAA0AAQACAAIAAAAUAA0AAQACAAAAAAATAA0AAQABAAMAAAAVAAwAAQAAAAEAAAAVAAsAAQADAAEAAAAVAAoAAQABAAAAAAAWAAoAAQACAAMAAAAXAAoAAQACAAMAAAAYAAoAAQACAAIAAAAYAAkAAQABAAAAAAAZAAkAAQACAAAAAAAaAAkAAQACAAMAAAAbAAkAAQADAAAAAAAbAAoAAQABAAIAAAAcAAoAAQADAAAAAAAcAAsAAQAAAAEAAAAYABAAAQAAAAEAAAAYABEAAQABAAEAAAAYABIAAQAAAAIAAAAcAA8AAQAAAAEAAAAcABAAAQABAAIAAAAdABAAAQACAAAAAAAeABAAAQACAAMAAAAfABAAAQADAAMAAAAUAA4AAQAAAAYAAAAUAAsAAQABAAcAAAAZABEAAQAHAAcAAAAdABEAAQAEAAYAAAAeAAsAAQAEAAQAAAAtAAwAAQAFAAYAAAA=")
 tile_set = SubResource("TileSet_lqu5m")
 script = ExtResource("6_lqu5m")
@@ -1080,6 +1083,7 @@ tile_map_data = PackedByteArray("AAARABYAAAAJAAIAAAASABYAAAAJAAIAAAATABYAAAAJAAI
 tile_set = SubResource("TileSet_wa8bn")
 
 [node name="InteractableLayer" type="Node2D" parent="WorldTileMap"]
+y_sort_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

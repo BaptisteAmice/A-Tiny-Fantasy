@@ -171,6 +171,7 @@ properties/4/replication_mode = 1
 radius = 32.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 10
 collision_layer = 2
 script = ExtResource("1_ei3sg")
 inventory_data = ExtResource("2_0r1d2")
@@ -181,7 +182,6 @@ enabled = false
 zoom = Vector2(2, 2)
 
 [node name="PlayerAnimationHandler" type="AnimatedSprite2D" parent="."]
-z_index = 10
 sprite_frames = SubResource("SpriteFrames_tseti")
 animation = &"running"
 autoplay = "idle"
