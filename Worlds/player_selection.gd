@@ -1,7 +1,7 @@
 extends Control
 class_name PlayerSelection
 
-@onready var create_character_line_edit: LineEdit = $ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer/CreateCharacterLineEdit
+@onready var create_character_line_edit: LineEdit = $ScrollContainer/CharacterSlotsVBoxContainer/CharacterCreationHBoxContainer/CreateCharacterLineEdit
 
 @onready var character_creation_h_box_container: HBoxContainer = $ScrollContainer/CharacterSlotsVBoxContainer/CharacterCreationHBoxContainer
 @onready var character_slots_v_box_container: VBoxContainer = $ScrollContainer/CharacterSlotsVBoxContainer
