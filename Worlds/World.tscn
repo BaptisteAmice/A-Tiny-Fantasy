@@ -1083,7 +1083,11 @@ tile_map_data = PackedByteArray("AAARABYAAAAJAAIAAAASABYAAAAJAAIAAAATABYAAAAJAAI
 tile_set = SubResource("TileSet_wa8bn")
 
 [node name="InteractableLayer" type="Node2D" parent="WorldTileMap"]
+z_index = 10
 y_sort_enabled = true
+
+[node name="Chest" parent="WorldTileMap/InteractableLayer" instance=ExtResource("9_sp2ln")]
+position = Vector2(51, 163)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1299,9 +1303,6 @@ blend_mode = 2
 
 [node name="enemy_skeleton" parent="." instance=ExtResource("7_fc1d8")]
 position = Vector2(202, 176)
-
-[node name="Chest" parent="." instance=ExtResource("9_sp2ln")]
-position = Vector2(51, 163)
 
 [node name="PickUp" parent="." instance=ExtResource("13_eqiri")]
 position = Vector2(197, 71)
