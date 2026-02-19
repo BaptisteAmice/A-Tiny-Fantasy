@@ -16,7 +16,7 @@ func _input(event: InputEvent) -> void:
 		virtual_mouse_position = get_global_mouse_position()
 
 # can be moved by other means
-func slide_virtual_mouse_to_position(target_position: Vector2, duration: float) -> void:
+func slide_virtual_mouse_to_position(target_position: Vector2, _duration: float) -> void:
 	virtual_mouse_position = target_position
 
 func _process(_delta: float) -> void:

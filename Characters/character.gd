@@ -14,6 +14,8 @@ func _ready() -> void:
 	test_if_child_scene_path_is_in_multiplayer_spawner()
 	test_if_child_is_in_persist_group()
 	
+######## Test la validité des neuds enfants #########
+	
 func test_if_child_scene_path_is_in_multiplayer_spawner() -> void:
 	if not multiplayer.is_server(): return # less work for the clients
 	if Global.get_world_scene(true) == null: return # don't do it if the world isn't loaded yet
@@ -36,6 +38,8 @@ func test_if_child_is_in_persist_group() -> void:
 	# Ensure node belongs to group "persist"
 	if not is_in_group("Persist"):
 		push_error("%s is NOT in the 'Persist' group!" % name)
+		
+###########################################################
 
 func target_player() -> void:
 	if not multiplayer.is_server(): return

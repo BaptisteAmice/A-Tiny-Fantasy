@@ -43,6 +43,12 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg")
 
+[global_group]
+
+external_inventory=""
+Persist=""
+PersistLite=""
+
 [input]
 
 up={

@@ -35,7 +35,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Chest" type="Area2D" node_paths=PackedStringArray("visual") groups=["external_inventory"]]
+[node name="Chest" type="Area2D" node_paths=PackedStringArray("visual") groups=["Persist", "external_inventory"]]
 collision_layer = 5
 collision_mask = 0
 script = ExtResource("1_o08mj")

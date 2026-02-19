@@ -1059,7 +1059,7 @@ y_sort_enabled = true
 script = ExtResource("1_osawv")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://d08gn81f5b74p", "uid://tft8q4g3amu6")
+_spawnable_scenes = PackedStringArray("uid://d08gn81f5b74p", "uid://tft8q4g3amu6", "uid://e8x2i0ukn5tc")
 spawn_path = NodePath("..")
 script = ExtResource("2_d11ax")
 network_player = ExtResource("3_8djc0")
@@ -1086,8 +1086,7 @@ tile_set = SubResource("TileSet_wa8bn")
 z_index = 10
 y_sort_enabled = true
 
-[node name="Chest" parent="WorldTileMap/InteractableLayer" instance=ExtResource("9_sp2ln")]
-position = Vector2(51, 163)
+[node name="Chest" parent="WorldTileMap/InteractableLayer" groups=["PersistLite"] instance=ExtResource("9_sp2ln")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
