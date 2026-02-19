@@ -27,7 +27,7 @@ func _enter_tree() -> void : set_multiplayer_authority(name.to_int())
 func _ready() -> void:
 	if !is_multiplayer_authority(): return
 	camera_2d.enabled = true # Personal camera, not shared
-	inventory_data.inventory_updated.connect(sync_player_inventory_to_server)
+	inventory_data.inventory_updated.connect(call_sync_player_inventory_from_client)
 
 
 func get_input() -> void:
@@ -137,7 +137,7 @@ func heal(amount: int) -> void:
 
 ########### Multiplayer inventory syncing ###########
 	
-func sync_player_inventory_to_server(player_inventory: InventoryData) -> void:
+func call_sync_player_inventory_from_client(player_inventory: InventoryData) -> void:
 	if !is_multiplayer_authority():
 		print("Only the player can sync their inventory to the server!")
 		return
