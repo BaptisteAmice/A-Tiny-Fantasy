@@ -27,6 +27,7 @@ func _enter_tree() -> void : set_multiplayer_authority(name.to_int())
 func _ready() -> void:
 	if !is_multiplayer_authority(): return
 	camera_2d.enabled = true # Personal camera, not shared
+	inventory_data.inventory_updated.connect(sync_player_inventory_to_server)
 
 
 func get_input() -> void:
@@ -133,22 +134,21 @@ func update_interactions() -> void:
 
 func heal(amount: int) -> void:
 	health = min(health + amount, max_health)
+
+########### Multiplayer inventory syncing ###########
 	
-func sync_player_inventories_to_server() -> void:
-	if !is_multiplayer_authority(): return
+func sync_player_inventory_to_server(player_inventory: InventoryData) -> void:
+	if !is_multiplayer_authority():
+		print("Only the player can sync their inventory to the server!")
+		return
 	# Send inventory to server
-	var inventories: Dictionary = {
-		"inventory": inventory_data.save(),
-		"equip_inventory": equip_inventory_data.save() 
-	}
-	rpc_id(1, "_update_player_inventories_from_client", inventories)
+	rpc_id(1, "sync_player_inventory_from_client", player_inventory.save())
 	
 @rpc("any_peer")
-func _update_player_inventories_from_client(inventories: Dictionary) -> void:
-	if !multiplayer.is_server(): return
-	if inventories.has("inventory"):
-		var inv: Dictionary = inventories["inventory"]
-		inventory_data.load(inv)
-	if inventories.has("equip_inventory"):
-		var equp_inv: Dictionary = inventories["equip_inventory"]
-		equip_inventory_data.load(equp_inv)
+func sync_player_inventory_from_client(player_inventory: Dictionary) -> void:
+	if !multiplayer.is_server():
+		print("Only the server can receive inventory updates from clients!")
+		return
+	inventory_data.load(player_inventory)
+
+#todo pareil pour equip inventory
