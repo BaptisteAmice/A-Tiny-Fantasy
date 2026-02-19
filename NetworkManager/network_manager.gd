@@ -28,6 +28,7 @@ func _ready() -> void:
 	if "--server" in args:
 		print("=====Starting server=====")
 		await get_tree().create_timer(0.1).timeout # todo need to wait for everything to be ready #todo bad practice
+		Global.game_controller.isServer = true;
 		start_server()
 
 func get_local_connected_players() -> Array[Player]:

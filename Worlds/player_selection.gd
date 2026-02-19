@@ -3,6 +3,7 @@ class_name PlayerSelection
 
 @onready var create_character_line_edit: LineEdit = $ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer/CreateCharacterLineEdit
 
+@onready var character_creation_h_box_container: HBoxContainer = $ScrollContainer/CharacterSlotsVBoxContainer/CharacterCreationHBoxContainer
 @onready var character_slots_v_box_container: VBoxContainer = $ScrollContainer/CharacterSlotsVBoxContainer
 @onready var error_label: Label = $ScrollContainer/CharacterSlotsVBoxContainer/ErrorLabel
 @onready var connected_players_label: Label = $ScrollContainer/CharacterSlotsVBoxContainer/ConnectedPlayersLabel
@@ -16,8 +17,19 @@ const CHARACTER_NAME_MAX_LENGHT: int = 20;
 func _ready() -> void:
 	#TODO update on client side
 	error_label.visible = false
+	if Global.game_controller.isServer:
+		serverDraw()
+	else:
+		clientDraw()
+	
+
+func clientDraw() -> void:
 	if self.visible: 
 		draw_character_slots()
+
+func serverDraw() -> void:
+	character_creation_h_box_container.hide()
+
 	
 func update_connected_players_label() -> void:
 	var label_new_text: String = "CONNECTED_PLAYERS"

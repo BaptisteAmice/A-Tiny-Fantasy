@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://c7ho8gxtkvxyg"]
+[gd_scene load_steps=34 format=4 uid="uid://c7ho8gxtkvxyg"]
 
 [ext_resource type="Script" uid="uid://cdrshfxrhkobf" path="res://Worlds/world.gd" id="1_osawv"]
 [ext_resource type="Script" uid="uid://ggihq82b8v8s" path="res://NetworkManager/multiplayer_spawner.gd" id="2_d11ax"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://clau5tp4ua26h" path="res://TimeManager/time_manager.gd" id="17_4lmcg"]
 [ext_resource type="Texture2D" uid="uid://2ql8mnj0axdf" path="res://Assets/EmanuelleDev/UI/Clock.png" id="17_l8vuk"]
 [ext_resource type="Texture2D" uid="uid://dypnnlx2p3yvm" path="res://Assets/EmanuelleDev/UI/clock hand.png" id="18_4lmcg"]
+[ext_resource type="Script" uid="uid://jq7ahd01h2ni" path="res://Menus/instance_type_label.gd" id="21_hsp7p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7yxei"]
 texture = ExtResource("5_7yxei")
@@ -1210,16 +1211,16 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_m7av2")
 text = "CHOOSE_CHARACTER"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
+[node name="CharacterCreationHBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer"]
 layout_mode = 2
 
-[node name="CreateCharacterLineEdit" type="LineEdit" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer"]
+[node name="CreateCharacterLineEdit" type="LineEdit" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/CharacterCreationHBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_m7av2")
 placeholder_text = "CHARACTER_NAME"
 
-[node name="CreateCharacterButton" type="Button" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer"]
+[node name="CreateCharacterButton" type="Button" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/CharacterCreationHBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_m7av2")
 text = "CREATE_CHARACTER"
@@ -1300,6 +1301,21 @@ autoplay = "DayAndNight"
 position = Vector2(-1073, 0)
 blend_mode = 2
 
+[node name="InstanceTypeLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.8576389
+anchor_top = 0.9552469
+anchor_right = 1.0
+anchor_bottom = 1.0046296
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "UNDEFINED"
+horizontal_alignment = 1
+script = ExtResource("21_hsp7p")
+metadata/_edit_use_anchors_ = true
+
 [node name="enemy_skeleton" parent="." instance=ExtResource("7_fc1d8")]
 position = Vector2(202, 176)
 
@@ -1312,4 +1328,4 @@ position = Vector2(197, 71)
 [connection signal="pressed" from="CanvasLayer/InGameMenu/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/InGameMenu/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/InGameMenu/VBoxContainer/CloseServerButton" to="." method="_on_close_server_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer/CreateCharacterButton" to="CanvasLayer/PlayerSelection" method="_on_create_character_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/CharacterCreationHBoxContainer/CreateCharacterButton" to="CanvasLayer/PlayerSelection" method="_on_create_character_button_pressed"]

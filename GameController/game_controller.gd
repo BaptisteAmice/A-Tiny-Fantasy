@@ -5,6 +5,7 @@ class_name GameController
 
 
 var current_scene: Node
+var isServer: bool = false
 
 @onready var save_manager: SaveManager = $SaveManager
 @onready var network_manager: NetworkManager = $NetworkManager
