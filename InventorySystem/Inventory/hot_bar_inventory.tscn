@@ -1,18 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2td87qjw6n1x"]
+[gd_scene format=3 uid="uid://d2td87qjw6n1x"]
 
 [ext_resource type="Script" uid="uid://x8jjlnqnpf56" path="res://InventorySystem/Inventory/hot_bar_inventory.gd" id="1_vt4oq"]
 
-[node name="HotBarInventory" type="PanelContainer"]
+[node name="HotBarInventory" type="PanelContainer" unique_id=261039577]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_vt4oq")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1743493994]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2108907787]
 layout_mode = 2

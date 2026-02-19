@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemDataPickaxe" load_steps=4 format=3 uid="uid://dy1ndtsxrqmdd"]
+[gd_resource type="Resource" script_class="ItemDataPickaxe" format=3 uid="uid://dy1ndtsxrqmdd"]
 
 [ext_resource type="Script" uid="uid://dcsf0bpkauof2" path="res://InventorySystem/Item/item_pickaxe.gd" id="1_ldvu1"]
 [ext_resource type="Texture2D" uid="uid://wxx237i24jc6" path="res://Assets/EmanuelleDev/Tools/wooden_tools_icons.png" id="2_gh40g"]

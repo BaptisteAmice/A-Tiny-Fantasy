@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c70mj2qdk4dy0"]
+[gd_scene format=3 uid="uid://c70mj2qdk4dy0"]
 
 [ext_resource type="Script" uid="uid://gbeec3vxdxxj" path="res://CustomInput/input_callers_controller_random.gd" id="1_mbjpn"]
 
-[node name="InputCallersControllerRandom" type="Node"]
+[node name="InputCallersControllerRandom" type="Node" unique_id=495968087]
 script = ExtResource("1_mbjpn")
 metadata/_custom_type_script = "uid://gbeec3vxdxxj"

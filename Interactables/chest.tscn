@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://e8x2i0ukn5tc"]
+[gd_scene format=3 uid="uid://e8x2i0ukn5tc"]
 
 [ext_resource type="Script" uid="uid://qxw3wm24418y" path="res://Interactables/chest.gd" id="1_o08mj"]
 [ext_resource type="Script" uid="uid://bfoeo8bnydmcc" path="res://InventorySystem/Inventory/inventory_data.gd" id="2_2ccwf"]
@@ -35,7 +35,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Chest" type="Area2D" node_paths=PackedStringArray("visual") groups=["Persist", "external_inventory"]]
+[node name="Chest" type="Area2D" unique_id=883502688 node_paths=PackedStringArray("visual") groups=["Persist", "external_inventory"]]
 collision_layer = 5
 collision_mask = 0
 script = ExtResource("1_o08mj")
@@ -44,8 +44,8 @@ interact_text = "OPEN_ACTION"
 visual = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://dupmkxd0bijdw"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1331010405]
 shape = SubResource("CircleShape2D_odjdj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1890649601]
 sprite_frames = SubResource("SpriteFrames_1anhx")

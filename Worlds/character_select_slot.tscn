@@ -1,22 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://r083atw3w18a"]
+[gd_scene format=3 uid="uid://r083atw3w18a"]
 
 [ext_resource type="Script" uid="uid://dhfpm2m23o8sv" path="res://Worlds/character_select_slot.gd" id="1_2ut78"]
 [ext_resource type="Texture2D" uid="uid://b2ii1ermxaalm" path="res://icon.svg" id="2_bvir7"]
 [ext_resource type="FontFile" uid="uid://cslyoid86no3o" path="res://Assets/Tiopalada/tinyRPGFontKit01_v1_2/TinyRPG-BadgeFont.ttf" id="3_bvir7"]
 
-[node name="CharacterSelectSlot" type="HBoxContainer"]
+[node name="CharacterSelectSlot" type="HBoxContainer" unique_id=480337361]
 script = ExtResource("1_2ut78")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1245603047]
 layout_mode = 2
 texture = ExtResource("2_bvir7")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=186632446]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_bvir7")
 text = "[Default]"
 
-[node name="SelectCharacterButton" type="Button" parent="."]
+[node name="SelectCharacterButton" type="Button" parent="." unique_id=1337209052]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_bvir7")
 text = "Select"

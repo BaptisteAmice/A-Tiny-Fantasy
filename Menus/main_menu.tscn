@@ -1,32 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkghhlgsam82m"]
+[gd_scene format=3 uid="uid://dkghhlgsam82m"]
 
 [ext_resource type="Script" uid="uid://c8sl8eca86y8o" path="res://Menus/main_menu.gd" id="1_jf8mj"]
 [ext_resource type="FontFile" uid="uid://cslyoid86no3o" path="res://Assets/Tiopalada/tinyRPGFontKit01_v1_2/TinyRPG-BadgeFont.ttf" id="2_p3jrs"]
 [ext_resource type="PackedScene" uid="uid://ce0d426g1adxd" path="res://CustomInput/input_callers_controller_option_button.tscn" id="3_at0u2"]
 
-[node name="MainMenu" type="Node"]
+[node name="MainMenu" type="Node" unique_id=717817868]
 script = ExtResource("1_jf8mj")
 
-[node name="PlayingSelection" type="CanvasLayer" parent="."]
+[node name="PlayingSelection" type="CanvasLayer" parent="." unique_id=464338613]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayingSelection"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayingSelection" unique_id=1980782624]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HostButton" type="Button" parent="PlayingSelection/VBoxContainer"]
+[node name="HostButton" type="Button" parent="PlayingSelection/VBoxContainer" unique_id=268569651]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p3jrs")
 text = "HOST_BUTTON"
 
-[node name="PlayButton" type="Button" parent="PlayingSelection/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="PlayingSelection/VBoxContainer" unique_id=245328987]
 layout_mode = 2
 localize_numeral_system = false
 theme_override_fonts/font = ExtResource("2_p3jrs")
 text = "JOIN_BUTTON"
 
-[node name="LangageSelection" type="CanvasLayer" parent="."]
+[node name="LangageSelection" type="CanvasLayer" parent="." unique_id=531489096]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LangageSelection"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LangageSelection" unique_id=1460531636]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -34,15 +34,15 @@ offset_top = -40.0
 offset_right = 61.0
 grow_vertical = 0
 
-[node name="ENLanguageButton" type="Button" parent="LangageSelection/HBoxContainer"]
+[node name="ENLanguageButton" type="Button" parent="LangageSelection/HBoxContainer" unique_id=909144517]
 layout_mode = 2
 text = "EN"
 
-[node name="FRLanguageButton" type="Button" parent="LangageSelection/HBoxContainer"]
+[node name="FRLanguageButton" type="Button" parent="LangageSelection/HBoxContainer" unique_id=1094443421]
 layout_mode = 2
 text = "FR"
 
-[node name="InputCallersControllerOptionButton" parent="." instance=ExtResource("3_at0u2")]
+[node name="InputCallersControllerOptionButton" parent="." unique_id=1123150523 instance=ExtResource("3_at0u2")]
 offset_left = 11.0
 offset_top = 175.0
 offset_right = 43.0

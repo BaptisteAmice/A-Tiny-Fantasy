@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://btgqrhnjyyi3y"]
+[gd_scene format=3 uid="uid://btgqrhnjyyi3y"]
 
 [ext_resource type="Script" uid="uid://sl3cd2fwcan5" path="res://GameController/game_controller.gd" id="1_tinjj"]
 [ext_resource type="Script" uid="uid://ciyyv7opmx8yf" path="res://NetworkManager/network_manager.gd" id="2_bxeof"]
@@ -61,27 +61,27 @@ _data = {
 &"fade_in_out": SubResource("Animation_l0eps")
 }
 
-[node name="GameController" type="Node"]
+[node name="GameController" type="Node" unique_id=905435476]
 script = ExtResource("1_tinjj")
 
-[node name="NetworkManager" type="Node" parent="."]
+[node name="NetworkManager" type="Node" parent="." unique_id=863768499]
 script = ExtResource("2_bxeof")
 
-[node name="SaveManager" type="Node" parent="."]
+[node name="SaveManager" type="Node" parent="." unique_id=278375850]
 script = ExtResource("3_pvixq")
 
-[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1641358422]
 stream = SubResource("AudioStreamInteractive_7l8mg")
 autoplay = true
 script = ExtResource("6_u34ly")
 
-[node name="AudioManager" type="Node2D" parent="."]
+[node name="AudioManager" type="Node2D" parent="." unique_id=669133036]
 script = ExtResource("5_7l8mg")
 sound_effects = Array[ExtResource("6_ir2ws")]([SubResource("Resource_l0eps"), SubResource("Resource_iy4tg")])
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=694507000]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1901699912]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,19 +90,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.41568628, 0.6745098, 0.9019608, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
-libraries = {
-&"": SubResource("AnimationLibrary_iy4tg")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=2108611974]
+libraries/ = SubResource("AnimationLibrary_iy4tg")
 
-[node name="MouseController" type="Node2D" parent="."]
+[node name="MouseController" type="Node2D" parent="." unique_id=1331240765]
 script = ExtResource("9_iy4tg")
 
-[node name="VirtualCursor" type="Sprite2D" parent="MouseController"]
+[node name="VirtualCursor" type="Sprite2D" parent="MouseController" unique_id=12000397]
 visible = false
 z_index = 100
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_hihb0")
 
-[node name="WindowManager" type="Node" parent="."]
+[node name="WindowManager" type="Node" parent="." unique_id=406828385]
 script = ExtResource("11_yskh6")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbkewafchkam1"]
+[gd_scene format=3 uid="uid://dbkewafchkam1"]
 
 [ext_resource type="Script" uid="uid://cxcy26kg0vkch" path="res://InventorySystem/Item/PickUp/pick_up.gd" id="1_vexjm"]
 [ext_resource type="Resource" uid="uid://u27ycbqohljt" path="res://InventorySystem/Item/Items/carrot.tres" id="2_fhga6"]
@@ -12,23 +12,23 @@ metadata/_custom_type_script = "uid://dyn3odoh24jxw"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_njxn4"]
 
-[node name="PickUp" type="RigidBody2D"]
+[node name="PickUp" type="RigidBody2D" unique_id=1938541299]
 collision_layer = 0
 gravity_scale = 0.0
 script = ExtResource("1_vexjm")
 slot_data = SubResource("Resource_7ruak")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1782443047]
 texture = ExtResource("2_viox4")
 
-[node name="PhysicCollisionShape" type="CollisionShape2D" parent="."]
+[node name="PhysicCollisionShape" type="CollisionShape2D" parent="." unique_id=1624341225]
 shape = SubResource("CircleShape2D_njxn4")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=844796436]
 collision_layer = 0
 collision_mask = 2
 
-[node name="PickUpCollisionShape" type="CollisionShape2D" parent="Area2D"]
+[node name="PickUpCollisionShape" type="CollisionShape2D" parent="Area2D" unique_id=799005741]
 shape = SubResource("CircleShape2D_njxn4")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

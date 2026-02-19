@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://tft8q4g3amu6"]
+[gd_scene format=3 uid="uid://tft8q4g3amu6"]
 
 [ext_resource type="Script" uid="uid://ci2d75riu17ho" path="res://Characters/enemy_skeleton.gd" id="1_eq2me"]
 [ext_resource type="Texture2D" uid="uid://quweos7wmbga" path="res://Assets/Sunnyside_World_Assets/Characters/Skeleton/skeleton_idle_strip6.png" id="2_ukcqh"]
@@ -137,26 +137,26 @@ properties/3/path = NodePath("AnimatedSprite2D:flip_h")
 properties/3/spawn = true
 properties/3/replication_mode = 1
 
-[node name="enemy_skeleton" type="CharacterBody2D" groups=["Persist"]]
+[node name="enemy_skeleton" type="CharacterBody2D" unique_id=684359648 groups=["Persist"]]
 z_index = 10
 collision_layer = 0
 script = ExtResource("1_eq2me")
 metadata/_custom_type_script = "uid://b6aflivfv6oxu"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1699529621]
 sprite_frames = SubResource("SpriteFrames_62l4d")
 animation = &"running"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1221537009]
 position = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_jcbu8")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=511219346 node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_bscc5")
 current_state = NodePath("CharacterIdle")
 metadata/_custom_type_script = "uid://2ccpdckfjrtn"
 
-[node name="CharacterIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
+[node name="CharacterIdle" type="Node" parent="StateMachine" unique_id=166963888 node_paths=PackedStringArray("character")]
 script = ExtResource("6_4djip")
 character = NodePath("../..")
 distance_min_to_notice = 25
@@ -165,7 +165,7 @@ target_noticed_action = "CharacterFollow"
 target_noticed_emote = "exclamation"
 metadata/_custom_type_script = "uid://yfqow0ccr5ah"
 
-[node name="CharacterFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
+[node name="CharacterFollow" type="Node" parent="StateMachine" unique_id=1412375049 node_paths=PackedStringArray("character")]
 script = ExtResource("5_dthud")
 character = NodePath("../..")
 move_speed = 30.0
@@ -174,8 +174,8 @@ distance_max_to_follow = 200
 distance_max_emote = "frustration"
 metadata/_custom_type_script = "uid://yfqow0ccr5ah"
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1881440964]
 replication_config = SubResource("SceneReplicationConfig_dthud")
 
-[node name="AnimatedEmote" parent="." instance=ExtResource("7_4djip")]
+[node name="AnimatedEmote" parent="." unique_id=1372645457 instance=ExtResource("7_4djip")]
 position = Vector2(1, -18)

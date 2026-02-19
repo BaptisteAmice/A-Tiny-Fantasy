@@ -1,28 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://8irnp68kgu1a"]
+[gd_scene format=3 uid="uid://8irnp68kgu1a"]
 
 [ext_resource type="Script" uid="uid://8gbmc2ony8o4" path="res://InventorySystem/Inventory/slot.gd" id="1_eg33q"]
 [ext_resource type="FontFile" uid="uid://cslyoid86no3o" path="res://Assets/Tiopalada/tinyRPGFontKit01_v1_2/TinyRPG-BadgeFont.ttf" id="2_eg33q"]
 [ext_resource type="Texture2D" uid="uid://beyop043iwlxt" path="res://Assets/EmanuelleDev/UI/selected_slot.png" id="3_qite8"]
 
-[node name="Slot" type="PanelContainer"]
+[node name="Slot" type="PanelContainer" unique_id=1713788008]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_eg33q")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2089107930]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=2015468192]
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="QuantityLabel" type="Label" parent="."]
+[node name="QuantityLabel" type="Label" parent="." unique_id=86520675]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 8
@@ -32,7 +32,7 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_eg33q")
 text = "x99"
 
-[node name="SelectedTextureRect" type="TextureRect" parent="."]
+[node name="SelectedTextureRect" type="TextureRect" parent="." unique_id=783502596]
 visible = false
 layout_mode = 2
 texture = ExtResource("3_qite8")
