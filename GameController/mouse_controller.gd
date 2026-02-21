@@ -20,13 +20,9 @@ func get_top_tilemap_layer_at_position(value: Vector2) -> TileMapLayer:
 	# todo le classement des layers ne devrait etre fait qu'une fois
 	# Récupère tous les TileMapLayer enfants
 	var layers: Array = []
-	print("tilemap: ", tilemap)
 	for child: Node in tilemap.get_children():
-		print("Checking child: ", child.name, " of type ", child.get_class())
 		if child is TileMapLayer:
 			layers.append(child)
-
-	print("Found %d tilemap layers" % layers.size())
 
 	# Trier par z_index décroissant (le plus haut visuellement d'abord)
 	layers.sort_custom(func(a: TileMapLayer, b: TileMapLayer) -> bool : 
@@ -58,7 +54,6 @@ func update_grid(value: Vector2) -> void:
 
 	# récupère le layer de tilemap le plus haut sous la souris
 	var top_layer: TileMapLayer = get_top_tilemap_layer_at_position(value)
-	print("Top layer at mouse position: ", top_layer)
 
 	#todo une méthode
 	# Si le la layer sous la souris a changé depuis la dernière mise à jour, on met à jour le shader du layer
