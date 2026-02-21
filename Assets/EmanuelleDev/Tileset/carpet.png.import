@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1n7mhviaomxy"
-path="res://.godot/imported/ground.png-b0f05dc02c3033cec36b53eae2abcb52.ctex"
+uid="uid://c3ermtkya4cgu"
+path="res://.godot/imported/carpet.png-e59a2893d15cf7ebe7377f70419e6a2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/EmanuelleDev/Tileset/ground.png"
-dest_files=["res://.godot/imported/ground.png-b0f05dc02c3033cec36b53eae2abcb52.ctex"]
+source_file="res://Assets/EmanuelleDev/Tileset/carpet.png"
+dest_files=["res://.godot/imported/carpet.png-e59a2893d15cf7ebe7377f70419e6a2a.ctex"]
 
 [params]
 
