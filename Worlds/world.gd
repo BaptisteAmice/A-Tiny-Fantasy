@@ -11,8 +11,6 @@ const PICKUP: PackedScene = preload("uid://dbkewafchkam1")
 
 @onready var world_tile_map: WorldTileMap = $WorldTileMap
 
-
-
 func setup_local_player(player: Player) -> void:
 	# Only clients should call this
 	if multiplayer.is_server():

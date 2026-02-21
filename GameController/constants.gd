@@ -15,6 +15,12 @@ var TERRAINS_DROPS: Dictionary[int,Resource] = {
 	TERRAINS.WALLS_DIRT: preload("uid://70t0lt7uyqlc"),
 }
 
+enum BUILD_MODS {
+	DISABLED = 0,
+	PLACE = 1,
+	DESTROY = 2
+}
+
 ### ITEMS
 
 enum ITEM_TAG {

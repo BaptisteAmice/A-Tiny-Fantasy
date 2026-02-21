@@ -21,6 +21,8 @@ var isServer: bool = false
 var client_config: ClientConfig
 var input_caller_controller: InputCallersController
 
+var build_mod: Constants.BUILD_MODS = Constants.BUILD_MODS.DISABLED
+
 func _ready() -> void:
 	# Singleton
 	Global.game_controller = self

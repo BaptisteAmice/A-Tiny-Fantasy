@@ -16,6 +16,8 @@ class_name Player
 var max_health: int = 10
 var health: int = 10
 
+var hotbar: HotBarInventory
+
 #todo test inventory saving in multiplayer, add saving
 @export var inventory_data: InventoryData
 @export var equip_inventory_data: InventoryData
@@ -28,6 +30,13 @@ func _ready() -> void:
 	if !is_multiplayer_authority(): return
 	camera_2d.enabled = true # Personal camera, not shared
 	inventory_data.inventory_updated.connect(call_sync_player_inventory_from_client)
+	
+	# On récupère la hotbar dans le parent
+	hotbar = get_parent().get_node("CanvasLayer/HotBarInventory")
+	if hotbar:
+		hotbar.active_item_updated.connect(_update_build_mod_state_based_on_active_item)
+	else:
+		push_error("HotBarInventory not found in parent scene of Player!")
 
 
 func get_input() -> void:
@@ -152,3 +161,17 @@ func sync_player_inventory_from_client(player_inventory: Dictionary) -> void:
 	inventory_data.load(player_inventory)
 
 #todo pareil pour equip inventory
+
+
+
+#######################################################
+
+
+func _update_build_mod_state_based_on_active_item() -> void:
+	var new_build_mod_state: Constants.BUILD_MODS = Constants.BUILD_MODS.DISABLED 
+	var active_slot_data: SlotData = hotbar.get_active_slot_data(inventory_data)
+	if active_slot_data and active_slot_data.item_data:
+		if active_slot_data.item_data is ItemDataTerrain:
+			new_build_mod_state = Constants.BUILD_MODS.PLACE
+	Global.game_controller.build_mod = new_build_mod_state
+	print("Build mod state updated based on active item: ", Global.game_controller.build_mod)

@@ -7,6 +7,9 @@ class_name WorldTileMap
 @onready var walls: TileMapLayer = $Walls
 @onready var interactable_layer: Node2D = $InteractableLayer
 
+func _ready() -> void:
+	Global.game_controller.mouse_controller.tilemap = self
+
 ###### ALL TILEMAPS
 
 func get_tilemap_dict(tilemap: TileMapLayer) -> Dictionary:

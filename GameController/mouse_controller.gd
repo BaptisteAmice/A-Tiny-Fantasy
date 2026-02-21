@@ -1,14 +1,85 @@
 extends Node2D
 class_name MouseController
 
+#todo la grid ne s'update pas au bon moment, il faudrait l'update en mm temps que Global.game_controller.build_mod 
+
 @onready var virtual_cursor: Sprite2D = $VirtualCursor
 var virtual_mouse_position: Vector2 : set = _set_virtual_mouse_position
 @onready var game_controller: GameController = $".."
 
-
+var tilemap: Node2D = null;
+var previous_top_layer: TileMapLayer = null
+	
 func _set_virtual_mouse_position(value: Vector2) -> void:
 	virtual_mouse_position = value
 	virtual_cursor.global_position = value
+	update_grid(value)
+
+
+func get_top_tilemap_layer_at_position(value: Vector2) -> TileMapLayer:
+	# todo le classement des layers ne devrait etre fait qu'une fois
+	# Récupère tous les TileMapLayer enfants
+	var layers: Array = []
+	print("tilemap: ", tilemap)
+	for child: Node in tilemap.get_children():
+		print("Checking child: ", child.name, " of type ", child.get_class())
+		if child is TileMapLayer:
+			layers.append(child)
+
+	print("Found %d tilemap layers" % layers.size())
+
+	# Trier par z_index décroissant (le plus haut visuellement d'abord)
+	layers.sort_custom(func(a: TileMapLayer, b: TileMapLayer) -> bool : 
+		return a.z_index > b.z_index
+	)
+	#todo ################### fin classement à fair eune seule fois
+
+	# Tester chaque layer
+	for layer: TileMapLayer in layers:
+		var local_pos: Vector2 = layer.to_local(value)
+		var cell: Vector2i = layer.local_to_map(local_pos)
+
+		# Vérifie si une tile existe
+		if layer.get_cell_source_id(cell) != -1:
+			return layer
+	return null
+
+
+func need_grid_to_build() -> bool:
+	return Global.game_controller.build_mod == Constants.BUILD_MODS.PLACE \
+		or Global.game_controller.build_mod == Constants.BUILD_MODS.DESTROY
+	
+
+func update_grid(value: Vector2) -> void:
+	# On attend d'avoir une référence au tilemap avant d'essayer de faire quoi que ce soit
+	if not tilemap: return
+	
+	var should_diplay_grid: bool = need_grid_to_build()
+
+	# récupère le layer de tilemap le plus haut sous la souris
+	var top_layer: TileMapLayer = get_top_tilemap_layer_at_position(value)
+	print("Top layer at mouse position: ", top_layer)
+
+	#todo une méthode
+	# Si le la layer sous la souris a changé depuis la dernière mise à jour, on met à jour le shader du layer
+	if top_layer != previous_top_layer:
+		# On désactive le shader de l'ancien layer
+		if previous_top_layer and previous_top_layer.material:
+			(previous_top_layer.material as ShaderMaterial).set_shader_parameter("enabled", false)
+		# On active le shader du nouveau layer
+		if should_diplay_grid && top_layer and top_layer.material:
+			(top_layer.material as ShaderMaterial).set_shader_parameter("enabled", true)
+		previous_top_layer = top_layer
+
+	#todo une méthode
+	# met à jour la position de la grille dans le shader du layer
+	if should_diplay_grid && top_layer and top_layer != null && top_layer.material:
+		# show the material
+		(top_layer.material as ShaderMaterial).set_shader_parameter(
+			"mouse_position",
+			top_layer.to_local(value)
+		)
+
 
 # follow the mouse when it moves in the window
 func _input(event: InputEvent) -> void:

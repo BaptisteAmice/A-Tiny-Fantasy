@@ -66,3 +66,8 @@ func active_item_scroll_down() -> void:
 		return
 	active_item_slot = (active_item_slot + 1) % length
 	emit_signal("active_item_updated")
+
+func get_active_slot_data(inventory_data: InventoryData) -> SlotData:
+	if active_item_slot < 0 or active_item_slot >= inventory_data.slot_datas.size():
+		return null
+	return inventory_data.slot_datas[active_item_slot]
