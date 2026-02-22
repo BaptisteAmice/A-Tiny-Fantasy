@@ -1,6 +1,9 @@
 extends Node
 class_name ChatSystem
 
+@onready var chat_commands_manager: ChatCommandsManager = $ChatCommandsManager
+
+
 func send_message_from_client(message: String) -> void:
 	if multiplayer.is_server(): return
 	message = message.strip_edges()
@@ -17,8 +20,9 @@ func send_message_from_client(message: String) -> void:
 func process_command_on_client_from_message(message: String) -> void:
 	if multiplayer.is_server(): return
 	Global.game_controller.signals_bus.ADD_MESSAGE_TO_DISPLAY_LIST.emit(message)
-	#todo
-	pass
+	var command_result: String = chat_commands_manager.parse_command_from_message(message)
+	Global.game_controller.signals_bus.ADD_MESSAGE_TO_DISPLAY_LIST.emit(command_result)
+	
 
 @rpc("any_peer")
 func _server_receive_message(message: String) -> void:

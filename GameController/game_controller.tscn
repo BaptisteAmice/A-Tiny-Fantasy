@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://bfo6ssfseuljn" path="res://GameController/window_manager.gd" id="11_yskh6"]
 [ext_resource type="Script" uid="uid://nopx8s6hv1mi" path="res://GameController/signals_bus.gd" id="12_t7iw0"]
 [ext_resource type="Script" uid="uid://8h504u3l4nxk" path="res://Chat/chat_system.gd" id="13_i4ej5"]
+[ext_resource type="Script" uid="uid://bgtgmp0yngvlx" path="res://Chat/ChatCommands/chat_commands_manager.gd" id="14_7q4ti"]
+[ext_resource type="Script" uid="uid://8gm4cya58hp3" path="res://Chat/ChatCommands/chat_command_teleport.gd" id="15_xogm0"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_7l8mg"]
 
@@ -113,3 +115,11 @@ script = ExtResource("12_t7iw0")
 [node name="ChatSystem" type="Node" parent="." unique_id=436976057]
 script = ExtResource("13_i4ej5")
 metadata/_custom_type_script = "uid://8h504u3l4nxk"
+
+[node name="ChatCommandsManager" type="Node" parent="ChatSystem" unique_id=2018017488]
+script = ExtResource("14_7q4ti")
+metadata/_custom_type_script = "uid://bgtgmp0yngvlx"
+
+[node name="ChatCommandTeleport" type="Node" parent="ChatSystem/ChatCommandsManager" unique_id=318467446]
+script = ExtResource("15_xogm0")
+metadata/_custom_type_script = "uid://8gm4cya58hp3"

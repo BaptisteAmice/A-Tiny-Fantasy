@@ -1,10 +1,10 @@
 class_name Command
-var source: Node
-var target: Node
+var source: Variant
+var target: Variant
 
-func _init(src: Node, targ: Node) -> void:
+func _init(src: Variant, targ: Variant) -> void:
 	source = src
 	target = targ
 	
-func execute() -> void:
-	pass
+func execute() -> String:
+	return "execute() method not implemented for this command!"
