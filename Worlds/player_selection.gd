@@ -6,7 +6,7 @@ class_name PlayerSelection
 @onready var character_creation_h_box_container: HBoxContainer = $ScrollContainer/CharacterSlotsVBoxContainer/CharacterCreationHBoxContainer
 @onready var character_slots_v_box_container: VBoxContainer = $ScrollContainer/CharacterSlotsVBoxContainer
 @onready var error_label: Label = $ScrollContainer/CharacterSlotsVBoxContainer/ErrorLabel
-@onready var connected_players_label: Label = $ScrollContainer/CharacterSlotsVBoxContainer/ConnectedPlayersLabel
+@onready var connected_players_list_label: Label = $ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer/ConnectedPlayersListLabel
 
 
 const CHARACTER_SELECT_SLOT: PackedScene = preload("uid://r083atw3w18a")
@@ -32,12 +32,12 @@ func serverDraw() -> void:
 
 	
 func update_connected_players_label() -> void:
-	var label_new_text: String = "CONNECTED_PLAYERS"
+	var label_new_text: String = ""
 	for player: Player in Global.game_controller.network_manager.get_local_connected_players() :
 		label_new_text += player.player_name + ", "
 	if label_new_text.ends_with(", "):
 		label_new_text = label_new_text.substr(0, label_new_text.length() -2) # remove last ", "
-	connected_players_label.text = label_new_text
+	connected_players_list_label.text = label_new_text
 	
 
 func draw_character_slots() -> void:

@@ -2634,10 +2634,18 @@ horizontal_scroll_mode = 0
 [node name="CharacterSlotsVBoxContainer" type="VBoxContainer" parent="CanvasLayer/PlayerSelection/ScrollContainer" unique_id=1039141955]
 layout_mode = 2
 
-[node name="ConnectedPlayersLabel" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer" unique_id=643217634]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer" unique_id=33038691]
+layout_mode = 2
+
+[node name="ConnectedPlayersHeaderLabel" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer" unique_id=643217634]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_m7av2")
 text = "CONNECTED_PLAYERS"
+
+[node name="ConnectedPlayersListLabel" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer/HBoxContainer" unique_id=1095075074]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_m7av2")
+text = "UNDEFINED"
 
 [node name="Label" type="Label" parent="CanvasLayer/PlayerSelection/ScrollContainer/CharacterSlotsVBoxContainer" unique_id=896691177]
 layout_mode = 2
