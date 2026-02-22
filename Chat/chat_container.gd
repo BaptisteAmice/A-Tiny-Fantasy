@@ -14,6 +14,7 @@ func _ready() -> void:
 	Global.game_controller.signals_bus.ADD_MESSAGE_TO_DISPLAY_LIST.connect(add_message)
 	Global.game_controller.signals_bus.OPEN_GAME_CHAT.connect(open_game_chat)
 	Global.game_controller.signals_bus.EXIT_GAME_CHAT.connect(close_game_chat)
+	Global.game_controller.signals_bus.SET_GAME_CHAT_INPUT.connect(set_line_edit_text)
 
 	for i: int in range(MAX_SAVED_MESSAGES):
 		var message_label: MessageLabel = MessageLabel.new()
@@ -50,6 +51,11 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 
 	# todo find how to Re-focus the line edit after sending a message
 	pass
+
+func set_line_edit_text(message: String) -> void:
+	line_edit.text = message
+	# go to the end of the text
+	line_edit.caret_column = line_edit.text.length()
 
 func _on_cleanup_timer_timeout() -> void:
 	var current_time: int = Time.get_ticks_msec()

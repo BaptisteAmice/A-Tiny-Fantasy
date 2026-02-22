@@ -67,16 +67,25 @@ func get_input() -> void:
 		pass
 	
 	# scroll in hot bar
-	if Input.is_action_just_pressed("scroll_up"):
+	if Input.is_action_just_pressed("scroll_up") && is_playing():
 		Global.get_world_scene().hot_bar_inventory.active_item_scroll_up()
-	if Input.is_action_just_pressed("scroll_down"):
+	if Input.is_action_just_pressed("scroll_down") && is_playing():
 		Global.get_world_scene().hot_bar_inventory.active_item_scroll_down()
 		
 	if Input.is_action_just_pressed("open_game_chat"):
 		Global.game_controller.signals_bus.OPEN_GAME_CHAT.emit()
 
-	if Input.is_action_just_pressed("escape") and player_state == Constants.PLAYER_STATES.IN_GAME_CHAT:
+	if player_state == Constants.PLAYER_STATES.IN_GAME_CHAT:
+		get_input_in_chat_mod()
+
+
+func get_input_in_chat_mod() -> void:
+	if Input.is_action_just_pressed("escape"): 
 		Global.game_controller.signals_bus.EXIT_GAME_CHAT.emit()
+	if Input.is_action_just_pressed("scroll_up"): 
+		Global.game_controller.signals_bus.GO_TO_PREVIOUS_GAME_CHAT_MESSAGE_IN_HISTORY.emit()
+	if Input.is_action_just_pressed("scroll_down"): 
+		Global.game_controller.signals_bus.GO_TO_NEXT_GAME_CHAT_MESSAGE_IN_HISTORY.emit()
 
 func open_game_chat() -> void:
 	player_state = Constants.PLAYER_STATES.IN_GAME_CHAT

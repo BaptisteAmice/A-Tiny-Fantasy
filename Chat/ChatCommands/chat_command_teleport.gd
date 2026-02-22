@@ -17,6 +17,6 @@ func prepare_command(params: Array[String]) -> String:
 		return "Le deuxième paramètre doit être un nombre (la position Y)"	
 	self.instantiated_command = COMMAND_TELEPORT.new(
 		PlayerManager.my_player,
-		Vector2(float(params[0]), float(params[1]))
+		Vector2(float(params[0]) * Constants.WORLD_TILES_SIZE, float(params[1]) * Constants.WORLD_TILES_SIZE)
 	)
 	return ""

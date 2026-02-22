@@ -3,6 +3,9 @@ extends Node
 ### PACKED SCENES
 const PLAYER: PackedScene = preload("uid://d08gn81f5b74p")
 
+### Tiles sizes
+var WORLD_TILES_SIZE : int = 16
+
 ### PLAYER STATES
 
 enum PLAYER_STATES {

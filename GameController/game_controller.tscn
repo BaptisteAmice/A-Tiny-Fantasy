@@ -68,6 +68,9 @@ _data = {
 [node name="GameController" type="Node" unique_id=905435476]
 script = ExtResource("1_tinjj")
 
+[node name="SignalsBus" type="Node" parent="." unique_id=960592547]
+script = ExtResource("12_t7iw0")
+
 [node name="NetworkManager" type="Node" parent="." unique_id=863768499]
 script = ExtResource("2_bxeof")
 
@@ -108,9 +111,6 @@ texture = ExtResource("10_hihb0")
 
 [node name="WindowManager" type="Node" parent="." unique_id=406828385]
 script = ExtResource("11_yskh6")
-
-[node name="SignalsBus" type="Node" parent="." unique_id=960592547]
-script = ExtResource("12_t7iw0")
 
 [node name="ChatSystem" type="Node" parent="." unique_id=436976057]
 script = ExtResource("13_i4ej5")
