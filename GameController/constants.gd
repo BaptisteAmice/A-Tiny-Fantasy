@@ -3,6 +3,14 @@ extends Node
 ### PACKED SCENES
 const PLAYER: PackedScene = preload("uid://d08gn81f5b74p")
 
+### PLAYER STATES
+
+enum PLAYER_STATES {
+	UNDEFINED = -1,
+	PLAYING = 0,
+	IN_GAME_CHAT = 1
+}
+
 ### TERRAINS
 enum TERRAINS {
 	Decoration = -1,

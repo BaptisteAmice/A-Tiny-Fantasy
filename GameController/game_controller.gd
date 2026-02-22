@@ -18,6 +18,9 @@ var isServer: bool = false
 @onready var animation_player: AnimationPlayer = $CanvasLayer/AnimationPlayer
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
 
+@onready var signals_bus: SignalsBus = $SignalsBus
+@onready var chat_system: ChatSystem = $ChatSystem
+
 var client_config: ClientConfig
 var input_caller_controller: InputCallersController
 

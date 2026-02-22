@@ -99,13 +99,15 @@ func get_role_and_id() -> String:
 
 
 ## Create the server in a new window/process
-func create_server(headless: bool = false) -> void:
+func create_server(headless: bool = false, verbose: bool = false) -> void:
 	print("Creating dedicated server...")
 	# create a new process that runs the game in dedicated server mode
 	var args: Array = []
 	args.append("--server")
 	if headless:
 		args.append("--headless") #todo need to be able to delete process when the client closes
+	if verbose:
+		args.append("--verbose")
 	var server_pid: int = OS.create_process(OS.get_executable_path(), args)
 	if server_pid == -1:
 		print("Failed to create dedicated server process: ", server_pid)

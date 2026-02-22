@@ -66,6 +66,7 @@ func _send_full_map_to_client(client_id: int) -> void:
 	var wall_data: Dictionary = get_tilemap_dict(walls)
 	# could also include ground, interactable layers etc.
 	rpc_id(client_id, "_client_receive_full_map", wall_data)
+	#todo also update ennemies and chest
 
 # Client receives full map
 @rpc("any_peer")

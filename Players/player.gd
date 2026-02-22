@@ -22,6 +22,8 @@ var hotbar: HotBarInventory
 @export var inventory_data: InventoryData
 @export var equip_inventory_data: InventoryData
 
+var player_state: Constants.PLAYER_STATES = Constants.PLAYER_STATES.PLAYING
+
 signal toggle_inventory()
 
 func _enter_tree() -> void : set_multiplayer_authority(name.to_int())
@@ -30,6 +32,8 @@ func _ready() -> void:
 	if !is_multiplayer_authority(): return
 	camera_2d.enabled = true # Personal camera, not shared
 	inventory_data.inventory_updated.connect(call_sync_player_inventory_from_client)
+	Global.game_controller.signals_bus.OPEN_GAME_CHAT.connect(open_game_chat)
+	Global.game_controller.signals_bus.EXIT_GAME_CHAT.connect(exit_game_chat)
 	
 	# On récupère la hotbar dans le parent
 	hotbar = get_parent().get_node("CanvasLayer/HotBarInventory")
@@ -40,14 +44,18 @@ func _ready() -> void:
 
 
 func get_input() -> void:
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("inventory") && is_playing():
 		toggle_inventory.emit()
 		
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") && is_playing():
 		execute_interaction()
 	
-	var input_direction: Vector2 = Input.get_vector("left", "right", "up", "down")
-	velocity = input_direction * speed
+	
+	if (is_playing()):
+		var input_direction: Vector2 = Input.get_vector("left", "right", "up", "down")
+		velocity = input_direction * speed
+	else:
+		velocity = Vector2.ZERO
 	
 	#todo better input handling
 	if Input.is_action_just_pressed("left_click"):
@@ -63,6 +71,21 @@ func get_input() -> void:
 		Global.get_world_scene().hot_bar_inventory.active_item_scroll_up()
 	if Input.is_action_just_pressed("scroll_down"):
 		Global.get_world_scene().hot_bar_inventory.active_item_scroll_down()
+		
+	if Input.is_action_just_pressed("open_game_chat"):
+		Global.game_controller.signals_bus.OPEN_GAME_CHAT.emit()
+
+	if Input.is_action_just_pressed("escape") and player_state == Constants.PLAYER_STATES.IN_GAME_CHAT:
+		Global.game_controller.signals_bus.EXIT_GAME_CHAT.emit()
+
+func open_game_chat() -> void:
+	player_state = Constants.PLAYER_STATES.IN_GAME_CHAT
+
+func exit_game_chat() -> void:
+	player_state = Constants.PLAYER_STATES.PLAYING
+
+func is_playing() -> bool:
+	return player_state == Constants.PLAYER_STATES.PLAYING
 
 func execute_interaction() -> void:
 	if all_interactions and all_interactions.size() > 0:

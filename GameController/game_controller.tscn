@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://cxlo3l8vb3pod" path="res://GameController/mouse_controller.gd" id="9_iy4tg"]
 [ext_resource type="Texture2D" uid="uid://b2ii1ermxaalm" path="res://icon.svg" id="10_hihb0"]
 [ext_resource type="Script" uid="uid://bfo6ssfseuljn" path="res://GameController/window_manager.gd" id="11_yskh6"]
+[ext_resource type="Script" uid="uid://nopx8s6hv1mi" path="res://GameController/signals_bus.gd" id="12_t7iw0"]
+[ext_resource type="Script" uid="uid://8h504u3l4nxk" path="res://Chat/chat_system.gd" id="13_i4ej5"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_7l8mg"]
 
@@ -104,3 +106,10 @@ texture = ExtResource("10_hihb0")
 
 [node name="WindowManager" type="Node" parent="." unique_id=406828385]
 script = ExtResource("11_yskh6")
+
+[node name="SignalsBus" type="Node" parent="." unique_id=960592547]
+script = ExtResource("12_t7iw0")
+
+[node name="ChatSystem" type="Node" parent="." unique_id=436976057]
+script = ExtResource("13_i4ej5")
+metadata/_custom_type_script = "uid://8h504u3l4nxk"
