@@ -1,5 +1,14 @@
 # TODO
 
+- un dummy (manequin) avec des paliers de dgts totaux infligés (comme ça c sun clicker like, mais tu vas plus vite qd tu avances dans le jeu) -> donne récomense à chaque palier
+
+- la possibilité de placer des structures en editeur/code
+
+- le début : un coffre/un tuyau/un charbon/un moteur -> tu poses le charbon dans le coffre, ça va dans le moteur et ca allume un truc (genre qui débloque le craft ou autre)
+
+
+#todo les données sont pas bien synchronizées quand le joueur rejoins je crois (il faudrait forcer une sauvegarde avant que le joueur ne join sinon)
+
 - les item doivent etre drop coté serveur puis syncrho sur les clients
 
 -----

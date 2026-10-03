@@ -1,0 +1,20 @@
+- multijoueur 
+	- steam
+	- synchronisation
+		- joueur, inventaire, entitées, tiles
+		- choix du personnage sur le monde
+- sauvegarde 
+	- inventaire sauvegardée côté joueur
+	- monde sauvegardé côté host
+- génération procédurale
+	- biomes
+		- spawns randoms
+	- structures
+		- spawns fixes
+	- remplissage
+		- sol
+		- tapis
+		- murs, interactables et plantes, etc
+- rentre dans une grotte : dungeon crawler
+- items déplacables à la factorio
+	
